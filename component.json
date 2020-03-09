@@ -8,6 +8,6 @@
   "description": "xrange function for node + javascript",
   "repository": {
     "type": "git",
-    "url": "git://github.com/gyllstromk/xrange.git"
+    "url": "git://github.com/parzh/xrange.git"
   }
 }
