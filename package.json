@@ -13,7 +13,7 @@
     "url": "https://github.com/gyllstromk/xrange"
   },
   "author": "Karl Gyllstrom",
-  "license": "BSD",
+  "license": "MIT",
   "devDependencies": {
     "jshint": "~2.1.3",
     "mocha": "~1.11.0",
