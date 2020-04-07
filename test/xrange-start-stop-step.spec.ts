@@ -53,12 +53,16 @@ describe("xrange(start, stop, step)", () => {
 		expect(() => xrange(2, Infinity, -1)).toThrowError(errorSecondArg);
 	});
 
-	it.todo("should iterate upwards indefinitely if order is acsending and upper bound is positive infinity");
+	it.todo("should iterate upwards indefinitely if order is acsending and upper bound (first argument) is positive infinity");
 	// xrange(Infinity, 0, 1);
+
+	it.todo("should iterate upwards indefinitely if order is acsending and upper bound (second argument) is positive infinity");
 	// xrange(0, Infinity, 1);
 
-	it.todo("should iterate downwards indefinitely if order is descending and lower bound is negative infinity");
+	it.todo("should iterate downwards indefinitely if order is descending and lower bound (first argument) is negative infinity");
 	// xrange(-Infinity, 0, -1);
+
+	it.todo("should iterate downwards indefinitely if order is descending and lower bound (second argument) is negative infinity");
 	// xrange(0, -Infinity, -1);
 
 	it.todo("should fail if `bound1` is `null`, `NaN`, or a non-numeric value");
