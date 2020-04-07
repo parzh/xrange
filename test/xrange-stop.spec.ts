@@ -32,7 +32,9 @@ describe("xrange(stop)", () => {
 
 	it("should iterate upwards indefinitely from 0 to positive infinity", () => {
 		const range = xrange(Infinity);
-		let last: IteratorResult<number, void>;
+		let last = range.next();
+
+		expect(last.value).toBe(0);
 
 		while ((last = range.next()).value < REASONABLY_LARGE_NUMBER); // do nothing
 
@@ -42,7 +44,9 @@ describe("xrange(stop)", () => {
 
 	it("should iterate downwards indefinitely from 0 to negative infinity", () => {
 		const range = xrange(-Infinity);
-		let last: IteratorResult<number, void>;
+		let last = range.next();
+
+		expect(last.value).toBe(0);
 
 		while ((last = range.next()).value > -REASONABLY_LARGE_NUMBER); // do nothing
 
