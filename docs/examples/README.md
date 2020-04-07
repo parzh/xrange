@@ -67,7 +67,7 @@ xrange(null, null);
 xrange(nan, nan);
 xrange(nan, null);
 xrange(null, nan);
-// Error: argument `init` is not a number
+// Error: argument `start` is not a number
 ```
 
 ```ts
@@ -119,13 +119,13 @@ xrange(Infinity, 5);
 xrange(-Infinity, Infinity);
 xrange(Infinity, Infinity);
 xrange(-Infinity, -Infinity);
-// RangeError: argument `init` must be finite
+// RangeError: argument `start` must be finite
 ```
 
 ```ts
 xrange(null, 5, 1);
 xrange(nan, 5, 1);
-// Error: argument `init` is not a number
+// Error: argument `start` is not a number
 ```
 
 ```ts
@@ -161,7 +161,7 @@ xrange(0, .91, .1);
 
 ```ts
 xrange(Infinity, 0, -1);
-// RangeError: argument `init` must be finite
+// RangeError: argument `start` must be finite
 ```
 
 ```ts
