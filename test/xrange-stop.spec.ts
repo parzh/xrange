@@ -1,4 +1,5 @@
 import xrange from "../src";
+import { nans, REASONABLY_LARGE_NUMBER } from "./entities";
 
 describe("xrange(stop)", () => {
 	it("should iterate upwards from 0 to positive integer", () => {
@@ -29,8 +30,6 @@ describe("xrange(stop)", () => {
 		expect(value).toBe(0);
 	});
 
-	const REASONABLY_LARGE_NUMBER = 5245;
-
 	it("should iterate upwards indefinitely from 0 to positive infinity", () => {
 		const range = xrange(Infinity);
 		let last: IteratorResult<number, void>;
@@ -52,10 +51,10 @@ describe("xrange(stop)", () => {
 	});
 
 	it("should fail when providing `null`, `NaN`, or a non-numeric value", () => {
-		for (const value of [ null, NaN, "text", "42", {}, (() => {}) ] as unknown[])
+		for (const nan of nans)
 			expect(() => xrange(
 				// @ts-ignore
-				value
+				nan
 			)).toThrowError("argument is not a number");
 	});
 });
