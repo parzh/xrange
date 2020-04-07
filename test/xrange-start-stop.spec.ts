@@ -6,6 +6,18 @@ describe("xrange(start, stop)", () => {
 		expect(Array.from(xrange(-2, 7))).toEqual([ -2, -1, 0, 1, 2, 3, 4, 5, 6 ]);
 	});
 
+	it("should iterate downwards if `start` is greater than `stop`", () => {
+		expect(Array.from(xrange(7, -2))).toEqual([ 7, 6, 5, 4, 3, 2, 1, 0, -1 ]);
+	});
+
+	it("should iterate upwards from `start` to positive non-integer `stop`", () => {
+		expect(Array.from(xrange(1.2, 3.4))).toEqual([ 1.2, 2.2, 3.2 ]);
+	});
+
+	it("should iterate downwards from `start` to negative non-integer `stop`", () => {
+		expect(Array.from(xrange(4.3, 2.1))).toEqual([ 4.3, 3.3, 2.3 ]);
+	});
+
 	it("should iterate upwards from `start` indefinitely if `stop` is positive infinity", () => {
 		const range = xrange(3, Infinity);
 		let last = range.next();
@@ -16,10 +28,6 @@ describe("xrange(start, stop)", () => {
 
 		expect(last.value).toEqual(REASONABLY_LARGE_NUMBER);
 		expect(last.done).toEqual(false);
-	});
-
-	it("should iterate downwards if `start` is greater than `stop`", () => {
-		expect(Array.from(xrange(7, -2))).toEqual([ 7, 6, 5, 4, 3, 2, 1, 0, -1 ]);
 	});
 
 	it("should iterate downwards from `start` indefinitely if `stop` is negative infinity", () => {
