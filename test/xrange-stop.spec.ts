@@ -45,9 +45,9 @@ describe("xrange(stop)", () => {
 		const range = xrange(-Infinity);
 		let last: IteratorResult<number, void>;
 
-		while ((last = range.next()).value > REASONABLY_LARGE_NUMBER); // do nothing
+		while ((last = range.next()).value > -REASONABLY_LARGE_NUMBER); // do nothing
 
-		expect(last.value).toEqual(REASONABLY_LARGE_NUMBER);
+		expect(last.value).toEqual(-REASONABLY_LARGE_NUMBER);
 		expect(last.done).toBe(false);
 	});
 
