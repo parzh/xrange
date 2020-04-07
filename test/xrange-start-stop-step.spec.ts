@@ -1,4 +1,5 @@
 import xrange from "../src";
+import { REASONABLY_LARGE_NUMBER } from "./entities";
 
 describe("xrange(start, stop, step)", () => {
 	it("should iterate upwards if `step` is positive", () => {
@@ -53,17 +54,41 @@ describe("xrange(start, stop, step)", () => {
 		expect(() => xrange(2, Infinity, -1)).toThrowError(errorSecondArg);
 	});
 
-	it.todo("should iterate upwards indefinitely if order is acsending and upper bound (first argument) is positive infinity");
-	// xrange(Infinity, 0, 1);
+	it("should iterate upwards indefinitely if order is acsending and upper bound is positive infinity", () => {
+		const ranges = [
+			xrange(2, Infinity, 1),
+			xrange(Infinity, 2, 1),
+		] as const;
 
-	it.todo("should iterate upwards indefinitely if order is acsending and upper bound (second argument) is positive infinity");
-	// xrange(0, Infinity, 1);
+		for (const range of ranges) {
+			let last = range.next();
 
-	it.todo("should iterate downwards indefinitely if order is descending and lower bound (first argument) is negative infinity");
-	// xrange(-Infinity, 0, -1);
+			expect(last.value).toBe(2);
 
-	it.todo("should iterate downwards indefinitely if order is descending and lower bound (second argument) is negative infinity");
-	// xrange(0, -Infinity, -1);
+			while ((last = range.next()).value < REASONABLY_LARGE_NUMBER); // do nothing
+
+			expect(last.value).toBe(REASONABLY_LARGE_NUMBER);
+			expect(last.done).toBe(false);
+		}
+	});
+
+	it("should iterate downwards indefinitely if order is descending and lower bound is negative infinity", () => {
+		const ranges = [
+			xrange(2, -Infinity, -1),
+			xrange(-Infinity, 2, -1),
+		] as const;
+
+		for (const range of ranges) {
+			let last = range.next();
+
+			expect(last.value).toBe(2);
+
+			while ((last = range.next()).value > -REASONABLY_LARGE_NUMBER); // do nothing
+
+			expect(last.value).toBe(-REASONABLY_LARGE_NUMBER);
+			expect(last.done).toBe(false);
+		}
+	});
 
 	it.todo("should fail if `bound1` is `null`, `NaN`, or a non-numeric value");
 
