@@ -8,3 +8,7 @@
     Created with <a href="https://npmjs.org/package/create-package-typescript"><code>create-package-typescript</code></a>
   </sub>
 </p>
+
+### Examples:
+
+See [/docs/examples](https://github.com/parzh/xrange/tree/master/docs/examples) at GitHub to see `xrange` usage, including errors and advanced usage.
