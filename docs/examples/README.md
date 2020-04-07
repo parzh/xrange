@@ -125,13 +125,13 @@ xrange(-Infinity, -Infinity);
 ```ts
 xrange(null, 5, 1);
 xrange(nan, 5, 1);
-// Error: argument `start` is not a number
+// Error: argument `bound1` is not a number
 ```
 
 ```ts
 xrange(0, null, 1);
 xrange(0, nanof, 1);
-// Error: argument `stop` is neither a number, nor a function
+// Error: argument `bound2` is neither a number, nor a function
 ```
 
 ```ts
