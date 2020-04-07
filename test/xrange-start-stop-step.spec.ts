@@ -1,17 +1,44 @@
 import xrange from "../src";
 
 describe("xrange(start, stop, step)", () => {
-	it.todo("should iterate upwards if `step` is positive");
+	it("should iterate upwards if `step` is positive", () => {
+		const expected = [ 2, 3, 4, 5, 6 ] as const;
 
-	it.todo("should iterate downwards if `step` is negative");
+		expect(Array.from(xrange(2, 7, 1))).toEqual(expected);
+		expect(Array.from(xrange(7, 2, 1))).toEqual(expected);
+	});
 
-	it.todo("should iterate in positive non-integer steps");
+	it("should iterate downwards if `step` is negative", () => {
+		const expected = [ 7, 6, 5, 4, 3 ] as const;
 
-	it.todo("should iterate in negative non-integer steps");
+		expect(Array.from(xrange(2, 7, -1))).toEqual(expected);
+		expect(Array.from(xrange(7, 2, -1))).toEqual(expected);
+	});
 
-	it.todo("should fail if `step` is zero");
+	it("should iterate in positive non-integer steps", () => {
+		const expected = [ 0, .1, .2, .3, .4, .5, .6, .7, .8, .9 ] as const;
 
-	it.todo("should fail if `step` is infinite");
+		expect(Array.from(xrange(0, 1, .1))).toEqual(expected);
+		expect(Array.from(xrange(1, 0, .1))).toEqual(expected);
+	});
+
+	it("should iterate in negative non-integer steps", () => {
+		const expected = [ 1, .9, .8, .7, .6, .5, .4, .3, .2, .1 ] as const;
+
+		expect(Array.from(xrange(0, 1, -.1))).toEqual(expected);
+		expect(Array.from(xrange(1, 0, -.1))).toEqual(expected);
+	});
+
+	it("should fail if `step` is zero", () => {
+		expect(() => xrange(2, 7, 0)).toThrowError(new RangeError("argument `step` cannot be zero"));
+	});
+
+	it("should fail if `step` is infinite", () => {
+		const error = new RangeError("argument `step` must be finite");
+
+		expect(() => xrange(2, 7, Infinity)).toThrowError(error);
+		expect(() => xrange(2, 7, -Infinity)).toThrowError(error);
+	});
 
 	it.todo("should fail if order is acsending and lower bound is positive infinity");
 	// xrange(-Infinity, 0, 1);
