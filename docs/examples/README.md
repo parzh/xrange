@@ -130,14 +130,14 @@ xrange(nan, 5, 1);
 
 ```ts
 xrange(0, null, 1);
-xrange(0, nan, 1);
-// Error: argument `stop` is not a number
+xrange(0, nanof, 1);
+// Error: argument `stop` is neither a number, nor a function
 ```
 
 ```ts
 xrange(0, 5, null);
-xrange(0, 5, nanof);
-// Error: argument is neither a number, nor a function
+xrange(0, 5, nan);
+// Error: argument `step` is not a number
 ```
 
 ```ts
@@ -175,13 +175,18 @@ xrange(0, 5, 0);
 xrange(0, 0, 0);
 xrange(0, Infinity, 0);
 xrange(0, -Infinity, 0);
-// RangeError: numeric argument `step` cannot be zero
+// RangeError: argument `step` cannot be zero
 ```
 
 ```ts
 xrange(0, 5, Infinity);
 xrange(0, 5, -Infinity);
-// RangeError: numeric argument `step` must be finite
+// RangeError: argument `step` must be finite
+```
+
+```ts
+xrange(0, () => true, 1);
+// Error: argument `next` is not a function
 ```
 
 ```ts
