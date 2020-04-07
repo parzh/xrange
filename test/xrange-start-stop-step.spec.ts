@@ -1,5 +1,5 @@
 import xrange from "../src";
-import { REASONABLY_LARGE_NUMBER } from "./entities";
+import { REASONABLY_LARGE_NUMBER, nans, nanofs } from "./entities";
 
 describe("xrange(start, stop, step)", () => {
 	it("should iterate upwards if `step` is positive", () => {
@@ -90,9 +90,33 @@ describe("xrange(start, stop, step)", () => {
 		}
 	});
 
-	it.todo("should fail if `bound1` is `null`, `NaN`, or a non-numeric value");
+	it("should fail if `bound1` is `null`, `NaN`, or a non-numeric value", () => {
+		for (const nan of nans)
+			expect(() => xrange(
+				// @ts-ignore
+				nan,
+				7,
+				1,
+			)).toThrowError("argument `bound1` is not a number");
+	});
 
-	it.todo("should fail if `bound2` is `null`, `NaN`, or a non-numeric value (except for a function)");
+	it("should fail if `bound2` is `null`, `NaN`, or a non-numeric value (except for a function)", () => {
+		for (const nanof of nanofs)
+			expect(() => xrange(
+				2,
+				// @ts-ignore
+				nanof,
+				1,
+			)).toThrowError("argument `bound2` is neither a number, nor a function");
+	});
 
-	it.todo("should fail if `step` is `null`, `NaN`, or a non-numeric value");
+	it("should fail if `step` is `null`, `NaN`, or a non-numeric value", () => {
+		for (const nan of nans)
+			expect(() => xrange(
+				2,
+				7,
+				// @ts-ignore
+				nan,
+			)).toThrowError("argument `step` is not a number");
+	});
 });
