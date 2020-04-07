@@ -40,13 +40,18 @@ describe("xrange(start, stop, step)", () => {
 		expect(() => xrange(2, 7, -Infinity)).toThrowError(error);
 	});
 
-	it.todo("should fail if order is acsending and lower bound is positive infinity");
-	// xrange(-Infinity, 0, 1);
-	// xrange(0, -Infinity, 1);
+	const errorFirstArg = new RangeError("range start (first argument) must be finite");
+	const errorSecondArg = new RangeError("range start (second argument) must be finite");
 
-	it.todo("should fail if order is descending and upper bound is negative infinity");
-	// xrange(Infinity, 0, -1);
-	// xrange(0, Infinity, -1);
+	it("should fail if order is acsending and lower bound is positive infinity", () => {
+		expect(() => xrange(-Infinity, 2, 1)).toThrowError(errorFirstArg);
+		expect(() => xrange(2, -Infinity, 1)).toThrowError(errorSecondArg);
+	});
+
+	it("should fail if order is descending and upper bound is negative infinity", () => {
+		expect(() => xrange(Infinity, 2, -1)).toThrowError(errorFirstArg);
+		expect(() => xrange(2, Infinity, -1)).toThrowError(errorSecondArg);
+	});
 
 	it.todo("should iterate upwards indefinitely if order is acsending and upper bound is positive infinity");
 	// xrange(Infinity, 0, 1);
