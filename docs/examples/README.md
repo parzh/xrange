@@ -154,18 +154,32 @@ xrange(5, 0, -1);
 
 ```ts
 xrange(0, 1, .1);
+xrange(1, 0, .1);
 xrange(0, .95, .1);
 xrange(0, .91, .1);
 // 0, .1, .2, .3, .4, .5, .6, .7, .8, .9
 ```
 
 ```ts
+xrange(0, 1, -.1);
+xrange(1, 0, -.1);
+xrange(0, 1.05, -.1);
+xrange(0, 1.01, -.1);
+// 1, .9, .8, .7, .6, .5, .4, .4, .3, .2, .1
+```
+
+```ts
 xrange(Infinity, 0, -1);
-// RangeError: argument `start` must be finite
+// RangeError: range start (first argument) must be finite
+// ...
+
+xrange(0, Infinity, -1);
+// RangeError: range start (second argument) must be finite
 ```
 
 ```ts
 xrange(0, Infinity, 1);
+xrange(Infinity, 0, 1);
 // 0, 1, 2, 3, 4, …
 // (never ends)
 ```
