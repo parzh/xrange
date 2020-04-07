@@ -1,7 +1,7 @@
 import xrange from "../src";
 import { REASONABLY_LARGE_NUMBER, nans, nanofs } from "./entities";
 
-describe("xrange(start, stop, step)", () => {
+describe("xrange(bound1, bound2, step)", () => {
 	it("should iterate upwards if `step` is positive", () => {
 		const expected = [ 2, 3, 4, 5, 6 ] as const;
 
