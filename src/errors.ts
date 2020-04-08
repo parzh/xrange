@@ -23,13 +23,12 @@ export function createError<Code extends keyof Errors>(code: Code): Errors[Code]
 	const { message, constructor } = errors[code];
 	const error: Errors[Code] = constructor(`[${ code }] ${ message }`);
 
-	if (error.stack == null)
-		return error;
-
-	const lines = error.stack.split("\n");
-
-	lines.splice(1, 1);
-	error.stack = lines.join("\n");
+	if (error.stack != null) {
+		const lines = error.stack.split("\n");
+	
+		lines.splice(1, 1);
+		error.stack = lines.join("\n");
+	}
 
 	return error;
 }
