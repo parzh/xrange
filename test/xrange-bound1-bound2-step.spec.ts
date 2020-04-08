@@ -31,7 +31,10 @@ describe("xrange(bound1, bound2, step)", () => {
 	});
 
 	it("should fail if `step` is zero", () => {
-		expect(() => xrange(2, 7, 0)).toThrowError(new RangeError("argument `step` cannot be zero"));
+		const error = new RangeError("argument `step` cannot be zero");
+
+		expect(() => xrange(2, 7, +0)).toThrowError(error);
+		expect(() => xrange(2, 7, -0)).toThrowError(error);
 	});
 
 	it("should fail if `step` is infinite", () => {
