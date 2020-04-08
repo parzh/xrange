@@ -12,7 +12,7 @@ const _errors = {
 	"XRANGE:3:STEINF": new RangeError("argument `step` must be finite"),
 	"XRANGE:3:STENAN": new Error("argument `step` is not a number"),
 	"XRANGE:3:STEZER": new RangeError("argument `step` cannot be zero"),
-	"XRANGE:4:NXTNAF": new Error("argument `next` is not a function"),
+	"XRANGE:3:NXTNAF": new Error("argument `next` is not a function"),
 } as const;
 
 export type Errors = typeof _errors;
