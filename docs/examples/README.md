@@ -170,11 +170,11 @@ xrange(0, 1.01, -.1);
 
 ```ts
 xrange(Infinity, 0, -1);
-// RangeError: range start (first argument) must be finite
+// RangeError: range start (first argument) must be finite // FIXME: add error code
 // ...
 
 xrange(0, Infinity, -1);
-// RangeError: range start (second argument) must be finite
+// RangeError: range start (second argument) must be finite // FIXME: add error code
 ```
 
 ```ts

@@ -44,8 +44,8 @@ describe("xrange(bound1, bound2, step)", () => {
 		expect(() => xrange(2, 7, -Infinity)).toThrowError(error);
 	});
 
-	const errorFirstArg = new RangeError("range start (first argument) must be finite");
-	const errorSecondArg = new RangeError("range start (second argument) must be finite");
+	const errorFirstArg = new RangeError("range start (first argument) must be finite"); // FIXME: extract to src/errors.ts
+	const errorSecondArg = new RangeError("range start (second argument) must be finite"); // FIXME: extract to src/errors.ts
 
 	it("should fail if order is acsending and lower bound is positive infinity", () => {
 		expect(() => xrange(-Infinity, 2, 1)).toThrowError(errorFirstArg);
