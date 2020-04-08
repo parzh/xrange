@@ -6,7 +6,7 @@ describe("xrange(start, predicate, next)", () => {
 		expect(() => {
 			// @ts-ignore
 			xrange(0, () => true, 1);
-		}).toThrowError("argument `next` is not a function");
+		}).toThrowError("argument `next` is not a function"); // FIXME: extract to src/errors.ts
 	});
 
 	it("should yield the value specified by the `next` function", () => {

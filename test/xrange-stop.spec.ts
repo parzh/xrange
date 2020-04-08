@@ -59,6 +59,6 @@ describe("xrange(stop)", () => {
 			expect(() => xrange(
 				// @ts-ignore
 				nan
-			)).toThrowError("argument is not a number");
+			)).toThrowError("argument is not a number"); // FIXME: extract to src/errors.ts
 	});
 });

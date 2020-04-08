@@ -31,14 +31,14 @@ describe("xrange(bound1, bound2, step)", () => {
 	});
 
 	it("should fail if `step` is zero", () => {
-		const error = new RangeError("argument `step` cannot be zero");
+		const error = new RangeError("argument `step` cannot be zero"); // FIXME: extract to src/errors.ts
 
 		expect(() => xrange(2, 7, +0)).toThrowError(error);
 		expect(() => xrange(2, 7, -0)).toThrowError(error);
 	});
 
 	it("should fail if `step` is infinite", () => {
-		const error = new RangeError("argument `step` must be finite");
+		const error = new RangeError("argument `step` must be finite"); // FIXME: extract to src/errors.ts
 
 		expect(() => xrange(2, 7, Infinity)).toThrowError(error);
 		expect(() => xrange(2, 7, -Infinity)).toThrowError(error);
@@ -100,7 +100,7 @@ describe("xrange(bound1, bound2, step)", () => {
 				nan,
 				7,
 				1,
-			)).toThrowError("argument `bound1` is not a number");
+			)).toThrowError("argument `bound1` is not a number"); // FIXME: extract to src/errors.ts
 	});
 
 	it("should fail if `bound2` is `null`, `NaN`, or a non-numeric value (except for a function)", () => {
@@ -110,7 +110,7 @@ describe("xrange(bound1, bound2, step)", () => {
 				// @ts-ignore
 				nanof,
 				1,
-			)).toThrowError("argument `bound2` is neither a number, nor a function");
+			)).toThrowError("argument `bound2` is neither a number, nor a function"); // FIXME: extract to src/errors.ts
 	});
 
 	it("should fail if `step` is `null`, `NaN`, or a non-numeric value", () => {
@@ -118,6 +118,6 @@ describe("xrange(bound1, bound2, step)", () => {
 			expect(() => {
 				// @ts-ignore
 				xrange(2, 7, nan);
-			}).toThrowError("argument `step` is not a number");
+			}).toThrowError("argument `step` is not a number"); // FIXME: extract to src/errors.ts
 	});
 });

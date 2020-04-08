@@ -5,6 +5,6 @@ describe("xrange()", () => {
 		expect(() => {
 			// @ts-ignore
 			xrange();
-		}).toThrowError("argument is required");
+		}).toThrowError("argument is required"); // FIXME: extract to src/errors.ts
 	});
 });

@@ -8,7 +8,7 @@ declare const nanof: unknown;
 
 ```ts
 xrange();
-// Error: argument is required
+// Error: argument is required // FIXME: add error code
 ```
 
 ```ts
@@ -57,7 +57,7 @@ xrange(-Infinity);
 ```ts
 xrange(null);
 xrange(nan);
-// Error: argument is not a number
+// Error: argument is not a number // FIXME: add error code
 ```
 
 ```ts
@@ -67,13 +67,13 @@ xrange(null, null);
 xrange(nan, nan);
 xrange(nan, null);
 xrange(null, nan);
-// Error: argument `start` is not a number
+// Error: argument `start` is not a number // FIXME: add error code
 ```
 
 ```ts
 xrange(0, null);
 xrange(0, nan);
-// Error: argument `stop` is not a number
+// Error: argument `stop` is not a number // FIXME: add error code
 ```
 
 ```ts
@@ -119,25 +119,25 @@ xrange(Infinity, 5);
 xrange(-Infinity, Infinity);
 xrange(Infinity, Infinity);
 xrange(-Infinity, -Infinity);
-// RangeError: argument `start` must be finite
+// RangeError: argument `start` must be finite // FIXME: add error code
 ```
 
 ```ts
 xrange(null, 5, 1);
 xrange(nan, 5, 1);
-// Error: argument `bound1` is not a number
+// Error: argument `bound1` is not a number // FIXME: add error code
 ```
 
 ```ts
 xrange(0, null, 1);
 xrange(0, nanof, 1);
-// Error: argument `bound2` is neither a number, nor a function
+// Error: argument `bound2` is neither a number, nor a function // FIXME: add error code
 ```
 
 ```ts
 xrange(0, 5, null);
 xrange(0, 5, nan);
-// Error: argument `step` is not a number
+// Error: argument `step` is not a number // FIXME: add error code
 ```
 
 ```ts
@@ -189,18 +189,18 @@ xrange(0, 5, 0);
 xrange(0, 0, 0);
 xrange(0, Infinity, 0);
 xrange(0, -Infinity, 0);
-// RangeError: argument `step` cannot be zero
+// RangeError: argument `step` cannot be zero // FIXME: add error code
 ```
 
 ```ts
 xrange(0, 5, Infinity);
 xrange(0, 5, -Infinity);
-// RangeError: argument `step` must be finite
+// RangeError: argument `step` must be finite // FIXME: add error code
 ```
 
 ```ts
 xrange(0, () => true, 1);
-// Error: argument `next` is not a function
+// Error: argument `next` is not a function // FIXME: add error code
 ```
 
 ```ts
