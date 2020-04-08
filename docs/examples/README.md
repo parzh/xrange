@@ -252,3 +252,20 @@ xrange(0, (next) => next < 5, () => Infinity);
 xrange(0, (next) => next > 5, () => Infinity);
 // 0, Infinity, Infinity, …
 ```
+
+```ts
+xrange(0, () => true, (prev) => prev);
+// 0, 0, NaN, NaN, NaN, …
+```
+
+```ts
+const obj = {
+	value: 0,
+	valueOf() {
+		return ++this.value;
+	},
+};
+
+xrange(0, () => true, () => obj);
+// 0, 1, 2, 3, 4
+```
