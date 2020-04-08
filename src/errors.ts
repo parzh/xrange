@@ -6,7 +6,7 @@ const _errors = {
 	"XRANGE:2:STRINF": new RangeError("argument `start` must be finite"),
 	"XRANGE:2:STRNAN": new Error("argument `start` is not a number"),
 	"XRANGE:3:BD1NAN": new Error("argument `bound1` is not a number"),
-	"XRANGE:3:BD2NAF": new Error("argument `bound2` is neither a number, nor a function"),
+	"XRANGE:3:BD2NNF": new Error("argument `bound2` is neither a number, nor a function"),
 	"XRANGE:3:STEINF": new RangeError("argument `step` must be finite"),
 	"XRANGE:3:STENAN": new Error("argument `step` is not a number"),
 	"XRANGE:3:STEZER": new RangeError("argument `step` cannot be zero"),
