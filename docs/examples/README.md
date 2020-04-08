@@ -228,6 +228,11 @@ xrange(0, (next) => next < 5, ([ last ]) => last - 1);
 ```
 
 ```ts
+xrange(0, (next) => next > -5, ([ last ]) => last - 1);
+// 0, -1, -2, -3, -4
+```
+
+```ts
 xrange(1, () => true, ([ last, prelast = 0 ]) => last + prelast);
 // 1, 1, 2, 3, 5, 8, 13, …
 // (fibonacci numbers)
