@@ -112,11 +112,9 @@ describe("xrange(bound1, bound2, step)", () => {
 
 	it("should fail if `step` is `null`, `NaN`, or a non-numeric value", () => {
 		for (const nan of nans)
-			expect(() => xrange(
-				2,
-				7,
+			expect(() => {
 				// @ts-ignore
-				nan,
-			)).toThrowError("argument `step` is not a number");
+				xrange(2, 7, nan);
+			}).toThrowError("argument `step` is not a number");
 	});
 });
