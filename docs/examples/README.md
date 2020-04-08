@@ -8,7 +8,7 @@ declare const nanof: unknown;
 
 ```ts
 xrange();
-// Error: argument is required // FIXME: add error code
+// Error: [XRANGE:0:ARGREQ] argument is required
 ```
 
 ```ts
@@ -57,7 +57,7 @@ xrange(-Infinity);
 ```ts
 xrange(null);
 xrange(nan);
-// Error: argument is not a number // FIXME: add error code
+// Error: [XRANGE:1:ARGNAN] argument is not a number
 ```
 
 ```ts
@@ -67,13 +67,13 @@ xrange(null, null);
 xrange(nan, nan);
 xrange(nan, null);
 xrange(null, nan);
-// Error: argument `start` is not a number // FIXME: add error code
+// Error: [XRANGE:2:STRNAN] argument `start` is not a number
 ```
 
 ```ts
 xrange(0, null);
 xrange(0, nan);
-// Error: argument `stop` is not a number // FIXME: add error code
+// Error: [XRANGE:2:STPNAN] argument `stop` is not a number
 ```
 
 ```ts
@@ -119,25 +119,25 @@ xrange(Infinity, 5);
 xrange(-Infinity, Infinity);
 xrange(Infinity, Infinity);
 xrange(-Infinity, -Infinity);
-// RangeError: argument `start` must be finite // FIXME: add error code
+// RangeError: [XRANGE:2:STRINF] argument `start` must be finite
 ```
 
 ```ts
 xrange(null, 5, 1);
 xrange(nan, 5, 1);
-// Error: argument `bound1` is not a number // FIXME: add error code
+// Error: [XRANGE:3:BD1NAN] argument `bound1` is not a number
 ```
 
 ```ts
 xrange(0, null, 1);
 xrange(0, nanof, 1);
-// Error: argument `bound2` is neither a number, nor a function // FIXME: add error code
+// Error: [XRANGE:3:BD2NNF] argument `bound2` is neither a number, nor a function
 ```
 
 ```ts
 xrange(0, 5, null);
 xrange(0, 5, nan);
-// Error: argument `step` is not a number // FIXME: add error code
+// Error: [XRANGE:3:STENAN] argument `step` is not a number
 ```
 
 ```ts
@@ -170,11 +170,11 @@ xrange(0, 1.01, -.1);
 
 ```ts
 xrange(Infinity, 0, -1);
-// RangeError: range start (first argument) must be finite // FIXME: add error code
+// RangeError: [XRANGE:3:BD1INF] range start (first argument) must be finite
 // ...
 
 xrange(0, Infinity, -1);
-// RangeError: range start (second argument) must be finite // FIXME: add error code
+// RangeError: [XRANGE:3:BD2INF] range start (second argument) must be finite
 ```
 
 ```ts
@@ -189,18 +189,18 @@ xrange(0, 5, 0);
 xrange(0, 0, 0);
 xrange(0, Infinity, 0);
 xrange(0, -Infinity, 0);
-// RangeError: argument `step` cannot be zero // FIXME: add error code
+// RangeError: [XRANGE:3:STEZER] argument `step` cannot be zero
 ```
 
 ```ts
 xrange(0, 5, Infinity);
 xrange(0, 5, -Infinity);
-// RangeError: argument `step` must be finite // FIXME: add error code
+// RangeError: [XRANGE:3:STEINF] argument `step` must be finite
 ```
 
 ```ts
 xrange(0, () => true, 1);
-// Error: argument `next` is not a function // FIXME: add error code
+// Error: [XRANGE:3:NXTNAF] argument `next` is not a function
 ```
 
 ```ts
