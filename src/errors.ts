@@ -17,12 +17,11 @@ const _errors = {
 
 export type Errors = typeof _errors;
 
-/** @public */
-const errors: Errors = Object.assign(Object.create(null), _errors);
+export type ErrorCode = keyof Errors;
 
 /** @internal */
-export function createError<Code extends keyof Errors>(code: Code): Errors[Code] {
-	const { message, constructor } = errors[code];
+export function createError<Code extends ErrorCode>(code: Code): Errors[Code] {
+	const { message, constructor } = _errors[code];
 	const error: Errors[Code] = constructor(`[${ code }] ${ message }`);
 
 	if (error.stack != null) {
@@ -35,4 +34,10 @@ export function createError<Code extends keyof Errors>(code: Code): Errors[Code]
 	return error;
 }
 
-export default errors;
+/** @public */
+const errors = Object.create(null);
+
+for (const code in _errors)
+	errors[code] = createError(code as ErrorCode);
+
+export default errors as Errors;
