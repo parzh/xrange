@@ -1,4 +1,5 @@
 import xrange from "../src";
+import errors from "../src/errors";
 import { nans, REASONABLY_LARGE_NUMBER } from "./entities";
 
 describe("xrange(stop)", () => {
@@ -59,6 +60,6 @@ describe("xrange(stop)", () => {
 			expect(() => xrange(
 				// @ts-ignore
 				nan
-			)).toThrowError("argument is not a number"); // FIXME: extract to src/errors.ts
+			)).toThrowError(errors["XRANGE:1:ARGNAN"]);
 	});
 });

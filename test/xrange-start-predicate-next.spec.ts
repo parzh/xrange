@@ -1,4 +1,5 @@
 import xrange from "../src";
+import errors from "../src/errors";
 import { REASONABLY_LARGE_NUMBER } from "./entities";
 
 describe("xrange(start, predicate, next)", () => {
@@ -6,7 +7,7 @@ describe("xrange(start, predicate, next)", () => {
 		expect(() => {
 			// @ts-ignore
 			xrange(0, () => true, 1);
-		}).toThrowError("argument `next` is not a function"); // FIXME: extract to src/errors.ts
+		}).toThrowError(errors["XRANGE:3:NXTNAF"]);
 	});
 
 	it("should yield the value specified by the `next` function", () => {

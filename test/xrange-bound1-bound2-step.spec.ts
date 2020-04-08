@@ -1,4 +1,5 @@
 import xrange from "../src";
+import errors from "../src/errors";
 import { REASONABLY_LARGE_NUMBER, nans, nanofs } from "./entities";
 
 describe("xrange(bound1, bound2, step)", () => {
@@ -31,30 +32,23 @@ describe("xrange(bound1, bound2, step)", () => {
 	});
 
 	it("should fail if `step` is zero", () => {
-		const error = new RangeError("argument `step` cannot be zero"); // FIXME: extract to src/errors.ts
-
-		expect(() => xrange(2, 7, +0)).toThrowError(error);
-		expect(() => xrange(2, 7, -0)).toThrowError(error);
+		expect(() => xrange(2, 7, +0)).toThrowError(errors["XRANGE:3:STEZER"]);
+		expect(() => xrange(2, 7, -0)).toThrowError(errors["XRANGE:3:STEZER"]);
 	});
 
 	it("should fail if `step` is infinite", () => {
-		const error = new RangeError("argument `step` must be finite"); // FIXME: extract to src/errors.ts
-
-		expect(() => xrange(2, 7, Infinity)).toThrowError(error);
-		expect(() => xrange(2, 7, -Infinity)).toThrowError(error);
+		expect(() => xrange(2, 7, Infinity)).toThrowError(errors["XRANGE:3:STEINF"]);
+		expect(() => xrange(2, 7, -Infinity)).toThrowError(errors["XRANGE:3:STEINF"]);
 	});
 
-	const errorFirstArg = new RangeError("range start (first argument) must be finite"); // FIXME: extract to src/errors.ts
-	const errorSecondArg = new RangeError("range start (second argument) must be finite"); // FIXME: extract to src/errors.ts
-
 	it("should fail if order is acsending and lower bound is positive infinity", () => {
-		expect(() => xrange(-Infinity, 2, 1)).toThrowError(errorFirstArg);
-		expect(() => xrange(2, -Infinity, 1)).toThrowError(errorSecondArg);
+		expect(() => xrange(-Infinity, 2, 1)).toThrowError(errors["XRANGE:3:BD1INF"]);
+		expect(() => xrange(2, -Infinity, 1)).toThrowError(errors["XRANGE:3:BD2INF"]);
 	});
 
 	it("should fail if order is descending and upper bound is negative infinity", () => {
-		expect(() => xrange(Infinity, 2, -1)).toThrowError(errorFirstArg);
-		expect(() => xrange(2, Infinity, -1)).toThrowError(errorSecondArg);
+		expect(() => xrange(Infinity, 2, -1)).toThrowError(errors["XRANGE:3:BD1INF"]);
+		expect(() => xrange(2, Infinity, -1)).toThrowError(errors["XRANGE:3:BD2INF"]);
 	});
 
 	it("should iterate upwards indefinitely if order is acsending and upper bound is positive infinity", () => {
@@ -100,7 +94,7 @@ describe("xrange(bound1, bound2, step)", () => {
 				nan,
 				7,
 				1,
-			)).toThrowError("argument `bound1` is not a number"); // FIXME: extract to src/errors.ts
+			)).toThrowError(errors["XRANGE:3:BD1NAN"]);
 	});
 
 	it("should fail if `bound2` is `null`, `NaN`, or a non-numeric value (except for a function)", () => {
@@ -110,7 +104,7 @@ describe("xrange(bound1, bound2, step)", () => {
 				// @ts-ignore
 				nanof,
 				1,
-			)).toThrowError("argument `bound2` is neither a number, nor a function"); // FIXME: extract to src/errors.ts
+			)).toThrowError(errors["XRANGE:3:BD2NNF"]);
 	});
 
 	it("should fail if `step` is `null`, `NaN`, or a non-numeric value", () => {
@@ -118,6 +112,6 @@ describe("xrange(bound1, bound2, step)", () => {
 			expect(() => {
 				// @ts-ignore
 				xrange(2, 7, nan);
-			}).toThrowError("argument `step` is not a number"); // FIXME: extract to src/errors.ts
+			}).toThrowError(errors["XRANGE:3:STENAN"]);
 	});
 });
