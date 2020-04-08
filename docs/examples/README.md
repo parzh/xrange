@@ -251,3 +251,4 @@ xrange(0, (next) => next < 5, () => Infinity);
 ```ts
 xrange(0, (next) => next > 5, () => Infinity);
 // 0, Infinity, Infinity, …
+```
