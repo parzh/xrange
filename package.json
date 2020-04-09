@@ -15,6 +15,7 @@
   "scripts": {
     "test": "jest",
     "test:cov": "jest --coverage",
+    "test:ci": "npm run test:cov -- --no-colors 2> unit-test-fail.log",
     "start": "node --require ts-node/register src",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
