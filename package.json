@@ -19,7 +19,8 @@
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "tsc --build src --verbose --diagnostics",
-    "dev": "npm run build -- --watch"
+    "dev": "npm run build -- --watch",
+    "prepublishOnly": "npm test && npm run build && git push --follow-tags"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
