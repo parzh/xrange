@@ -1,4 +1,5 @@
 import xrange from "../src";
+import errors from "../src/errors";
 import { nans, REASONABLY_LARGE_NUMBER } from "./entities";
 
 describe("xrange(start, stop)", () => {
@@ -56,7 +57,7 @@ describe("xrange(start, stop)", () => {
 
 	it("should fail if `start` is infinite", () => {
 		for (const inf of [ Infinity, -Infinity ])
-			expect(() => xrange(inf, 5)).toThrowError(new RangeError("argument `start` must be finite"));
+			expect(() => xrange(inf, 5)).toThrowError(errors["XRANGE:2:STRINF"]);
 	});
 
 	it("should fail is `start` is `null`, `NaN`, or a non-numeric value", () => {
@@ -65,7 +66,7 @@ describe("xrange(start, stop)", () => {
 				// @ts-ignore
 				nan,
 				5,
-			)).toThrowError("argument `start` is not a number");
+			)).toThrowError(errors["XRANGE:2:STRNAN"]);
 	});
 
 	it("should fail is `stop` is `null`, `NaN`, or a non-numeric value", () => {
@@ -74,6 +75,6 @@ describe("xrange(start, stop)", () => {
 				0,
 				// @ts-ignore
 				nan,
-			)).toThrowError("argument `stop` is not a number");
+			)).toThrowError(errors["XRANGE:2:STPNAN"]);
 	});
 });
