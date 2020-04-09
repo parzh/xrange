@@ -62,7 +62,8 @@ describe("xrange(bound1, bound2, step)", () => {
 
 			expect(last.value).toBe(2);
 
-			while ((last = range.next()).value < REASONABLY_LARGE_NUMBER); // do nothing
+			while (last.value < REASONABLY_LARGE_NUMBER)
+				last = range.next();
 
 			expect(last.value).toBe(REASONABLY_LARGE_NUMBER);
 			expect(last.done).toBe(false);
@@ -80,7 +81,8 @@ describe("xrange(bound1, bound2, step)", () => {
 
 			expect(last.value).toBe(2);
 
-			while ((last = range.next()).value > -REASONABLY_LARGE_NUMBER); // do nothing
+			while (last.value > -REASONABLY_LARGE_NUMBER)
+				last = range.next();
 
 			expect(last.value).toBe(-REASONABLY_LARGE_NUMBER);
 			expect(last.done).toBe(false);

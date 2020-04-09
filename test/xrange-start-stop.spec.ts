@@ -25,7 +25,8 @@ describe("xrange(start, stop)", () => {
 
 		expect(last.value).toBe(3);
 
-		while ((last = range.next()).value < REASONABLY_LARGE_NUMBER); // do nothing
+		while (last.value < REASONABLY_LARGE_NUMBER)
+			last = range.next();
 
 		expect(last.value).toEqual(REASONABLY_LARGE_NUMBER);
 		expect(last.done).toEqual(false);
@@ -37,7 +38,8 @@ describe("xrange(start, stop)", () => {
 
 		expect(last.value).toBe(3);
 
-		while ((last = range.next()).value > -REASONABLY_LARGE_NUMBER); // do nothing
+		while (last.value > -REASONABLY_LARGE_NUMBER)
+			last = range.next();
 
 		expect(last.value).toEqual(-REASONABLY_LARGE_NUMBER);
 		expect(last.done).toEqual(false);
