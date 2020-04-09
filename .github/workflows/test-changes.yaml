@@ -11,7 +11,13 @@ jobs:
 
       - run: npm ci
       - run: npm run build
-      - run: npm run test:cov
+      - run: npm run test:cov -- --no-colors 2> unit-test-fail.log
+
+      - if: failure()
+        uses: actions/upload-artifact@v1
+        with:
+          name: unit-test-fail-log
+          path: unit-test-fail-log
 
       - if: always()
         uses: actions/upload-artifact@v1
