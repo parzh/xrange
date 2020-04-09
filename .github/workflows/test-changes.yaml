@@ -1,0 +1,14 @@
+name: Test changes
+
+on: push
+
+jobs:
+  unit:
+    name: Run unit tests
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
