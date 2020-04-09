@@ -34,10 +34,11 @@ export function createError<Code extends ErrorCode>(code: Code): Errors[Code] {
 	return error;
 }
 
-/** @public */
+/** @internal */
 const errors = Object.create(null);
 
 for (const code in _errors)
 	errors[code] = createError(code as ErrorCode);
 
+/** @internal */
 export default errors as Errors;
