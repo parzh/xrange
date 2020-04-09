@@ -4,11 +4,17 @@ on: push
 
 jobs:
   unit:
-    name: Run unit tests
+    name: Run unit tests and collect coverage
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
 
       - run: npm ci
       - run: npm run build
-      - run: npm test
+      - run: npm run test:cov
+
+      - if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: coverage
+          path: coverage
