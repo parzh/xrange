@@ -16,6 +16,8 @@
     "test": "jest",
     "test:cov": "jest --coverage",
     "start": "node --require ts-node/register src",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
     "build": "tsc --build src --verbose --diagnostics",
     "dev": "npm run build -- --watch"
   },
@@ -23,6 +25,7 @@
     "@types/jest": "25.2.1",
     "@types/node": "13.9.0",
     "jest": "25.2.7",
+    "rimraf": "3.0.2",
     "ts-jest": "25.3.1",
     "ts-node": "8.6.2",
     "typescript": "3.8.3"
