@@ -17,7 +17,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: unit-test-fail-log
-          path: unit-test-fail-log
+          path: unit-test-fail.log
 
       - if: always()
         uses: actions/upload-artifact@v1
