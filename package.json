@@ -17,7 +17,7 @@
     "test:cov": "jest --coverage",
     "start": "node --require ts-node/register src",
     "build": "tsc --build src",
-    "build:ci": "tsc --build src --pretty --verbose --diagnostics"
+    "build:ci": "tsc --build src --verbose --diagnostics"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
