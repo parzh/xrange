@@ -1,7 +1,7 @@
 import xrange from "../src";
 import errors from "../src/errors";
 
-describe.skip("xrange()", () => {
+describe("xrange()", () => {
 	it("should fail without arguments", () => {
 		expect(() => {
 			// @ts-ignore

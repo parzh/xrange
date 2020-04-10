@@ -1,3 +1,5 @@
+import { createError } from "./errors";
+
 /** @private */
 type XRange = Generator<number, void>;
 
@@ -27,6 +29,9 @@ export default function xrange(start: number, stop: number): XRange;
 export default function xrange(bound1: number, bound2: number, step: number): XRange;
 export default function xrange(start: number, predicate: Predicate, next: NextFactory): XRange;
 
-export default function* xrange(first: number, second?: number | Predicate, third?: number | NextFactory): XRange {
-	throw new Error("Not yet implemented"); // TODO: implement
+export default function xrange(first: number, second?: number | Predicate, third?: number | NextFactory): XRange {
+	if (arguments.length === 0)
+		throw createError("XRANGE:0:ARGREQ");
+
+	return _xrangeNumeric(0, 2, 1); // FIXME: virtual entity
 }
