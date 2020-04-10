@@ -27,9 +27,9 @@ jobs:
           name: xrange-unit-test-fail-log
           path: unit-test-fail.log
 
-      # consider skipping the step if 100% coverage everywhere
+      # consider skipping the step more often
       - name: Save coverage report
-        if: always()
+        if: success()
         uses: actions/upload-artifact@v1
         with:
           name: xrange-coverage
