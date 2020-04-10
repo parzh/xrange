@@ -1,6 +1,8 @@
 name: Test changes
 
-on: pull_request
+on:
+  - push
+  - pull_request
 
 jobs:
   unit:
@@ -27,9 +29,9 @@ jobs:
           name: xrange-unit-test-fail-log
           path: unit-test-fail.log
 
-      # consider skipping the step more often
-      - name: Save coverage report
-        if: success()
+      # TODO: consider skipping the step more often
+      - name: Save coverage report (only on pull requests)
+        if: success() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v1
         with:
           name: xrange-coverage
