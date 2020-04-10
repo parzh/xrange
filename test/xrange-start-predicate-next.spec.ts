@@ -2,7 +2,7 @@ import xrange from "../src";
 import errors from "../src/errors";
 import { REASONABLY_LARGE_NUMBER } from "./entities";
 
-describe("xrange(start, predicate, next)", () => {
+describe.skip("xrange(start, predicate, next)", () => {
 	it("should fail if `next` is not a function", () => {
 		expect(() => {
 			// @ts-ignore
