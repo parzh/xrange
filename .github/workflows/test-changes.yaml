@@ -13,13 +13,16 @@ jobs:
       - run: npm run build
       - run: npm run test:ci
 
-      - if: failure()
+      - name: Save unit test fail log (skipped if no failures)
+        if: failure()
         uses: actions/upload-artifact@v1
         with:
           name: xrange-unit-test-fail-log
           path: unit-test-fail.log
 
-      - if: always()
+      # consider skipping the step if 100% coverage everywhere
+      - name: Save coverage report
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: xrange-coverage
