@@ -8,7 +8,7 @@ module.exports = {
 	setupFiles: [
 	],
 	testMatch: [
-		"**/*.spec.ts"
+		"<rootDir>/test/**/*.spec.ts"
 	],
 	collectCoverageFrom: [
 		"<rootDir>/src/**/*.ts"
