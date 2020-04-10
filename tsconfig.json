@@ -10,5 +10,8 @@
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
     "stripInternal": true,
-  }
+  },
+  "include": [
+    "src",
+  ],
 }

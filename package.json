@@ -19,7 +19,7 @@
     "start": "node --require ts-node/register src",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "tsc --build src --verbose --diagnostics",
+    "build": "tsc --diagnostics",
     "dev": "npm run build -- --watch",
     "prepublishOnly": "npm test && npm run build && git push --follow-tags"
   },
