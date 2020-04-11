@@ -33,5 +33,5 @@ export default function xrange(first: number, second?: number | Predicate, third
 	if (arguments.length === 0)
 		throw createError("XRANGE:0:ARGREQ");
 
-	return _xrangeNumeric(0, 2, 1); // FIXME: virtual entity
+	throw new Error("Not yet implemented"); // TODO: implement
 }
