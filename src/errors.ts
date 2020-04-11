@@ -20,16 +20,23 @@ export type Errors = typeof _errors;
 export type ErrorCode = keyof Errors;
 
 /** @internal */
-export function createError<Code extends ErrorCode>(code: Code): Errors[Code] {
+export function removeLastStackEntry(error: Error): void {
+	if (error.stack == null)
+		return;
+
+	const lines = error.stack.split("\n");
+
+	lines.splice(1, 1);
+	error.stack = lines.join("\n");
+}
+
+/** @internal */
+export function createError<Code extends ErrorCode>(code: Code, preserveStack?: "preserve-stack"): Errors[Code] {
 	const { message, constructor } = _errors[code];
 	const error: Errors[Code] = constructor(`[${ code }] ${ message }`);
 
-	if (error.stack != null) {
-		const lines = error.stack.split("\n");
-	
-		lines.splice(1, 1);
-		error.stack = lines.join("\n");
-	}
+	if (preserveStack !== "preserve-stack")
+		removeLastStackEntry(error);
 
 	return error;
 }
