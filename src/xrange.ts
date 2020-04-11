@@ -7,9 +7,6 @@ import { createError } from "./errors";
 /** @private */
 declare function _xrangeNumeric(bound1: number, bound2: number, step: number): XRange;
 
-/** @private */
-declare function _xrangeLooplike(start: number, predicate: Predicate, next: NextFactory): XRange;
-
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;
 export default function xrange(bound1: number, bound2: number, step: number): XRange;
