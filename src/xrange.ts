@@ -1,22 +1,8 @@
+import type XRange from "./typings/xrange";
+import type Predicate from "./typings/predicate";
+import type NextFactory from "./typings/next-factory";
+
 import { createError } from "./errors";
-
-/** @private */
-type XRange = Generator<number, void>;
-
-/** @private */
-interface Predicate {
-	(next: number, prev: number[]): boolean;
-}
-
-/** @private */
-interface Prev extends Partial<number[]> {
-	0: number;
-}
-
-/** @private */
-interface NextFactory {
-	(prev: Prev): number;
-}
 
 /** @private */
 declare function _xrangeNumeric(bound1: number, bound2: number, step: number): XRange;
