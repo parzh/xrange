@@ -31,6 +31,11 @@ export function removeLastStackEntry(error: Error): void {
 }
 
 /** @internal */
+export function withoutLastStackEntry<Err extends Error>(error: Err): Err {
+	return removeLastStackEntry(error), error;
+}
+
+/** @internal */
 export function createError<Code extends ErrorCode>(code: Code, preserveStack?: "preserve-stack"): Errors[Code] {
 	const { message, constructor } = _errors[code];
 	const error: Errors[Code] = constructor(`[${ code }] ${ message }`);
