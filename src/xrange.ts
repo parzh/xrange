@@ -22,5 +22,18 @@ export default function xrange(first: number, second?: number | Predicate, third
 		else
 			return xrangeNumeric(0, first, Math.sign(first) || 1);
 
+	if (arguments.length === 2)
+		if (!isNumeric(first))
+			throw createError("XRANGE:2:STRNAN");
+
+		else if (!isNumeric(second))
+			throw createError("XRANGE:2:STPNAN");
+
+		else if (!isFinite(first))
+			throw createError("XRANGE:2:STRINF");
+
+		else
+			return xrangeNumeric(first, second, first <= second ? 1 : -1);
+
 	throw new Error("Not yet implemented"); // TODO: implement
 }

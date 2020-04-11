@@ -2,7 +2,7 @@ import xrange from "../src";
 import errors from "../src/errors";
 import { nans, REASONABLY_LARGE_NUMBER } from "./entities";
 
-describe.skip("xrange(start, stop)", () => {
+describe("xrange(start, stop)", () => {
 	it("should iterate upwards if `start` is less than `stop`", () => {
 		expect(Array.from(xrange(-2, 7))).toEqual([ -2, -1, 0, 1, 2, 3, 4, 5, 6 ]);
 	});
