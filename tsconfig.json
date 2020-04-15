@@ -5,6 +5,7 @@
     "outDir": "dist",
     "downlevelIteration": true,
     "esModuleInterop": true,
+    "declaration": true,
 
     "strict": true,
     "noUnusedLocals": true,
