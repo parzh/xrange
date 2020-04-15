@@ -1,3 +1,5 @@
+## Available in `xrange 2.0`
+
 ```ts
 /** `NaN` and anything other than a number */
 declare const nan: unknown;
@@ -198,20 +200,22 @@ xrange(0, 5, -Infinity);
 // RangeError: [XRANGE:3:STEINF] argument `step` must be finite
 ```
 
+## Available in `xrange 2.1`
+
 ```ts
-xrange(0, () => true, 1);
-// Error: [XRANGE:3:NXTNAF] argument `next` is not a function
+xrange(1, () => true, ([ last, prelast = 0 ]) => last + prelast);
+// 1, 1, 2, 3, 5, 8, 13, …
+// (fibonacci numbers)
 ```
 
 ```ts
-xrange(0, () => true, () => 1);
-// 0, 1, 1, 1, 1, …
+xrange(1, () => true, ([ last ]) => last ? 0 : 1);
+// 1, 0, 1, 0, 1, 0, …
 ```
 
 ```ts
-xrange(0, () => false, () => 1);
-//
-// (no iterations)
+xrange(0, () => true, ([ last ]) => last ? 0 : 1);
+// 0, 1, 0, 1, 0, 1, …
 ```
 
 ```ts
@@ -233,19 +237,19 @@ xrange(0, (next) => next > -5, ([ last ]) => last - 1);
 ```
 
 ```ts
-xrange(1, () => true, ([ last, prelast = 0 ]) => last + prelast);
-// 1, 1, 2, 3, 5, 8, 13, …
-// (fibonacci numbers)
+xrange(0, () => true, 1);
+// Error: [XRANGE:3:NXTNAF] argument `next` is not a function
 ```
 
 ```ts
-xrange(1, () => true, ([ last ]) => last ? 0 : 1);
-// 1, 0, 1, 0, 1, 0, …
+xrange(0, () => true, () => 1);
+// 0, 1, 1, 1, 1, …
 ```
 
 ```ts
-xrange(0, () => true, ([ last ]) => last ? 0 : 1);
-// 0, 1, 0, 1, 0, 1, …
+xrange(0, () => false, () => 1);
+//
+// (no iterations)
 ```
 
 ```ts
