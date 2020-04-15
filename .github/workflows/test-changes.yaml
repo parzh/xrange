@@ -26,7 +26,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v1
         with:
-          name: xrange-unit-test-fail-log
+          name: xrange-unit-test-fail-log-at-${{ github.sha }}
           path: unit-test-fail.log
 
       # TODO: consider skipping the step more often
