@@ -1,6 +1,5 @@
-import Prev from "./prev";
+import type Prev from "./prev";
 
-/** @internal */
 export default interface NextFactory {
 	(prev: Prev): number;
 }

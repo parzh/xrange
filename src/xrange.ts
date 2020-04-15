@@ -3,8 +3,8 @@ import type Predicate from "./typings/predicate";
 import type NextFactory from "./typings/next-factory";
 
 import { createError } from "./errors";
-import isNumeric from "./is-numeric";
-import xrangeNumeric from "./xrange-numeric";
+import isNumeric from "./is-numeric.impl";
+import xrangeNumeric from "./xrange-numeric.impl";
 
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;
