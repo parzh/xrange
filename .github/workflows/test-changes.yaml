@@ -29,9 +29,11 @@ jobs:
           name: xrange-unit-test-fail-log-on-${{ matrix.os }}-at-${{ github.sha }}
           path: unit-test-fail.log
 
-      # TODO: consider skipping the step more often
-      - name: Save coverage report (only on pull requests)
-        if: success() && github.event_name == 'pull_request'
+      - name: Save coverage report (sometimes skipped, see the 'if')
+        if: |
+          success() &&
+          github.event_name == 'pull_request' &&
+          matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v1
         with:
           name: xrange-coverage-at-${{ github.sha }}
