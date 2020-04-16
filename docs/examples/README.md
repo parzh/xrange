@@ -173,8 +173,9 @@ xrange(0, 1.01, -.1);
 ```ts
 xrange(Infinity, 0, -1);
 // RangeError: [XRANGE:3:BD1INF] range start (first argument) must be finite
-// ...
+```
 
+```ts
 xrange(0, Infinity, -1);
 // RangeError: [XRANGE:3:BD2INF] range start (second argument) must be finite
 ```
