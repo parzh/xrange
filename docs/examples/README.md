@@ -1,3 +1,5 @@
+Note: there might be a difference in behavior between `xrange` and `range` class in Python 3.x. In this case, it is mentioned below the example.
+
 ## Available in `xrange 2.0`
 
 ```ts
@@ -32,28 +34,33 @@ xrange(5);
 ```ts
 xrange(-5);
 // 0, -1, -2, -3, -4
+// in Python 3: no iterations
 ```
 
 ```ts
 xrange(4.2);
 // 0, 1, 2, 3, 4
+// in Python 3: error
 ```
 
 ```ts
 xrange(-4.2);
 // 0, -1, -2, -3, -4
+// in Python 3: error
 ```
 
 ```ts
 xrange(Infinity);
 // 0, 1, 2, 3, 4 …
 // (never ends)
+// in Python 3: error
 ```
 
 ```ts
 xrange(-Infinity);
 // 0, -1, -2, -3 …
 // (never ends)
+// in Python 3: error
 ```
 
 ```ts
@@ -98,22 +105,26 @@ xrange(3, 5);
 xrange(3, Infinity);
 // 3, 4, 5, 6, 7, …
 // (never ends)
+// in Python 3: error
 ```
 
 ```ts
 xrange(5, 3);
 // 5, 4
+// in Python 3: no iterations
 ```
 
 ```ts
 xrange(5, -3);
 // 5, 4, 3, 2, 1, 0, -1, -2
+// in Python 3: no iterations
 ```
 
 ```ts
 xrange(-3, -Infinity);
 // -3, -4, -5, -6, …
 // (never ends)
+// in Python 3: error
 ```
 
 ```ts
@@ -146,12 +157,16 @@ xrange(0, 5, nan);
 xrange(0, 5, 1);
 xrange(5, 0, 1);
 // 0, 1, 2, 3, 4
+// in Python 3: range(0, 5, 1): <same>
+// in Python 3: range(5, 0, 1): <no iterations>
 ```
 
 ```ts
 xrange(0, 5, -1);
 xrange(5, 0, -1);
 // 5, 4, 3, 2, 1
+// in Python 3: range(0, 5, -1): <no iterations>
+// in Python 3: range(5, 0, -1): <same>
 ```
 
 ```ts
@@ -160,6 +175,7 @@ xrange(1, 0, .1);
 xrange(0, .95, .1);
 xrange(0, .91, .1);
 // 0, .1, .2, .3, .4, .5, .6, .7, .8, .9
+// in Python 3: <all>: Error
 ```
 
 ```ts
@@ -168,6 +184,7 @@ xrange(1, 0, -.1);
 xrange(0, 1.05, -.1);
 xrange(0, 1.01, -.1);
 // 1, .9, .8, .7, .6, .5, .4, .3, .2, .1
+// in Python 3: <all>: Error
 ```
 
 ```ts
@@ -185,6 +202,7 @@ xrange(0, Infinity, 1);
 xrange(Infinity, 0, 1);
 // 0, 1, 2, 3, 4, …
 // (never ends)
+// in Python 3: <all>: Error
 ```
 
 ```ts
