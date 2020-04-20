@@ -1,3 +1,19 @@
+<p align="center">
+  <a href="https://github.com/parzh/xrange/actions?query=workflow%3A%22Test+changes%22">
+    <img alt="Test changes" src="https://github.com/parzh/xrange/workflows/Test%20changes/badge.svg?branch=next" />
+  </a>
+
+  <img alt="licence" src="https://img.shields.io/npm/l/xrange" />
+
+  <a href="https://www.npmjs.com/package/xrange/v/next">
+    <img alt="npm version" src="https://badge.fury.io/js/xrange.svg" />
+  </a>
+
+  <a href="https://www.npmjs.com/package/xrange/v/next">
+    <img alt="npm size" src="https://img.shields.io/bundlephobia/min/xrange/next" />
+  </a>
+</p>
+
 <h1 align="center"><code>xrange</code></h1>
 <h3 align="center">Python-esque iterator for number ranges</h3>
 
