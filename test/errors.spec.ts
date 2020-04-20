@@ -5,10 +5,10 @@ import errors, { createError, removeLastStackEntry } from "../src/errors";
 const codes = Object.keys(errors) as ErrorCode[];
 
 /** @private */
-const codePattern = /^XRANGE:[0-3]:[_0-9A-Z]{6}$/;
+const codePattern = /^XRANGE:[_0-3]:[_0-9A-Z]{6}$/;
 
 it("should export collection of errors", () => {
-	expect(codes).toHaveLength(13);
+	expect(codes).toHaveLength(15);
 });
 
 it("should have error codes with the correct syntax", () => {
@@ -55,6 +55,8 @@ describe("removeLastStackEntry(error)", () => {
 
 describe("createError(code, preserveStack?)", () => {
 	it("should create errors by given error code", () => {
+		expect(createError("XRANGE:_:UNKUSG").message).toMatch(/unknown usage$/);
+		expect(createError("XRANGE:_:NOIMPL").message).toMatch(/not implemented$/);
 		expect(createError("XRANGE:0:ARGREQ").message).toMatch(/argument is required$/);
 		expect(createError("XRANGE:1:ARGNAN").message).toMatch(/argument is not a number$/);
 		expect(createError("XRANGE:2:STPNAN").message).toMatch(/argument `stop` is not a number$/);
