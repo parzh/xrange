@@ -55,8 +55,8 @@ describe("removeLastStackEntry(error)", () => {
 
 describe("createError(code, preserveStack?)", () => {
 	it("should create errors by given error code", () => {
-		expect(createError("XRANGE:_:UNKUSG").message).toMatch(/unknown usage$/);
-		expect(createError("XRANGE:_:NOIMPL").message).toMatch(/not implemented$/);
+		expect(createError("XRANGE:_:UNKUSG").message).toMatch(/unknown usage encountered$/);
+		expect(createError("XRANGE:_:NOIMPL").message).toMatch(/feature is not implemented$/);
 		expect(createError("XRANGE:0:ARGREQ").message).toMatch(/argument is required$/);
 		expect(createError("XRANGE:1:ARGNAN").message).toMatch(/argument is not a number$/);
 		expect(createError("XRANGE:2:STPNAN").message).toMatch(/argument `stop` is not a number$/);

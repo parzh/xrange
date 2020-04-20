@@ -1,7 +1,7 @@
 /** @private */
 const _errors = {
-	"XRANGE:_:UNKUSG": new Error("unknown usage"),
-	"XRANGE:_:NOIMPL": new Error("not implemented"),
+	"XRANGE:_:UNKUSG": new Error("unknown usage encountered"),
+	"XRANGE:_:NOIMPL": new Error("feature is not implemented"),
 	"XRANGE:0:ARGREQ": new Error("argument is required"),
 	"XRANGE:1:ARGNAN": new Error("argument is not a number"),
 	"XRANGE:2:STPNAN": new Error("argument `stop` is not a number"),
