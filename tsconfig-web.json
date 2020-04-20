@@ -1,0 +1,10 @@
+{
+  "extends": ".",
+  "compilerOptions": {
+    "module": "none",
+    "esModuleInterop": false,
+    "declaration": false,
+
+    "diagnostics": false,
+  },
+}
