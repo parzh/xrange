@@ -11,4 +11,4 @@
 
 ### Examples:
 
-See [/docs/examples](https://github.com/parzh/xrange/tree/master/docs/examples) at GitHub to see `xrange` usage, including errors and advanced usage.
+See [/docs/examples](https://github.com/parzh/xrange/tree/next/docs/examples) at GitHub to see `xrange` usage, including errors and advanced usage.
