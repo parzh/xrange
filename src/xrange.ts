@@ -43,7 +43,8 @@ export default function xrange(first: number, second?: number | Predicate, third
 			if (typeof second !== "function")
 				throw createError("XRANGE:3:BD2NNF");
 
-			else null; // TODO: looplike implementation
+			else
+				throw createError("XRANGE:_:NOIMPL"); // TODO: looplike implementation
 
 		else if (!isNumeric(third))
 			throw createError("XRANGE:3:STENAN");
@@ -67,5 +68,5 @@ export default function xrange(first: number, second?: number | Predicate, third
 			return xrangeNumeric(start, stop, third);
 		}
 
-	throw new Error("Not yet implemented"); // TODO: implement
+	throw createError("XRANGE:_:UNKUSG");
 }

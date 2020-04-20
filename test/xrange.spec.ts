@@ -8,15 +8,6 @@ jest.mock("../src/xrange-numeric.impl.ts", () => ({
 	default: jest.fn(),
 }));
 
-describe("xrange()", () => {
-	it("should fail without arguments", () => {
-		expect(() => {
-			// @ts-ignore
-			xrange();
-		}).toThrowError(errors["XRANGE:0:ARGREQ"]);
-	});
-});
-
 describe("xrange(stop)", () => {
 	it("should fail when providing `null`, `NaN`, or a non-numeric value", () => {
 		for (const nan of nans)
@@ -167,4 +158,26 @@ describe("xrange(bound1, bound2, step)", () => {
 		xrange(7, 2, -1);
 		expect(numeric).toHaveBeenNthCalledWith(/* call: */ 4, /* args: */ 7, 2, -1);
 	});
+});
+
+describe("xrange(start, predicate, next)", () => {
+	it("is not yet implemented", () => {
+		expect(() => xrange(0, () => false, () => NaN)).toThrowError(errors["XRANGE:_:NOIMPL"]);
+	});
+
+	// TODO: add cases from test/xrange-start-predicate-next.spec.ts
+});
+
+it("should fail without arguments", () => {
+	expect(() => {
+		// @ts-ignore
+		xrange();
+	}).toThrowError(errors["XRANGE:0:ARGREQ"]);
+});
+
+it("should fail with 4+ numeric arguments", () => {
+	expect(() => {
+		// @ts-ignore
+		xrange(0, 1, 2, 3);
+	}).toThrowError(errors["XRANGE:_:UNKUSG"]);
 });
