@@ -15,6 +15,7 @@
   "jest": {
     "verbose": true,
     "preset": "ts-jest",
+    "resetMocks": true,
     "rootDir": ".",
     "roots": [
       "<rootDir>/test"
