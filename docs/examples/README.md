@@ -1,7 +1,5 @@
 Note: there might be a difference in behavior between `xrange` and `range` class in Python 3.x. In this case, it is mentioned below the example.
 
-## Available in `xrange 2.0`
-
 ```ts
 /** `NaN` and anything other than a number */
 declare const nan: unknown;
@@ -218,8 +216,6 @@ xrange(0, 5, Infinity);
 xrange(0, 5, -Infinity);
 // RangeError: [XRANGE:3:STEINF] argument `step` must be finite
 ```
-
-## Available in `xrange 2.1`
 
 ```ts
 xrange(1, () => true, ([ last, prelast = 0 ]) => last + prelast);
