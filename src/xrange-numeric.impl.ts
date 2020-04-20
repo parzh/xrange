@@ -2,7 +2,7 @@ import type XRange from "./typings/xrange";
 
 /** @internal */
 export default function* xrangeNumeric(start: number, stop: number, step: number): XRange {
-	const isUp = stop > start;
+	const isUp = step > 0;
 
 	for (
 		let curr = start;

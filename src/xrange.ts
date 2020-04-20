@@ -35,5 +35,37 @@ export default function xrange(first: number, second?: number | Predicate, third
 		else
 			return xrangeNumeric(first, second, first <= second ? 1 : -1);
 
+	if (arguments.length === 3)
+		if (!isNumeric(first))
+			throw createError("XRANGE:3:BD1NAN");
+
+		else if (!isNumeric(second))
+			if (typeof second !== "function")
+				throw createError("XRANGE:3:BD2NNF");
+
+			else null; // TODO: looplike implementation
+
+		else if (!isNumeric(third))
+			throw createError("XRANGE:3:STENAN");
+
+		else if (!isFinite(third))
+			throw createError("XRANGE:3:STEINF");
+
+		else if (third === 0)
+			throw createError("XRANGE:3:STEZER");
+
+		else {
+			const isUp = third > 0;
+			const isSorted = first <= second;
+			const isDirect = isUp === isSorted;
+
+			const [ start, stop ] = isDirect ? [ first, second ] : [ second, first ];
+
+			if (!isFinite(start))
+				throw createError(isDirect ? "XRANGE:3:BD1INF" : "XRANGE:3:BD2INF");
+
+			return xrangeNumeric(start, stop, third);
+		}
+
 	throw new Error("Not yet implemented"); // TODO: implement
 }

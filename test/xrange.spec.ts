@@ -105,7 +105,7 @@ describe("xrange(start, stop)", () => {
 	});
 });
 
-describe.skip("xrange(bound1, bound2, step)", () => {
+describe("xrange(bound1, bound2, step)", () => {
 	it("should fail if `bound1` is `null`, `NaN`, or a non-numeric value", () => {
 		for (const nan of nans)
 			expect(() => xrange(
