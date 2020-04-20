@@ -10,6 +10,7 @@
     "xrange",
     "iterator"
   ],
+  "browser": "dist/xrange.bundle.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "jest": {
@@ -39,18 +40,26 @@
     "clean": "rimraf dist/*",
     "clean:spare": "rimraf dist/**/*.impl.d.ts dist/typings/*.js",
     "prebuild": "npm run clean",
-    "build": "tsc",
+    "build": "tsc && npm run build:web",
     "postbuild": "npm run clean:spare",
+    "build:web": "webpack --config webpack.config.prod.ts",
     "dev": "npm run build -- --watch",
     "prepublishOnly": "npm test && npm run build && git push --follow-tags"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
     "@types/node": "13.9.0",
+    "@types/webpack": "4.41.12",
+    "@types/webpack-merge": "4.1.5",
     "jest": "25.2.7",
     "rimraf": "3.0.2",
     "ts-jest": "25.3.1",
+    "ts-loader": "7.0.1",
     "ts-node": "8.6.2",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "webpack": "4.42.1",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "3.10.3",
+    "webpack-merge": "4.2.2"
   }
 }

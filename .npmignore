@@ -9,3 +9,4 @@ coverage
 *.log
 .github
 .vscode
+webpack.*
