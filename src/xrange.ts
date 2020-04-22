@@ -15,12 +15,16 @@ export default function xrange(first: number, second?: number | Predicate, third
 	if (arguments.length === 0)
 		throw createError("XRANGE:0:ARGREQ");
 
+	// ***
+
 	if (arguments.length === 1)
 		if (!isNumeric(first))
 			throw createError("XRANGE:1:ARGNAN");
 
 		else
 			return xrangeNumeric(0, first, Math.sign(first) || 1);
+
+	// ***
 
 	if (arguments.length === 2)
 		if (!isNumeric(first))
@@ -35,41 +39,40 @@ export default function xrange(first: number, second?: number | Predicate, third
 		else
 			return xrangeNumeric(first, second, first <= second ? 1 : -1);
 
-	if (arguments.length === 3)
-		if (!isNumeric(first))
-			throw createError("XRANGE:3:BD1NAN");
+	// ***
 
-		else if (!isNumeric(second))
-			if (typeof second !== "function")
-				throw createError("XRANGE:3:BD2NNF");
+	if (!isNumeric(first))
+		throw createError("XRANGE:3:BD1NAN");
 
-			else if (typeof third !== "function")
-				throw createError("XRANGE:3:NXTNAF");
+	else if (!isNumeric(second))
+		if (typeof second !== "function")
+			throw createError("XRANGE:3:BD2NNF");
 
-			else
-				throw createError("XRANGE:_:NOIMPL"); // TODO: functional implementation
+		else if (typeof third !== "function")
+			throw createError("XRANGE:3:NXTNAF");
 
-		else if (!isNumeric(third))
-			throw createError("XRANGE:3:STENAN");
+		else
+			throw createError("XRANGE:_:NOIMPL"); // TODO: functional implementation
 
-		else if (!isFinite(third))
-			throw createError("XRANGE:3:STEINF");
+	else if (!isNumeric(third))
+		throw createError("XRANGE:3:STENAN");
 
-		else if (third === 0)
-			throw createError("XRANGE:3:STEZER");
+	else if (!isFinite(third))
+		throw createError("XRANGE:3:STEINF");
 
-		else {
-			const isUp = third > 0;
-			const isSorted = first <= second;
-			const isDirect = isUp === isSorted;
+	else if (third === 0)
+		throw createError("XRANGE:3:STEZER");
 
-			const [ start, stop ] = isDirect ? [ first, second ] : [ second, first ];
+	else {
+		const isUp = third > 0;
+		const isSorted = first <= second;
+		const isDirect = isUp === isSorted;
 
-			if (!isFinite(start))
-				throw createError(isDirect ? "XRANGE:3:BD1INF" : "XRANGE:3:BD2INF");
+		const [ start, stop ] = isDirect ? [ first, second ] : [ second, first ];
 
-			return xrangeNumeric(start, stop, third);
-		}
+		if (!isFinite(start))
+			throw createError(isDirect ? "XRANGE:3:BD1INF" : "XRANGE:3:BD2INF");
 
-	throw createError("XRANGE:_:UNKUSG");
+		return xrangeNumeric(start, stop, third);
+	}
 }

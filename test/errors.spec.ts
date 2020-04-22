@@ -8,7 +8,7 @@ const codes = Object.keys(errors) as ErrorCode[];
 const codePattern = /^XRANGE:[_0-3]:[_0-9A-Z]{6}$/;
 
 it("should export collection of errors", () => {
-	expect(codes).toHaveLength(15);
+	expect(codes).toHaveLength(14);
 });
 
 it("should have error codes with the correct syntax", () => {
@@ -55,7 +55,6 @@ describe("removeLastStackEntry(error)", () => {
 
 describe("createError(code, preserveStack?)", () => {
 	it("should create errors by given error code", () => {
-		expect(createError("XRANGE:_:UNKUSG").message).toMatch(/\] unknown usage encountered$/);
 		expect(createError("XRANGE:_:NOIMPL").message).toMatch(/\] feature is not implemented$/);
 		expect(createError("XRANGE:0:ARGREQ").message).toMatch(/\] argument is required$/);
 		expect(createError("XRANGE:1:ARGNAN").message).toMatch(/\] argument is not a number$/);
