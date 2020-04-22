@@ -2,5 +2,9 @@ import type XRange from "./typings/xrange";
 import type Predicate from "./typings/predicate";
 import type NextFactory from "./typings/next-factory";
 
+import { createError } from "./errors";
+
 /** @internal */
-declare function xrangeFunctional(start: number, predicate: Predicate, next: NextFactory): XRange; // TODO: export default
+export default function xrangeFunctional(start: number, predicate: Predicate, next: NextFactory): XRange {
+	throw createError("XRANGE:_:NOIMPL");
+}
