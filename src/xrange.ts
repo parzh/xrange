@@ -3,8 +3,10 @@ import type Predicate from "./typings/predicate";
 import type NextFactory from "./typings/next-factory";
 
 import { createError } from "./errors";
+import isLength from "./is-length.impl";
 import isNumeric from "./is-numeric.impl";
 import xrangeNumeric from "./xrange-numeric.impl";
+import xrangeFunctional from "./xrange-functional.impl";
 
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;
@@ -51,8 +53,11 @@ export default function xrange(first: number, second?: number | Predicate, third
 		else if (typeof third !== "function")
 			throw createError("XRANGE:3:NXTNAF");
 
+		else if (arguments.length >= 4 && !isLength(fourth))
+			throw createError("XRANGE:4:MPLINV");
+
 		else
-			throw createError("XRANGE:_:NOIMPL"); // TODO: functional implementation
+			return xrangeFunctional(first, second, third, fourth);
 
 	else if (!isNumeric(third))
 		throw createError("XRANGE:3:STENAN");
