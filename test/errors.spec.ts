@@ -69,7 +69,7 @@ describe("createError(code, preserveStack?)", () => {
 		expect(createError("XRANGE:3:STENAN").message).toMatch(/\] argument `step` is not a number$/);
 		expect(createError("XRANGE:3:STEZER").message).toMatch(/\] argument `step` cannot be zero$/);
 		expect(createError("XRANGE:3:NXTNAF").message).toMatch(/\] argument `next` is not a function$/);
-		expect(createError("XRANGE:4:MPLNAN").message).toMatch(/\] argument `maxPrevLength` is not a number$/);
+		expect(createError("XRANGE:4:MPLINV").message).toMatch(/\] argument `maxPrevLength` is not a valid length$/);
 	});
 
 	it("should remove last stack entry by default", () => {
