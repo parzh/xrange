@@ -44,7 +44,7 @@ export default function xrange(first: number, second?: number | Predicate, third
 				throw createError("XRANGE:3:BD2NNF");
 
 			else
-				throw createError("XRANGE:_:NOIMPL"); // TODO: looplike implementation
+				throw createError("XRANGE:_:NOIMPL"); // TODO: functional implementation
 
 		else if (!isNumeric(third))
 			throw createError("XRANGE:3:STENAN");
