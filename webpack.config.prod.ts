@@ -16,7 +16,7 @@ const config: Configuration = {
 				test: /\.ts$/,
 				loader: "ts-loader",
 				options: {
-					configFile: resolve(__dirname, "tsconfig-web.json"),
+					configFile: resolve(__dirname, "tsconfig-web.prod.json"),
 				},
 			},
 		],

@@ -1,20 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "es2015",
-    "module": "commonjs",
-    "outDir": "dist",
-    "stripInternal": true,
-    "esModuleInterop": true,
-    "declaration": true,
-
-    "strict": true,
-    "noUnusedLocals": true,
-    "forceConsistentCasingInFileNames": true,
-    "downlevelIteration": true,
-
-    "diagnostics": true,
-  },
-  "include": [
-    "src",
-  ],
+	// used during development for better IntelliSense
+	"extends": "./tsconfig-node.dev",
 }
