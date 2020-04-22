@@ -181,8 +181,15 @@ it("should fail without arguments", () => {
 });
 
 it("should fail with 4+ numeric arguments", () => {
-	expect(() => {
-		// @ts-ignore
-		xrange(0, 1, 2, 3);
-	}).toThrowError(errors["XRANGE:_:UNKUSG"]);
+	const argLists = [
+		[ 0, 1, 2, 3 ],
+		[ 0, 1, 2, 3, 4 ],
+		[ 0, 1, 2, 3, 4, 5 ],
+	] as const;
+
+	for (const args of argLists)
+		expect(() => {
+			// @ts-ignore
+			xrange(...args);
+		}).toThrowError(errors["XRANGE:_:UNKUSG"]);
 });
