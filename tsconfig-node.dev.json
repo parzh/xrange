@@ -1,0 +1,12 @@
+{
+	// used in "dev" npm script
+	"extends": "./tsconfig-node.common",
+	"include": [
+		"src",
+		"test",
+	],
+	"compilerOptions": {
+		"stripInternal": false, // TODO: prefer `true`
+		"watch": true,
+	},
+}
