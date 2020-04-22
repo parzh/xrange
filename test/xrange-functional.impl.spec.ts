@@ -2,14 +2,8 @@ import type Predicate from "../src/typings/predicate";
 import type NextFactory from "../src/typings/next-factory";
 
 import xrange from "../src/xrange-functional.impl";
-import errors from "../src/errors";
 import { REASONABLY_LARGE_NUMBER } from "./entities";
 import { expectCalls } from "./helpers";
-
-// TODO: remove
-it.only("is not implemented yet", () => {
-	expect(xrange).toThrowError(errors["XRANGE:_:NOIMPL"]);
-});
 
 it("should yield the value specified by the `next` function", () => {
 	const range1 = xrange(0, (next) => next < 5, ([ last ]) => last + 1);
@@ -65,13 +59,11 @@ it.todo("should generate `prev` if it is used in the `predicate`");
 
 it.todo("should generate `prev` if it is used in the `next` function");
 
-// TODO: unskip
-it.skip("should allow optimizing length of `prev`", () => {
+it("should allow optimizing length of `prev`", () => {
 	const shouldGo: Predicate = jest.fn((next, _prev) => next < 3);
 	const getNext: NextFactory = jest.fn((prev) => prev[0] + 1);
 
-	// @ts-ignore // TODO: unignore
-	for (const _ of xrange(0, shouldGo, getNext, 2)); // roll over the range
+	for (const _ of xrange(0, shouldGo, getNext, 2)); // iterate through the range
 
 	expectCalls(shouldGo, [
 		[ 0, [] ],
