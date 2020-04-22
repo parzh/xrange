@@ -161,11 +161,16 @@ describe("xrange(bound1, bound2, step)", () => {
 });
 
 describe("xrange(start, predicate, next)", () => {
+	it("should fail if `next` is not a function", () => {
+		expect(() => {
+			// @ts-ignore
+			xrange(0, () => true, 1);
+		}).toThrowError(errors["XRANGE:3:NXTNAF"]);
+	});
+
 	it("is not yet implemented", () => {
 		expect(() => xrange(0, () => false, () => NaN)).toThrowError(errors["XRANGE:_:NOIMPL"]);
 	});
-
-	// TODO: add cases from test/xrange-start-predicate-next.spec.ts
 });
 
 it("should fail without arguments", () => {
@@ -173,11 +178,4 @@ it("should fail without arguments", () => {
 		// @ts-ignore
 		xrange();
 	}).toThrowError(errors["XRANGE:0:ARGREQ"]);
-});
-
-it("should fail with 4+ numeric arguments", () => {
-	expect(() => {
-		// @ts-ignore
-		xrange(0, 1, 2, 3);
-	}).toThrowError(errors["XRANGE:_:UNKUSG"]);
 });
