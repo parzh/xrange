@@ -164,8 +164,6 @@ describe("xrange(start, predicate, next)", () => {
 	it("is not yet implemented", () => {
 		expect(() => xrange(0, () => false, () => NaN)).toThrowError(errors["XRANGE:_:NOIMPL"]);
 	});
-
-	// TODO: add cases from test/xrange-start-predicate-next.spec.ts
 });
 
 it("should fail without arguments", () => {
