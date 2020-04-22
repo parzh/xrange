@@ -1,0 +1,20 @@
+{
+	// @abstract, extended by all tsconfig*.json files
+	"include": [
+		"src",
+	],
+	"compilerOptions": {
+		"target": "es2015",
+		"outDir": "dist",
+		"declaration": false,
+		"stripInternal": true,
+
+		"strict": true,
+		"noUnusedLocals": true,
+		"esModuleInterop": false,
+		"downlevelIteration": true,
+		"forceConsistentCasingInFileNames": true,
+
+		"diagnostics": false,
+	},
+}
