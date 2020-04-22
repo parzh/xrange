@@ -43,7 +43,7 @@
     "build": "tsc && npm run build:web",
     "postbuild": "npm run clean:spare",
     "build:web": "webpack --config webpack.config.prod.ts",
-    "dev": "npm run build -- --watch",
+    "dev": "tsc --watch --diagnostics false",
     "prepublishOnly": "npm test && npm run build && git push --follow-tags"
   },
   "devDependencies": {
