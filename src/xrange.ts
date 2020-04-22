@@ -43,6 +43,9 @@ export default function xrange(first: number, second?: number | Predicate, third
 			if (typeof second !== "function")
 				throw createError("XRANGE:3:BD2NNF");
 
+			else if (typeof third !== "function")
+				throw createError("XRANGE:3:NXTNAF");
+
 			else
 				throw createError("XRANGE:_:NOIMPL"); // TODO: functional implementation
 

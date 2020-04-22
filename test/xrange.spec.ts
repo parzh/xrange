@@ -161,6 +161,13 @@ describe("xrange(bound1, bound2, step)", () => {
 });
 
 describe("xrange(start, predicate, next)", () => {
+	it("should fail if `next` is not a function", () => {
+		expect(() => {
+			// @ts-ignore
+			xrange(0, () => true, 1);
+		}).toThrowError(errors["XRANGE:3:NXTNAF"]);
+	});
+
 	it("is not yet implemented", () => {
 		expect(() => xrange(0, () => false, () => NaN)).toThrowError(errors["XRANGE:_:NOIMPL"]);
 	});
