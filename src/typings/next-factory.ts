@@ -1,5 +1,6 @@
-import type Prev from "./prev";
+/** @private */
+type Prev = [ number, ...(number | undefined)[] ];
 
 export default interface NextFactory {
-	(prev?: Prev): number;
+	(prev: Prev): number;
 }

@@ -1,5 +1,6 @@
-import type Prev from "./prev";
+/** @private */
+type Prev = (number | undefined)[];
 
 export default interface Predicate {
-	(next: number, prev?: Partial<Prev>): boolean;
+	(next: number, prev: Prev): boolean;
 }
