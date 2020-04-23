@@ -1,6 +1,6 @@
-/** @private */
-type Prev = (number | undefined)[];
+/** @internal */
+export type Prev = (number | undefined)[];
 
 export default interface Predicate {
-	(next: number, prev: Prev): boolean;
+	(next: number, prev: Readonly<Prev>): boolean;
 }

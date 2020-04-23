@@ -1,6 +1,6 @@
-/** @private */
-type Prev = [ number, ...(number | undefined)[] ];
+/** @internal */
+export type Prev = [ number, ...(number | undefined)[] ];
 
 export default interface NextFactory {
-	(prev: Prev): number;
+	(prev: Readonly<Prev>): number;
 }
