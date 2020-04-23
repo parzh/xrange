@@ -5,7 +5,7 @@ import errors, { createError, removeLastStackEntry } from "../src/errors";
 const codes = Object.keys(errors) as ErrorCode[];
 
 /** @private */
-const codePattern = /^XRANGE:[_0-3]:[_0-9A-Z]{6}$/;
+const codePattern = /^XRANGE:[A-Z_0-9]{6}$/;
 
 it("should export collection of errors", () => {
 	expect(codes).toHaveLength(15);
@@ -55,26 +55,26 @@ describe("removeLastStackEntry(error)", () => {
 
 describe("createError(code, preserveStack?)", () => {
 	it("should create errors by given error code", () => {
-		expect(createError("XRANGE:_:UNKUSG").message).toMatch(/\] unknown usage encountered$/);
-		expect(createError("XRANGE:_:NOIMPL").message).toMatch(/\] feature is not implemented$/);
-		expect(createError("XRANGE:0:ARGREQ").message).toMatch(/\] argument is required$/);
-		expect(createError("XRANGE:1:ARGNAN").message).toMatch(/\] argument is not a number$/);
-		expect(createError("XRANGE:2:STPNAN").message).toMatch(/\] argument `stop` is not a number$/);
-		expect(createError("XRANGE:2:STRINF").message).toMatch(/\] argument `start` must be finite$/);
-		expect(createError("XRANGE:2:STRNAN").message).toMatch(/\] argument `start` is not a number$/);
-		expect(createError("XRANGE:3:BD1INF").message).toMatch(/\] range start \(first argument\) must be finite$/);
-		expect(createError("XRANGE:3:BD1NAN").message).toMatch(/\] argument `bound1` is not a number$/);
-		expect(createError("XRANGE:3:BD2INF").message).toMatch(/\] range start \(second argument\) must be finite$/);
-		expect(createError("XRANGE:3:BD2NNF").message).toMatch(/\] argument `bound2` is neither a number, nor a function$/);
-		expect(createError("XRANGE:3:STEINF").message).toMatch(/\] argument `step` must be finite$/);
-		expect(createError("XRANGE:3:STENAN").message).toMatch(/\] argument `step` is not a number$/);
-		expect(createError("XRANGE:3:STEZER").message).toMatch(/\] argument `step` cannot be zero$/);
-		expect(createError("XRANGE:3:NXTNAF").message).toMatch(/\] argument `next` is not a function$/);
+		expect(createError("XRANGE:UNKUSG").message).toMatch(/\] unknown usage encountered$/);
+		expect(createError("XRANGE:NOIMPL").message).toMatch(/\] feature is not implemented$/);
+		expect(createError("XRANGE:ARGREQ").message).toMatch(/\] argument is required$/);
+		expect(createError("XRANGE:ARGNAN").message).toMatch(/\] argument is not a number$/);
+		expect(createError("XRANGE:STPNAN").message).toMatch(/\] argument `stop` is not a number$/);
+		expect(createError("XRANGE:STRINF").message).toMatch(/\] argument `start` must be finite$/);
+		expect(createError("XRANGE:STRNAN").message).toMatch(/\] argument `start` is not a number$/);
+		expect(createError("XRANGE:BD1INF").message).toMatch(/\] range start \(first argument\) must be finite$/);
+		expect(createError("XRANGE:BD1NAN").message).toMatch(/\] argument `bound1` is not a number$/);
+		expect(createError("XRANGE:BD2INF").message).toMatch(/\] range start \(second argument\) must be finite$/);
+		expect(createError("XRANGE:BD2NNF").message).toMatch(/\] argument `bound2` is neither a number, nor a function$/);
+		expect(createError("XRANGE:STEINF").message).toMatch(/\] argument `step` must be finite$/);
+		expect(createError("XRANGE:STENAN").message).toMatch(/\] argument `step` is not a number$/);
+		expect(createError("XRANGE:STEZER").message).toMatch(/\] argument `step` cannot be zero$/);
+		expect(createError("XRANGE:NXTNAF").message).toMatch(/\] argument `next` is not a function$/);
 	});
 
 	it("should remove last stack entry by default", () => {
 		function inner() {
-			return createError("XRANGE:0:ARGREQ");
+			return createError("XRANGE:ARGREQ");
 		}
 
 		function outer() {
@@ -89,7 +89,7 @@ describe("createError(code, preserveStack?)", () => {
 
 	it("should not remove last stack entry, if said explicitly", () => {
 		function inner() {
-			return createError("XRANGE:0:ARGREQ", "preserve-stack");
+			return createError("XRANGE:ARGREQ", "preserve-stack");
 		}
 
 		function outer() {

@@ -14,7 +14,7 @@ describe("xrange(stop)", () => {
 			expect(() => xrange(
 				// @ts-ignore
 				nan
-			)).toThrowError(errors["XRANGE:1:ARGNAN"]);
+			)).toThrowError(errors["XRANGE:ARGNAN"]);
 	});
 
 	it("should set `start` to 0 and `step` to 1 if argument is not negative", () => {
@@ -49,7 +49,7 @@ describe("xrange(stop)", () => {
 describe("xrange(start, stop)", () => {
 	it("should fail if `start` is infinite", () => {
 		for (const inf of [ Infinity, -Infinity ])
-			expect(() => xrange(inf, 5)).toThrowError(errors["XRANGE:2:STRINF"]);
+			expect(() => xrange(inf, 5)).toThrowError(errors["XRANGE:STRINF"]);
 	});
 
 	it("should fail is `start` is `null`, `NaN`, or a non-numeric value", () => {
@@ -58,7 +58,7 @@ describe("xrange(start, stop)", () => {
 				// @ts-ignore
 				nan,
 				5,
-			)).toThrowError(errors["XRANGE:2:STRNAN"]);
+			)).toThrowError(errors["XRANGE:STRNAN"]);
 	});
 
 	it("should fail is `stop` is `null`, `NaN`, or a non-numeric value", () => {
@@ -67,7 +67,7 @@ describe("xrange(start, stop)", () => {
 				0,
 				// @ts-ignore
 				nan,
-			)).toThrowError(errors["XRANGE:2:STPNAN"]);
+			)).toThrowError(errors["XRANGE:STPNAN"]);
 	});
 
 	it("should set `step` to 1 if `start` is not greater than `stop`", () => {
@@ -104,7 +104,7 @@ describe("xrange(bound1, bound2, step)", () => {
 				nan,
 				7,
 				1,
-			)).toThrowError(errors["XRANGE:3:BD1NAN"]);
+			)).toThrowError(errors["XRANGE:BD1NAN"]);
 	});
 
 	it("should fail if `bound2` is `null`, `NaN`, or a non-numeric value (except for a function)", () => {
@@ -114,7 +114,7 @@ describe("xrange(bound1, bound2, step)", () => {
 				// @ts-ignore
 				nanof,
 				1,
-			)).toThrowError(errors["XRANGE:3:BD2NNF"]);
+			)).toThrowError(errors["XRANGE:BD2NNF"]);
 	});
 
 	it("should fail if `step` is `null`, `NaN`, or a non-numeric value", () => {
@@ -122,27 +122,27 @@ describe("xrange(bound1, bound2, step)", () => {
 			expect(() => {
 				// @ts-ignore
 				xrange(2, 7, nan);
-			}).toThrowError(errors["XRANGE:3:STENAN"]);
+			}).toThrowError(errors["XRANGE:STENAN"]);
 	});
 
 	it("should fail if `step` is zero", () => {
-		expect(() => xrange(2, 7, +0)).toThrowError(errors["XRANGE:3:STEZER"]);
-		expect(() => xrange(2, 7, -0)).toThrowError(errors["XRANGE:3:STEZER"]);
+		expect(() => xrange(2, 7, +0)).toThrowError(errors["XRANGE:STEZER"]);
+		expect(() => xrange(2, 7, -0)).toThrowError(errors["XRANGE:STEZER"]);
 	});
 
 	it("should fail if `step` is infinite", () => {
-		expect(() => xrange(2, 7, Infinity)).toThrowError(errors["XRANGE:3:STEINF"]);
-		expect(() => xrange(2, 7, -Infinity)).toThrowError(errors["XRANGE:3:STEINF"]);
+		expect(() => xrange(2, 7, Infinity)).toThrowError(errors["XRANGE:STEINF"]);
+		expect(() => xrange(2, 7, -Infinity)).toThrowError(errors["XRANGE:STEINF"]);
 	});
 
 	it("should fail if order is acsending and lower bound is infinite", () => {
-		expect(() => xrange(-Infinity, 2, 1)).toThrowError(errors["XRANGE:3:BD1INF"]);
-		expect(() => xrange(2, -Infinity, 1)).toThrowError(errors["XRANGE:3:BD2INF"]);
+		expect(() => xrange(-Infinity, 2, 1)).toThrowError(errors["XRANGE:BD1INF"]);
+		expect(() => xrange(2, -Infinity, 1)).toThrowError(errors["XRANGE:BD2INF"]);
 	});
 
 	it("should fail if order is descending and upper bound is infinite", () => {
-		expect(() => xrange(Infinity, -2, -1)).toThrowError(errors["XRANGE:3:BD1INF"]);
-		expect(() => xrange(-2, Infinity, -1)).toThrowError(errors["XRANGE:3:BD2INF"]);
+		expect(() => xrange(Infinity, -2, -1)).toThrowError(errors["XRANGE:BD1INF"]);
+		expect(() => xrange(-2, Infinity, -1)).toThrowError(errors["XRANGE:BD2INF"]);
 	});
 
 	it("should sort `bound1` and `bound2` according to parity of `step`", () => {
@@ -162,7 +162,7 @@ describe("xrange(bound1, bound2, step)", () => {
 
 describe("xrange(start, predicate, next)", () => {
 	it("is not yet implemented", () => {
-		expect(() => xrange(0, () => false, () => NaN)).toThrowError(errors["XRANGE:_:NOIMPL"]);
+		expect(() => xrange(0, () => false, () => NaN)).toThrowError(errors["XRANGE:NOIMPL"]);
 	});
 
 	// TODO: add cases from test/xrange-start-predicate-next.spec.ts
@@ -172,12 +172,12 @@ it("should fail without arguments", () => {
 	expect(() => {
 		// @ts-ignore
 		xrange();
-	}).toThrowError(errors["XRANGE:0:ARGREQ"]);
+	}).toThrowError(errors["XRANGE:ARGREQ"]);
 });
 
 it("should fail with 4+ numeric arguments", () => {
 	expect(() => {
 		// @ts-ignore
 		xrange(0, 1, 2, 3);
-	}).toThrowError(errors["XRANGE:_:UNKUSG"]);
+	}).toThrowError(errors["XRANGE:UNKUSG"]);
 });

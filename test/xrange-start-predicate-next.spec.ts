@@ -7,7 +7,7 @@ describe.skip("xrange(start, predicate, next)", () => {
 		expect(() => {
 			// @ts-ignore
 			xrange(0, () => true, 1);
-		}).toThrowError(errors["XRANGE:3:NXTNAF"]);
+		}).toThrowError(errors["XRANGE:NXTNAF"]);
 	});
 
 	it("should yield the value specified by the `next` function", () => {
