@@ -54,7 +54,28 @@ it("should not iterate if `predicate` always returns `false`", () => {
 	expect(value).toBe(0);
 });
 
-it.todo("should fill `prev` if it is used in the `predicate`");
+it("should fill `prev` if it is used in the `predicate`", () => {
+	const start = 6;
+	const stop = 9;
+
+	const expectedPrevs = [
+		[],
+		[6],
+		[7, 6],
+		[8, 7, 6],
+	] as const;
+
+	let callCount = 0;
+
+	const shouldGo: Predicate = (next, prev) => {
+		expect(prev).toEqual(expectedPrevs[callCount++]);
+
+		return next < stop;
+	};
+
+	// iterate through the range, and start assertions
+	for (const _ of xrange(start, shouldGo, ([ last ]) => last + 1));
+});
 
 it.todo("should fill `prev` if it is used in the `next` function");
 
