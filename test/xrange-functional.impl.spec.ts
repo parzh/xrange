@@ -54,73 +54,73 @@ it("should not iterate if `predicate` always returns `false`", () => {
 	expect(value).toBe(0);
 });
 
-it("should fill `prev` if it is used in the `predicate`", () => {
-	const start = 6;
-	const stop = 9;
+describe("working with the `prev` list", () => {
+	const START = 6;
+	const STOP = 9;
 
-	const expectedPrevs = [
-		[],
-		[6],
-		[7, 6],
-		[8, 7, 6],
-	] as const;
+	it("should fill `prev` if it is used in the `predicate`", () => {
+		const expectedPrevs = [
+			[],
+			[6],
+			[7, 6],
+			[8, 7, 6],
+		] as const;
 
-	let callCount = 0;
+		let callCount = 0;
 
-	const shouldGo: Predicate = (next, prev) => {
-		expect(prev).toEqual(expectedPrevs[callCount++]);
+		const shouldGo: Predicate = (next, prev) => {
+			expect(prev).toEqual(expectedPrevs[callCount++]);
 
-		return next < stop;
-	};
+			return next < STOP;
+		};
 
-	// iterate through the range, and start assertions
-	for (const _ of xrange(start, shouldGo, ([ last ]) => last + 1));
+		// iterate through the range, and start assertions
+		for (const _ of xrange(START, shouldGo, ([ last ]) => last + 1));
+	});
+
+	it.todo("should fill `prev` if it is used in the `next` function");
+
+	it("should allow optimizing length of `prev`", () => {
+		const maxPrevLength = 2;
+
+		const expectedCalls = {
+			shouldGo: [
+				[ 6, [] ],
+				[ 7, [ 6 ] ],
+				[ 8, [ 7, 6 ] ],
+				[ 9, [ 8, 7 ] ],
+			],
+			getNext: [
+				[ [ 6 ] ],
+				[ [ 7, 6 ] ],
+				[ [ 8, 7 ] ],
+			],
+		} as const;
+
+		let callCount = 0;
+
+		const shouldGo: Predicate = (next, prev) => {
+			const [ nextExpected, prevExpected ] = expectedCalls.shouldGo[callCount];
+
+			expect(next).toEqual(nextExpected);
+			expect(prev).toEqual(prevExpected);
+
+			return next < STOP;
+		};
+
+		const getNext: NextFactory = (prev) => {
+			const [ prevExpected ] = expectedCalls.getNext[callCount];
+
+			expect(prev).toEqual(prevExpected);
+
+			callCount++;
+
+			return prev[0] + 1;
+		};
+
+		// iterate through the range, and start assertions
+		for (const _ of xrange(START, shouldGo, getNext, maxPrevLength));
+	});
+
+	it.todo("should not fill `prev` if it is unused");
 });
-
-it.todo("should fill `prev` if it is used in the `next` function");
-
-it("should allow optimizing length of `prev`", () => {
-	const start = 6;
-	const stop = 9;
-	const maxPrevLength = 2;
-
-	const expectedCalls = {
-		shouldGo: [
-			[ 6, [] ],
-			[ 7, [ 6 ] ],
-			[ 8, [ 7, 6 ] ],
-			[ 9, [ 8, 7 ] ],
-		],
-		getNext: [
-			[ [ 6 ] ],
-			[ [ 7, 6 ] ],
-			[ [ 8, 7 ] ],
-		],
-	} as const;
-
-	let callCount = 0;
-
-	const shouldGo: Predicate = (next, prev) => {
-		const [ nextExpected, prevExpected ] = expectedCalls.shouldGo[callCount];
-
-		expect(next).toEqual(nextExpected);
-		expect(prev).toEqual(prevExpected);
-
-		return next < stop;
-	};
-
-	const getNext: NextFactory = (prev) => {
-		const [ prevExpected ] = expectedCalls.getNext[callCount];
-
-		expect(prev).toEqual(prevExpected);
-
-		callCount++;
-
-		return prev[0] + 1;
-	};
-
-	// iterate through the range, and start assertions
-	for (const _ of xrange(start, shouldGo, getNext, maxPrevLength));
-});
-
-it.todo("should not fill `prev` if it is unused");
