@@ -60,23 +60,43 @@ it.todo("should generate `prev` if it is used in the `predicate`");
 it.todo("should generate `prev` if it is used in the `next` function");
 
 it("should allow optimizing length of `prev`", () => {
-	const shouldGo: Predicate = jest.fn((next, _prev) => next < 9);
-	const getNext: NextFactory = jest.fn((prev) => prev[0] + 1);
+	const expectedCalls = {
+		shouldGo: [
+			[ 6, [] ],
+			[ 7, [ 6 ] ],
+			[ 8, [ 7, 6 ] ],
+			[ 9, [ 8, 7 ] ],
+		],
+		getNext: [
+			[ [ 6 ] ],
+			[ [ 7, 6 ] ],
+			[ [ 8, 7 ] ],
+		],
+	} as const;
 
-	for (const _ of xrange(6, shouldGo, getNext, 2)); // iterate through the range
+	let callCount = 0;
 
-	expectCalls(shouldGo, [
-		[ 6, [] ],
-		[ 7, [ 6 ] ],
-		[ 8, [ 7, 6 ] ],
-		[ 9, [ 8, 7 ] ],
-	]);
+	const shouldGo: Predicate = jest.fn((next, prev) => {
+		const [ nextExpected, prevExpected ] = expectedCalls.shouldGo[callCount];
 
-	expectCalls(getNext, [
-		[ [ 6 ] ],
-		[ [ 7, 6 ] ],
-		[ [ 8, 7 ] ],
-	]);
+		expect(next).toEqual(nextExpected);
+		expect(prev).toEqual(prevExpected);
+
+		return next < 9;
+	});
+
+	const getNext: NextFactory = jest.fn((prev) => {
+		const [ prevExpected ] = expectedCalls.getNext[callCount];
+
+		expect(prev).toEqual(prevExpected);
+
+		callCount++;
+
+		return prev[0] + 1;
+	});
+
+	// iterate through the range, and start assertions
+	for (const _ of xrange(6, shouldGo, getNext, 2));
 });
 
 it.todo("should not generate `prev` if it is unused");
