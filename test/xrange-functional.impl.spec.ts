@@ -2,14 +2,7 @@ import type Predicate from "../src/typings/predicate";
 import type NextFactory from "../src/typings/next-factory";
 
 import xrange from "../src/xrange-functional.impl";
-import errors from "../src/errors";
 import { REASONABLY_LARGE_NUMBER } from "./entities";
-import { expectCalls } from "./helpers";
-
-// TODO: remove
-it.only("is not implemented yet", () => {
-	expect(xrange).toThrowError(errors["XRANGE:_:NOIMPL"]);
-});
 
 it("should yield the value specified by the `next` function", () => {
 	const range1 = xrange(0, (next) => next < 5, ([ last ]) => last + 1);
@@ -61,30 +54,113 @@ it("should not iterate if `predicate` always returns `false`", () => {
 	expect(value).toBe(0);
 });
 
-it.todo("should generate `prev` if it is used in the `predicate`");
+describe("working with the `prev` list", () => {
+	const START = 6;
+	const STOP = 9;
 
-it.todo("should generate `prev` if it is used in the `next` function");
+	const list: number[] = [];
 
-// TODO: unskip
-it.skip("should allow optimizing length of `prev`", () => {
-	const shouldGo: Predicate = jest.fn((next, _prev) => next < 3);
-	const getNext: NextFactory = jest.fn((prev) => prev[0] + 1);
+	beforeEach(() => {
+		list.length = 0;
+	});
 
-	// @ts-ignore // TODO: unignore
-	for (const _ of xrange(0, shouldGo, getNext, 2)); // roll over the range
+	afterEach(() => {
+		expect(list).toEqual([ 6, 7, 8 ]);
+	});
 
-	expectCalls(shouldGo, [
-		[ 0, [] ],
-		[ 1, [ 0 ] ],
-		[ 2, [ 1, 0 ] ],
-		[ 3, [ 2, 1 ] ],
-	]);
+	it("should fill `prev` if it is used in the `predicate`", () => {
+		const expectedPrevs = [
+			[],
+			[6],
+			[7, 6],
+			[8, 7, 6],
+		] as const;
 
-	expectCalls(getNext, [
-		[ [ 0 ] ],
-		[ [ 1, 0 ] ],
-		[ [ 2, 1 ] ],
-	]);
+		let callCount = 0;
+
+		const shouldGo: Predicate = (next, prev) => {
+			expect(prev).toEqual(expectedPrevs[callCount++]);
+
+			return next < STOP;
+		};
+
+		list.push(...xrange(START, shouldGo, ([ last ]) => last + 1));
+	});
+
+	it("should fill `prev` if it is used in the `next` function", () => {
+		const expectedPrevs = [
+			[6],
+			[7, 6],
+			[8, 7, 6],
+		] as const;
+
+		let callCount = 0;
+
+		const getNext: NextFactory = (prev) => {
+			expect(prev).toEqual(expectedPrevs[callCount++]);
+
+			return prev[0] + 1;
+		};
+
+		list.push(...xrange(START, (next) => next < STOP, getNext));
+	});
+
+	it("should allow optimizing length of `prev`", () => {
+		const maxPrevLength = 2;
+
+		const expectedCalls = {
+			shouldGo: [
+				[ 6, [] ],
+				[ 7, [ 6 ] ],
+				[ 8, [ 7, 6 ] ],
+				[ 9, [ 8, 7 ] ],
+			],
+			getNext: [
+				[ [ 6 ] ],
+				[ [ 7, 6 ] ],
+				[ [ 8, 7 ] ],
+			],
+		} as const;
+
+		let callCount = 0;
+
+		const shouldGo: Predicate = (next, prev) => {
+			const [ nextExpected, prevExpected ] = expectedCalls.shouldGo[callCount];
+
+			expect(next).toEqual(nextExpected);
+			expect(prev).toEqual(prevExpected);
+
+			return next < STOP;
+		};
+
+		const getNext: NextFactory = (prev) => {
+			const [ prevExpected ] = expectedCalls.getNext[callCount];
+
+			expect(prev).toEqual(prevExpected);
+
+			callCount++;
+
+			return prev[0] + 1;
+		};
+
+		list.push(...xrange(START, shouldGo, getNext, maxPrevLength));
+	});
+
+	it("should not fill `prev` if it is unused", () => {
+		let curr = START;
+
+		const shouldGo: Predicate = (...args) => {
+			expect(args[1]).toEqual([]);
+
+			return curr < STOP;
+		};
+
+		const getNext: NextFactory = (...args) => {
+			expect(args[0]).toEqual([]);
+
+			return ++curr;
+		};
+
+		list.push(...xrange(curr, shouldGo, getNext));
+	});
 });
-
-it.todo("should not generate `prev` if it is unused");

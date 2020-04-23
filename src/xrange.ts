@@ -3,15 +3,17 @@ import type Predicate from "./typings/predicate";
 import type NextFactory from "./typings/next-factory";
 
 import { createError } from "./errors";
+import isLength from "./is-length.impl";
 import isNumeric from "./is-numeric.impl";
 import xrangeNumeric from "./xrange-numeric.impl";
+import xrangeFunctional from "./xrange-functional.impl";
 
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;
 export default function xrange(bound1: number, bound2: number, step: number): XRange;
-export default function xrange(start: number, predicate: Predicate, next: NextFactory): XRange;
+export default function xrange(start: number, predicate: Predicate, next: NextFactory, maxPrevLength?: number): XRange;
 
-export default function xrange(first: number, second?: number | Predicate, third?: number | NextFactory): XRange {
+export default function xrange(first: number, second?: number | Predicate, third?: number | NextFactory, fourth?: number): XRange {
 	if (arguments.length === 0)
 		throw createError("XRANGE:0:ARGREQ");
 
@@ -51,8 +53,11 @@ export default function xrange(first: number, second?: number | Predicate, third
 		else if (typeof third !== "function")
 			throw createError("XRANGE:3:NXTNAF");
 
+		else if (arguments.length >= 4 && !isLength(fourth))
+			throw createError("XRANGE:4:MPLINV");
+
 		else
-			throw createError("XRANGE:_:NOIMPL"); // TODO: functional implementation
+			return xrangeFunctional(first, second, third, fourth);
 
 	else if (!isNumeric(third))
 		throw createError("XRANGE:3:STENAN");

@@ -8,10 +8,3 @@ export function expectToBeCloseTo(range: XRange, expected: readonly number[]): v
 
 	expect(count).toEqual(expected.length);
 }
-
-export function expectCalls<Fn extends (...args: any[]) => any>(fn: Fn, calls: Parameters<Fn>[]): void {
-	expect(fn).toHaveBeenCalledTimes(calls.length);
-
-	for (const [ count, args ] of calls.entries())
-		expect(fn).toHaveBeenNthCalledWith(count + 1, ...args);
-}

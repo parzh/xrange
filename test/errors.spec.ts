@@ -5,10 +5,10 @@ import errors, { createError, removeLastStackEntry } from "../src/errors";
 const codes = Object.keys(errors) as ErrorCode[];
 
 /** @private */
-const codePattern = /^XRANGE:[_0-3]:[_0-9A-Z]{6}$/;
+const codePattern = /^XRANGE:[_0-4]:[_0-9A-Z]{6}$/; // TODO: #23
 
 it("should export collection of errors", () => {
-	expect(codes).toHaveLength(14);
+	expect(codes).toHaveLength(15);
 });
 
 it("should have error codes with the correct syntax", () => {
@@ -69,6 +69,7 @@ describe("createError(code, preserveStack?)", () => {
 		expect(createError("XRANGE:3:STENAN").message).toMatch(/\] argument `step` is not a number$/);
 		expect(createError("XRANGE:3:STEZER").message).toMatch(/\] argument `step` cannot be zero$/);
 		expect(createError("XRANGE:3:NXTNAF").message).toMatch(/\] argument `next` is not a function$/);
+		expect(createError("XRANGE:4:MPLINV").message).toMatch(/\] argument `maxPrevLength` is not a valid length$/);
 	});
 
 	it("should remove last stack entry by default", () => {
