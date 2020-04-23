@@ -100,16 +100,16 @@ it("should allow optimizing length of `prev`", () => {
 
 	let callCount = 0;
 
-	const shouldGo: Predicate = jest.fn((next, prev) => {
+	const shouldGo: Predicate = (next, prev) => {
 		const [ nextExpected, prevExpected ] = expectedCalls.shouldGo[callCount];
 
 		expect(next).toEqual(nextExpected);
 		expect(prev).toEqual(prevExpected);
 
 		return next < stop;
-	});
+	};
 
-	const getNext: NextFactory = jest.fn((prev) => {
+	const getNext: NextFactory = (prev) => {
 		const [ prevExpected ] = expectedCalls.getNext[callCount];
 
 		expect(prev).toEqual(prevExpected);
@@ -117,7 +117,7 @@ it("should allow optimizing length of `prev`", () => {
 		callCount++;
 
 		return prev[0] + 1;
-	});
+	};
 
 	// iterate through the range, and start assertions
 	for (const _ of xrange(start, shouldGo, getNext, maxPrevLength));
