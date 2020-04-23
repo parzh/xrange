@@ -60,22 +60,22 @@ it.todo("should generate `prev` if it is used in the `predicate`");
 it.todo("should generate `prev` if it is used in the `next` function");
 
 it("should allow optimizing length of `prev`", () => {
-	const shouldGo: Predicate = jest.fn((next, _prev) => next < 3);
+	const shouldGo: Predicate = jest.fn((next, _prev) => next < 9);
 	const getNext: NextFactory = jest.fn((prev) => prev[0] + 1);
 
-	for (const _ of xrange(0, shouldGo, getNext, 2)); // iterate through the range
+	for (const _ of xrange(6, shouldGo, getNext, 2)); // iterate through the range
 
 	expectCalls(shouldGo, [
-		[ 0, [] ],
-		[ 1, [ 0 ] ],
-		[ 2, [ 1, 0 ] ],
-		[ 3, [ 2, 1 ] ],
+		[ 6, [] ],
+		[ 7, [ 6 ] ],
+		[ 8, [ 7, 6 ] ],
+		[ 9, [ 8, 7 ] ],
 	]);
 
 	expectCalls(getNext, [
-		[ [ 0 ] ],
-		[ [ 1, 0 ] ],
-		[ [ 2, 1 ] ],
+		[ [ 6 ] ],
+		[ [ 7, 6 ] ],
+		[ [ 8, 7 ] ],
 	]);
 });
 
