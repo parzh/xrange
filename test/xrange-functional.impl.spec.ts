@@ -3,7 +3,6 @@ import type NextFactory from "../src/typings/next-factory";
 
 import xrange from "../src/xrange-functional.impl";
 import { REASONABLY_LARGE_NUMBER } from "./entities";
-import { expectCalls } from "./helpers";
 
 it("should yield the value specified by the `next` function", () => {
 	const range1 = xrange(0, (next) => next < 5, ([ last ]) => last + 1);
