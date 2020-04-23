@@ -13,47 +13,47 @@ export default function xrange(start: number, predicate: Predicate, next: NextFa
 
 export default function xrange(first: number, second?: number | Predicate, third?: number | NextFactory): XRange {
 	if (arguments.length === 0)
-		throw createError("XRANGE:0:ARGREQ");
+		throw createError("XRANGE:ARGREQ");
 
 	if (arguments.length === 1)
 		if (!isNumeric(first))
-			throw createError("XRANGE:1:ARGNAN");
+			throw createError("XRANGE:ARGNAN");
 
 		else
 			return xrangeNumeric(0, first, Math.sign(first) || 1);
 
 	if (arguments.length === 2)
 		if (!isNumeric(first))
-			throw createError("XRANGE:2:STRNAN");
+			throw createError("XRANGE:STRNAN");
 
 		else if (!isNumeric(second))
-			throw createError("XRANGE:2:STPNAN");
+			throw createError("XRANGE:STPNAN");
 
 		else if (!isFinite(first))
-			throw createError("XRANGE:2:STRINF");
+			throw createError("XRANGE:STRINF");
 
 		else
 			return xrangeNumeric(first, second, first <= second ? 1 : -1);
 
 	if (arguments.length === 3)
 		if (!isNumeric(first))
-			throw createError("XRANGE:3:BD1NAN");
+			throw createError("XRANGE:BD1NAN");
 
 		else if (!isNumeric(second))
 			if (typeof second !== "function")
-				throw createError("XRANGE:3:BD2NNF");
+				throw createError("XRANGE:BD2NNF");
 
 			else
-				throw createError("XRANGE:_:NOIMPL"); // TODO: looplike implementation
+				throw createError("XRANGE:NOIMPL"); // TODO: looplike implementation
 
 		else if (!isNumeric(third))
-			throw createError("XRANGE:3:STENAN");
+			throw createError("XRANGE:STENAN");
 
 		else if (!isFinite(third))
-			throw createError("XRANGE:3:STEINF");
+			throw createError("XRANGE:STEINF");
 
 		else if (third === 0)
-			throw createError("XRANGE:3:STEZER");
+			throw createError("XRANGE:STEZER");
 
 		else {
 			const isUp = third > 0;
@@ -63,10 +63,10 @@ export default function xrange(first: number, second?: number | Predicate, third
 			const [ start, stop ] = isDirect ? [ first, second ] : [ second, first ];
 
 			if (!isFinite(start))
-				throw createError(isDirect ? "XRANGE:3:BD1INF" : "XRANGE:3:BD2INF");
+				throw createError(isDirect ? "XRANGE:BD1INF" : "XRANGE:BD2INF");
 
 			return xrangeNumeric(start, stop, third);
 		}
 
-	throw createError("XRANGE:_:UNKUSG");
+	throw createError("XRANGE:UNKUSG");
 }
