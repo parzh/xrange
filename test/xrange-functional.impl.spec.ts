@@ -58,6 +58,16 @@ describe("working with the `prev` list", () => {
 	const START = 6;
 	const STOP = 9;
 
+	const list: number[] = [];
+
+	beforeEach(() => {
+		list.length = 0;
+	});
+
+	afterEach(() => {
+		expect(list).toEqual([ 6, 7, 8 ]);
+	});
+
 	it("should fill `prev` if it is used in the `predicate`", () => {
 		const expectedPrevs = [
 			[],
@@ -74,8 +84,7 @@ describe("working with the `prev` list", () => {
 			return next < STOP;
 		};
 
-		// iterate through the range, and start assertions
-		for (const _ of xrange(START, shouldGo, ([ last ]) => last + 1));
+		list.push(...xrange(START, shouldGo, ([ last ]) => last + 1));
 	});
 
 	it.todo("should fill `prev` if it is used in the `next` function");
@@ -118,8 +127,7 @@ describe("working with the `prev` list", () => {
 			return prev[0] + 1;
 		};
 
-		// iterate through the range, and start assertions
-		for (const _ of xrange(START, shouldGo, getNext, maxPrevLength));
+		list.push(...xrange(START, shouldGo, getNext, maxPrevLength));
 	});
 
 	it.todo("should not fill `prev` if it is unused");
