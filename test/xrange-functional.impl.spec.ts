@@ -87,7 +87,23 @@ describe("working with the `prev` list", () => {
 		list.push(...xrange(START, shouldGo, ([ last ]) => last + 1));
 	});
 
-	it.todo("should fill `prev` if it is used in the `next` function");
+	it("should fill `prev` if it is used in the `next` function", () => {
+		const expectedPrevs = [
+			[6],
+			[7, 6],
+			[8, 7, 6],
+		] as const;
+
+		let callCount = 0;
+
+		const getNext: NextFactory = (prev) => {
+			expect(prev).toEqual(expectedPrevs[callCount++]);
+
+			return prev[0] + 1;
+		};
+
+		list.push(...xrange(START, (next) => next < STOP, getNext));
+	});
 
 	it("should allow optimizing length of `prev`", () => {
 		const maxPrevLength = 2;
@@ -130,5 +146,21 @@ describe("working with the `prev` list", () => {
 		list.push(...xrange(START, shouldGo, getNext, maxPrevLength));
 	});
 
-	it.todo("should not fill `prev` if it is unused");
+	it("should not fill `prev` if it is unused", () => {
+		let curr = START;
+
+		const shouldGo: Predicate = (...args) => {
+			expect(args[1]).toEqual([]);
+
+			return curr < STOP;
+		};
+
+		const getNext: NextFactory = (...args) => {
+			expect(args[0]).toEqual([]);
+
+			return ++curr;
+		};
+
+		list.push(...xrange(curr, shouldGo, getNext));
+	});
 });
