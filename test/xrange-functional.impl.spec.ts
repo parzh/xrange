@@ -54,9 +54,9 @@ it("should not iterate if `predicate` always returns `false`", () => {
 	expect(value).toBe(0);
 });
 
-it.todo("should generate `prev` if it is used in the `predicate`");
+it.todo("should fill `prev` if it is used in the `predicate`");
 
-it.todo("should generate `prev` if it is used in the `next` function");
+it.todo("should fill `prev` if it is used in the `next` function");
 
 it("should allow optimizing length of `prev`", () => {
 	const start = 6;
@@ -102,4 +102,4 @@ it("should allow optimizing length of `prev`", () => {
 	for (const _ of xrange(start, shouldGo, getNext, maxPrevLength));
 });
 
-it.todo("should not generate `prev` if it is unused");
+it.todo("should not fill `prev` if it is unused");
