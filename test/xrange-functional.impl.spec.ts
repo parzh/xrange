@@ -59,6 +59,10 @@ it.todo("should generate `prev` if it is used in the `predicate`");
 it.todo("should generate `prev` if it is used in the `next` function");
 
 it("should allow optimizing length of `prev`", () => {
+	const start = 6;
+	const stop = 9;
+	const maxPrevLength = 2;
+
 	const expectedCalls = {
 		shouldGo: [
 			[ 6, [] ],
@@ -81,7 +85,7 @@ it("should allow optimizing length of `prev`", () => {
 		expect(next).toEqual(nextExpected);
 		expect(prev).toEqual(prevExpected);
 
-		return next < 9;
+		return next < stop;
 	});
 
 	const getNext: NextFactory = jest.fn((prev) => {
@@ -95,7 +99,7 @@ it("should allow optimizing length of `prev`", () => {
 	});
 
 	// iterate through the range, and start assertions
-	for (const _ of xrange(6, shouldGo, getNext, 2));
+	for (const _ of xrange(start, shouldGo, getNext, maxPrevLength));
 });
 
 it.todo("should not generate `prev` if it is unused");
