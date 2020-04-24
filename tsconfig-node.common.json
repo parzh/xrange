@@ -3,6 +3,7 @@
 	"extends": "./tsconfig.common",
 	"compilerOptions": {
 		"module": "commonjs",
+		"moduleResolution": "node",
 		"declaration": true,
 		"esModuleInterop": true,
 	},
