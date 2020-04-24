@@ -238,6 +238,21 @@ xrange(0, () => false, () => 1);
 ```
 
 ```ts
+const sum = (numbers) => numbers.reduce((sum, num) => sum + num, 0);
+
+xrange(1, () => true, sum, 2);
+// 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, …
+// (fibonacci numbers)
+
+xrange(1, () => true, sum, 5);
+// 1, 1, 2, 4, 8, 16, 31, 61, 120, 236, …
+// ("pentanacci" numbers)
+
+xrange(1, () => true, sum, 0);
+// 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+```
+
+```ts
 xrange(0, (next) => next < 5, () => Infinity);
 // 0
 ```
