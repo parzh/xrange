@@ -15,12 +15,16 @@ export default function xrange(first: number, second?: number | Predicate, third
 	if (arguments.length === 0)
 		throw createError("XRANGE:ARGREQ");
 
+	// ***
+
 	if (arguments.length === 1)
 		if (!isNumeric(first))
 			throw createError("XRANGE:ARGNAN");
 
 		else
 			return xrangeNumeric(0, first, Math.sign(first) || 1);
+
+	// ***
 
 	if (arguments.length === 2)
 		if (!isNumeric(first))
@@ -35,38 +39,37 @@ export default function xrange(first: number, second?: number | Predicate, third
 		else
 			return xrangeNumeric(first, second, first <= second ? 1 : -1);
 
-	if (arguments.length === 3)
-		if (!isNumeric(first))
-			throw createError("XRANGE:BD1NAN");
+	// ***
 
-		else if (!isNumeric(second))
-			if (typeof second !== "function")
-				throw createError("XRANGE:BD2NNF");
+	if (!isNumeric(first))
+		throw createError("XRANGE:BD1NAN");
 
-			else
-				throw createError("XRANGE:NOIMPL"); // TODO: looplike implementation
+	else if (!isNumeric(second))
+		if (typeof second !== "function")
+			throw createError("XRANGE:BD2NNF");
 
-		else if (!isNumeric(third))
-			throw createError("XRANGE:STENAN");
+		else
+			throw createError("XRANGE:NOIMPL"); // TODO: looplike implementation
 
-		else if (!isFinite(third))
-			throw createError("XRANGE:STEINF");
+	else if (!isNumeric(third))
+		throw createError("XRANGE:STENAN");
 
-		else if (third === 0)
-			throw createError("XRANGE:STEZER");
+	else if (!isFinite(third))
+		throw createError("XRANGE:STEINF");
 
-		else {
-			const isUp = third > 0;
-			const isSorted = first <= second;
-			const isDirect = isUp === isSorted;
+	else if (third === 0)
+		throw createError("XRANGE:STEZER");
 
-			const [ start, stop ] = isDirect ? [ first, second ] : [ second, first ];
+	else {
+		const isUp = third > 0;
+		const isSorted = first <= second;
+		const isDirect = isUp === isSorted;
 
-			if (!isFinite(start))
-				throw createError(isDirect ? "XRANGE:BD1INF" : "XRANGE:BD2INF");
+		const [ start, stop ] = isDirect ? [ first, second ] : [ second, first ];
 
-			return xrangeNumeric(start, stop, third);
-		}
+		if (!isFinite(start))
+			throw createError(isDirect ? "XRANGE:BD1INF" : "XRANGE:BD2INF");
 
-	throw createError("XRANGE:UNKUSG");
+		return xrangeNumeric(start, stop, third);
+	}
 }

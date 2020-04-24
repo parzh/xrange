@@ -174,10 +174,3 @@ it("should fail without arguments", () => {
 		xrange();
 	}).toThrowError(errors["XRANGE:ARGREQ"]);
 });
-
-it("should fail with 4+ numeric arguments", () => {
-	expect(() => {
-		// @ts-ignore
-		xrange(0, 1, 2, 3);
-	}).toThrowError(errors["XRANGE:UNKUSG"]);
-});

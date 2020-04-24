@@ -1,6 +1,5 @@
 /** @private */
 const _errors = {
-	"XRANGE:UNKUSG": new Error("unknown usage encountered"),
 	"XRANGE:NOIMPL": new Error("feature is not implemented"),
 	"XRANGE:ARGREQ": new Error("argument is required"),
 	"XRANGE:ARGNAN": new Error("argument is not a number"),
