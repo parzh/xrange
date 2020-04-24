@@ -186,3 +186,80 @@ xrange(0, 5, Infinity);
 xrange(0, 5, -Infinity);
 // RangeError: [XRANGE:STEINF] argument `step` must be finite
 ```
+
+```ts
+xrange(1, () => true, ([ last, prelast = 0 ]) => last + prelast);
+// 1, 1, 2, 3, 5, 8, 13, …
+// (fibonacci numbers)
+```
+
+```ts
+xrange(1, () => true, ([ last ]) => last ? 0 : 1);
+// 1, 0, 1, 0, 1, 0, …
+```
+
+```ts
+xrange(0, () => true, ([ last ]) => last ? 0 : 1);
+// 0, 1, 0, 1, 0, 1, …
+```
+
+```ts
+xrange(0, (next) => next < 5, ([ last ]) => last + 1);
+xrange(0, (next) => next <= 4, ([ last ]) => last + 1);
+// 0, 1, 2, 3, 4
+// compare to: `for (let i = 0; i < 5; i++)`
+```
+
+```ts
+xrange(0, (next) => next < 5, ([ last ]) => last - 1);
+// 0, -1, -2, -3, …
+// (never ends)
+```
+
+```ts
+xrange(0, (next) => next > -5, ([ last ]) => last - 1);
+// 0, -1, -2, -3, -4
+```
+
+```ts
+xrange(0, () => true, 1);
+// Error: [XRANGE:NXTNAF] argument `next` is not a function
+```
+
+```ts
+xrange(0, () => true, () => 1);
+// 0, 1, 1, 1, 1, …
+```
+
+```ts
+xrange(0, () => false, () => 1);
+//
+// (no iterations)
+```
+
+```ts
+xrange(0, (next) => next < 5, () => Infinity);
+// 0
+```
+
+```ts
+xrange(0, (next) => next > 5, () => Infinity);
+// 0, Infinity, Infinity, …
+```
+
+```ts
+xrange(0, () => true, (prev) => prev);
+// 0, 0, NaN, NaN, NaN, …
+```
+
+```ts
+const obj = {
+	value: 0,
+	valueOf() {
+		return ++this.value;
+	},
+};
+
+xrange(0, () => true, () => obj);
+// 0, 1, 2, 3, 4, …
+```
