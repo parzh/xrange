@@ -172,7 +172,7 @@ describe("xrange(start, predicate, next, maxPrevLength?)", () => {
 		expect(() => xrange(0, () => true, () => 1)).not.toThrow();
 	});
 
-	it("should fail if `maxPrevLength` (if present) is not a number", () => {
+	it("should fail if `maxPrevLength` (if present) is not a valid length", () => {
 		for (const nan of nans)
 			expect(() => xrange(
 				0,
