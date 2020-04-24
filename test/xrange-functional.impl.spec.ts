@@ -3,6 +3,7 @@ import type NextFactory from "../src/typings/next-factory";
 
 import xrange from "../src/xrange-functional.impl";
 import { REASONABLY_LARGE_NUMBER } from "./entities";
+import { takeProbe } from "./helpers";
 
 it("should yield the value specified by the `next` function", () => {
 	const range1 = xrange(0, (next) => next < 5, ([ last ]) => last + 1);
@@ -162,5 +163,21 @@ describe("working with the `prev` list", () => {
 		};
 
 		list.push(...xrange(curr, shouldGo, getNext));
+	});
+});
+
+describe("producing number sequences", () => {
+	const sum: NextFactory = (numbers) => numbers.reduce((sum, num) => sum! + num!, 0) as number;
+
+	test.each(<const> [
+		[ "Fibonacci", 2, [ 1, 1, 2, 3, 5, 8 ] ],
+		[ '"pentanacci"', 5, [ 1, 1, 2, 4, 8, 16, 31, 61, 120, 236 ] ],
+	])("should produce %s sequence", (name, maxPrevLength, sequenceExcerpt) => {
+		const probe = takeProbe(sequenceExcerpt.length, xrange(1, () => true, sum, maxPrevLength));
+		const last = probe[probe.length - 1];
+		const numbers = probe.map((item) => item.value);
+
+		expect(numbers).toEqual(sequenceExcerpt);
+		expect(last.done).toBe(false);
 	});
 });
