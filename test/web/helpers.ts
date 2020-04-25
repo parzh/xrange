@@ -43,7 +43,7 @@ export async function setupGlobals(): Promise<void> {
 	global.page = pages[0] ?? await global.browser.newPage();
 
 	if (!existsSync(testBundlePath))
-		execSync(`webpack --config ${ testBundleConfigPath }`, { timeout: 10000 });
+		execSync(`webpack --config ${ testBundleConfigPath }`, { timeout: 10000, stdio: "ignore" });
 
 	await global.page.goto(testMarkupUrl);
 }
