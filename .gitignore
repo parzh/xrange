@@ -3,3 +3,5 @@ dist
 .cache
 coverage
 *.log
+test/web/index.html
+test/web/*.bundle.js
