@@ -6,7 +6,7 @@ import { execSync } from "child_process";
 import puppeteer from "puppeteer";
 
 /** @private */
-const rootPath = resolve(__dirname, "..");
+const rootPath = resolve(__dirname, "../..");
 
 /** @private */
 const testMarkupPath = resolve(__dirname, "index.html");
