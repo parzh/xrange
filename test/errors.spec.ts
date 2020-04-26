@@ -8,7 +8,7 @@ const codes = Object.keys(errors) as ErrorCode[];
 const codePattern = /^XRANGE:[A-Z_0-9]{6}$/;
 
 it("should export collection of errors", () => {
-	expect(codes).toHaveLength(15);
+	expect(codes).toHaveLength(14);
 });
 
 it("should have error codes with the correct syntax", () => {
