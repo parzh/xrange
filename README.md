@@ -35,6 +35,52 @@
   </sub>
 </p>
 
-### Examples:
+## [Examples](https://github.com/parzh/xrange/tree/master/docs/examples)
+
+Simple iteration:
+
+```ts
+for (const number of xrange(5))
+  console.log(number); // 0, 1, 2, 3, 4
+```
+
+#### Creation of arrays:
+
+```ts
+[ ...xrange(5) ];
+// [ 0, 1, 2, 3, 4 ]
+```
+
+#### Infinite and backward iteration:
+
+```ts
+xrange(0, Infinity);
+// 0, 1, 2, 3, … (never ends)
+```
+
+```ts
+xrange(10, 0, -1);
+// 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+```
+
+#### Complex number sequences (see [#15](https://github.com/parzh/xrange/issues/15)):
+
+```ts
+xrange(1, (next) => next < 100, ([ last, prelast = 0 ]) => last + prelast);
+// 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+```
+
+```ts
+xrange(0, () => true, ([ last ]) => last ? 0 : 1);
+// 0, 1, 0, 1, 0, 1, … (never ends)
+```
+
+#### Iteration with methods (see [#14](https://github.com/parzh/xrange/issues/14)):
+
+```ts
+xrange(17, 42, 5).forEach(number => {
+  console.log(number); // 17, 22, 27, 32, 37
+});
+```
 
 > See more in [/docs/examples](https://github.com/parzh/xrange/tree/master/docs/examples)
