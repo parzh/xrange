@@ -1,89 +1,30 @@
-# xrange.js
-[![Build Status](https://travis-ci.org/gyllstromk/xrange.png?branch=master)](https://travis-ci.org/gyllstromk/xrange)
+<p align="center">
+  <a href="https://github.com/parzh/xrange/actions?query=workflow%3A%22Test+changes%22">
+    <img alt="Test changes" src="https://github.com/parzh/xrange/workflows/Test%20changes/badge.svg" />
+  </a>
 
-Javascript `xrange` / `range` function for node and browser.
+  <img alt="licence" src="https://img.shields.io/npm/l/xrange" />
 
-`xrange` is based on the function of the same name from Python 2. It is a facility to iterate from `start` to `finish` by `increment` -- even downward -- without having to create a loop or array. Importantly, like the one in Python, `xrange` can be used completely as an iterator, with *no array* created.
+  <a href="https://www.npmjs.com/package/xrange">
+    <img alt="npm version" src="https://badge.fury.io/js/xrange.svg" />
+  </a>
 
-# Usage
+  <a href="https://www.npmjs.com/package/xrange">
+    <img alt="npm size" src="https://img.shields.io/bundlephobia/min/xrange" />
+  </a>
+</p>
 
-## Create with 1, 2, or 3 parameters
+<h1 align="center"><code>xrange</code></h1>
+<h3 align="center">Python-esque iterator for number ranges</h3>
 
-```js
-xrange(3).toArray();        // -> [ 0, 1, 2 ];
-xrange(1, 4).toArray();     // -> [ 1, 2, 3 ];
-xrange(1, 6, 2).toArray();  // -> [ 1, 3, 5 ];
-```
+`xrange` is a function based on Python 3's [`range`](https://docs.python.org/3/library/stdtypes.html?highlight=range#ranges) class (or Python 2's [`xrange`](https://docs.python.org/2.7/library/functions.html#xrange) class). Like the one in Python, `xrange` creates virtual arrays (see [Iterators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols)) which allows getting values lazily. This prevents over-the-top memory consumption when using large numbers, and opens the possibility to create never-ending, infinite lists.
 
-## Count downwards
+<p align="center">
+  <sub>
+    Created with <a href="https://npmjs.org/package/create-package-typescript"><code>create-package-typescript</code></a>
+  </sub>
+</p>
 
-Implied if second argument < first, but can also be set as 3rd parameter:
+### Examples:
 
-```js
-xrange(5, 2).toArray();     // -> [ 5, 4, 3 ];
-xrange(5, 0, -2).toArray(); // -> [ 5, 3, 1 ];
-```
-
-## Length
-
-```js
-xrange(5).length; // 5
-xrange(0, 5, 2);  // 3
-```
-
-## Iterators
-
-### each/foreach
-
-```js
-var sum = 0;
-xrange(3).each(function(each) {
-    sum += each;
-});
-
-// or `forEach`
-xrange(3).forEach(function(each) {
-    sum += each;
-});
-```
-
-### map
-
-```js
-var plusOne = xrange(3).map(function(each) {
-    return each + 1;
-});
-```
-
-## Recipes
-
-Create an array of 5 5's:
-
-```js
-var array = xrange(5).map(function () {
-    return 5;
-});
-```
-
-Use [async](https://github.com/caolan/async) like a `for` loop:
-
-```js
-async.each(
-    xrange(1, 10),
-    function(each, callback) {
-        callback(null, each);
-    }, function (err) {
-        // finished ...
-    }
-);
-```
-
-# Installation
-
-## Node
-
-    npm install xrange
-
-## Browser
-
-    bower install xrange 
+See [/docs/examples](docs/examples) at GitHub to see `xrange` usage, including errors and advanced usage.

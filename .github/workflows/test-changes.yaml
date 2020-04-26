@@ -1,0 +1,40 @@
+name: Test changes
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  unit:
+    name: Run unit tests on ${{ matrix.os }} and collect coverage
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macOS-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test:ci
+
+      - name: Save unit test fail log (skipped if no failures)
+        if: failure()
+        uses: actions/upload-artifact@v1
+        with:
+          name: xrange-unit-test-fail-log-on-${{ matrix.os }}-at-${{ github.sha }}
+          path: unit-test-fail.log
+
+      - name: Save coverage report (sometimes skipped, see the 'if')
+        if: |
+          success() &&
+          github.event_name == 'pull_request' &&
+          matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v1
+        with:
+          name: xrange-coverage-at-${{ github.sha }}
+          path: coverage

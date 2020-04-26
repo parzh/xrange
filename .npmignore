@@ -1,2 +1,12 @@
+node_modules
+src
+tsconfig*.json
+docs
 test
-.*
+.cache
+coverage
+*.tsbuildinfo
+*.log
+.github
+.vscode
+webpack.*
