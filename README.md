@@ -3,7 +3,7 @@
     <img alt="Test changes" src="https://github.com/parzh/xrange/workflows/Test%20changes/badge.svg" />
   </a>
 
-  <img alt="licence" src="https://img.shields.io/npm/l/xrange" />
+  <img alt="licence MIT" src="https://img.shields.io/npm/l/xrange" />
 
   <a href="https://www.npmjs.com/package/xrange">
     <img alt="npm version" src="https://badge.fury.io/js/xrange.svg" />
