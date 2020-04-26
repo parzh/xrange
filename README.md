@@ -1,16 +1,16 @@
 <p align="center">
   <a href="https://github.com/parzh/xrange/actions?query=workflow%3A%22Test+changes%22">
-    <img alt="Test changes" src="https://github.com/parzh/xrange/workflows/Test%20changes/badge.svg?branch=next" />
+    <img alt="Test changes" src="https://github.com/parzh/xrange/workflows/Test%20changes/badge.svg" />
   </a>
 
   <img alt="licence" src="https://img.shields.io/npm/l/xrange" />
 
-  <a href="https://www.npmjs.com/package/xrange/v/next">
+  <a href="https://www.npmjs.com/package/xrange">
     <img alt="npm version" src="https://badge.fury.io/js/xrange.svg" />
   </a>
 
-  <a href="https://www.npmjs.com/package/xrange/v/next">
-    <img alt="npm size" src="https://img.shields.io/bundlephobia/min/xrange/next" />
+  <a href="https://www.npmjs.com/package/xrange">
+    <img alt="npm size" src="https://img.shields.io/bundlephobia/min/xrange" />
   </a>
 </p>
 
@@ -27,4 +27,4 @@
 
 ### Examples:
 
-See [/docs/examples](https://github.com/parzh/xrange/tree/next/docs/examples) at GitHub to see `xrange` usage, including errors and advanced usage.
+See [/docs/examples](docs/examples) at GitHub to see `xrange` usage, including errors and advanced usage.
