@@ -1,8 +1,7 @@
-import { setupGlobals, teardownGlobals } from "./helpers";
+/** 
+ * @jest-environment jest-environment-puppeteer
+ */
 
 jest.setTimeout(20000);
-
-beforeAll(setupGlobals);
-afterAll(teardownGlobals);
 
 it.todo("works");
