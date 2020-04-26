@@ -14,6 +14,16 @@
   <img alt="licence MIT" src="https://img.shields.io/npm/l/xrange" />
 </p>
 
+<p align="center">
+  <a href="https://github.com/parzh/xrange">
+    <img alt="github" src="https://img.shields.io/badge/GitHub-repository-444D56" />
+  </a>
+
+  <a href="https://www.npmjs.com/package/xrange">
+    <img alt="npm" src="https://img.shields.io/badge/npm-package-cb3837" />
+  </a>
+</p>
+
 <h1 align="center"><code>xrange</code></h1>
 <h3 align="center">Python-esque iterator for number ranges</h3>
 
