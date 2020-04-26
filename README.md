@@ -3,8 +3,6 @@
     <img alt="Test changes" src="https://github.com/parzh/xrange/workflows/Test%20changes/badge.svg" />
   </a>
 
-  <img alt="licence MIT" src="https://img.shields.io/npm/l/xrange" />
-
   <a href="https://www.npmjs.com/package/xrange">
     <img alt="npm version" src="https://badge.fury.io/js/xrange.svg" />
   </a>
@@ -12,6 +10,8 @@
   <a href="https://www.npmjs.com/package/xrange">
     <img alt="npm size" src="https://img.shields.io/bundlephobia/min/xrange" />
   </a>
+
+  <img alt="licence MIT" src="https://img.shields.io/npm/l/xrange" />
 </p>
 
 <h1 align="center"><code>xrange</code></h1>
