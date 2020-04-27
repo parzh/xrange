@@ -6,6 +6,10 @@ on:
       - master
       - develop
 
+env:
+  DIST_TAG_MASTER: latest
+  DIST_TAG_DEVELOP: next
+
 jobs:
   publish-latest:
     runs-on: ubuntu-latest
