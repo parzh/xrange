@@ -19,7 +19,8 @@ jobs:
         with:
           node-version: '12.x'
 
-      - run: |2
+      - name: Ensure package version has been changed
+        run: |2
           set -ex
 
           if [ "$GITHUB_REF" = "refs/heads/master" ]; then
