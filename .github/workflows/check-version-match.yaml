@@ -1,4 +1,4 @@
-name: Check npm version
+name: Check version match
 
 on:
   push:
