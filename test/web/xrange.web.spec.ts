@@ -1,7 +1,13 @@
 /** 
- * @jest-environment jest-environment-puppeteer
+ * @jest-environment jsdom
  */
+
+import { loadBundle } from "./helpers";
 
 jest.setTimeout(20000);
 
-it.todo("works");
+beforeAll(loadBundle);
+
+it("should create global `xrange` object", async () => {
+	expect(typeof xrange).toBe("function");
+});
