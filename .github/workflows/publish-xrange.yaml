@@ -19,9 +19,16 @@ jobs:
         with:
           node-version: '12.x'
 
-      - name: Ensure package version has been changed
+      - name: Publish
         run: |2
           set -ex
+
+          incoming_version=$(node -pe "require('./package.json').version;")
+
+          if [ ! -z "$(npm view xrange@incoming_version version)" ]; then
+            echo "Cannot publish ($incoming_version) again; please, update version by running 'npm version <version>'"
+            exit 1
+          fi
 
           if [ "$GITHUB_REF" = "refs/heads/master" ]; then
             dist_tag=$DIST_TAG_MASTER
@@ -32,19 +39,6 @@ jobs:
             exit 1
           fi
 
-          published_version=$(npm view xrange@$dist_tag version)
-          incoming_version=$(node -pe "require('./package.json').version;")
-
-          if [ $published_version = $incoming_version ]; then
-            echo "Cannot publish $published_version again; please, update version by running 'npm version <version>'"
-            exit 1
-          fi
-
-      # finally
-      - name: Authorize and publish package
-        run: |2
-          set -ex
-
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
 
-          npm publish
+          npm publish --tag $dist_tag
