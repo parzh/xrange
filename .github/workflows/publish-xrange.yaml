@@ -41,4 +41,10 @@ jobs:
           fi
 
       # finally
-      - run: npm publish
+      - name: Authorize and publish package
+        run: |2
+          set -ex
+
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_CI_TOKEN }}" > .npmrc
+
+          npm publish
