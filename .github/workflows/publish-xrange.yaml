@@ -22,11 +22,9 @@ jobs:
       - run: |2
           set -ex
 
-          if [ "$GITHUB_REF" = "refs/heads/master" ]
-          then
+          if [ "$GITHUB_REF" = "refs/heads/master" ]; then
             dist_tag=$DIST_TAG_MASTER
-          elif [ "$GITHUB_REF" = "refs/heads/develop" ]
-          then
+          elif [ "$GITHUB_REF" = "refs/heads/develop" ]; then
             dist_tag=$DIST_TAG_DEVELOP
           else
             echo "Unknown release branch ('$GITHUB_REF'), expected 'refs/heads/master' or 'refs/heads/develop'"
@@ -36,8 +34,7 @@ jobs:
           published_version=$(npm view xrange@$dist_tag version)
           incoming_version$(node -pe "require('./package.json').version;")
 
-          if [ $published_version = $incoming_version ]
-          then
+          if [ $published_version = $incoming_version ]; then
             echo "Cannot publish $published_version again; please, update version by running 'npm version <version>'"
             exit 1
           fi
