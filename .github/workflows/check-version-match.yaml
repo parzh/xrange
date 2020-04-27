@@ -5,6 +5,10 @@ on:
     paths:
       - package.json
       - package-lock.json
+  pull_request:
+    branches:
+      - master
+      - develop
 
 jobs:
   check-version:
