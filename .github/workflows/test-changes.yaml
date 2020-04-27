@@ -3,7 +3,7 @@ name: Test changes
 on:
   push:
     branches:
-      - '*' # should trigger tests in 'bugfix/check-all-package-versions'?
+      - '*'
   pull_request:
     branches:
       - master
