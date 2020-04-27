@@ -11,7 +11,7 @@ env:
   DIST_TAG_DEVELOP: next
 
 jobs:
-  publish-latest:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
