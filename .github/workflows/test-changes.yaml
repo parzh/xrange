@@ -16,7 +16,6 @@ jobs:
         os:
           - ubuntu-latest
           - windows-latest
-          - macOS-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -24,10 +23,3 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run test:ci
-
-      - name: Save unit test fail log (skipped if no failures)
-        if: failure()
-        uses: actions/upload-artifact@v1
-        with:
-          name: xrange-unit-test-fail-log-on-${{ matrix.os }}-at-${{ github.sha }}
-          path: unit-test-fail.log
