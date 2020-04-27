@@ -12,6 +12,7 @@ env:
 
 jobs:
   publish:
+    name: Publish xrange
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +20,7 @@ jobs:
         with:
           node-version: '12.x'
 
-      - name: Publish
+      - name: Publish dist-tag by branch name
         run: |2
           set -ex
 
