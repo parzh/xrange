@@ -45,6 +45,6 @@ jobs:
         run: |2
           set -ex
 
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_CI_TOKEN }}" > .npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
 
           npm publish
