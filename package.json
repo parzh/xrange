@@ -21,6 +21,9 @@
     "roots": [
       "<rootDir>/test"
     ],
+    "setupFiles": [
+      "<rootDir>/test/setup.ts"
+    ],
     "testMatch": [
       "<rootDir>/test/**/*.spec.ts"
     ],
