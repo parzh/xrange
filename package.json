@@ -1,6 +1,6 @@
 {
   "name": "xrange",
-  "version": "2.0.4",
+  "version": "2.0.6",
   "description": "Python-esque iterator for number ranges",
   "author": "Dima Parzhitsky <parzhitsky@gmail.com>",
   "repository": "github:parzh/xrange",
@@ -20,6 +20,9 @@
     "rootDir": ".",
     "roots": [
       "<rootDir>/test"
+    ],
+    "setupFiles": [
+      "<rootDir>/test/setup.ts"
     ],
     "testMatch": [
       "<rootDir>/test/**/*.spec.ts"
@@ -41,11 +44,11 @@
     "clean:spare": "rimraf dist/**/*.impl.d.ts dist/typings/*.js",
     "build:node": "tsc --project tsconfig-node.prod.json",
     "build:web": "webpack --config webpack.config.prod.ts",
+    "build:web:test": "webpack --config webpack.config.test.ts",
     "prebuild": "npm run clean",
     "build": "npm run build:node && npm run build:web",
     "postbuild": "npm run clean:spare",
-    "dev": "tsc --project tsconfig-node.dev.json",
-    "prepublishOnly": "npm test && npm run build && git push --follow-tags"
+    "dev": "tsc --project tsconfig-node.dev.json"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",

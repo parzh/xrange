@@ -1,8 +1,13 @@
 name: Test changes
 
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - master
+      - develop
 
 jobs:
   unit:
