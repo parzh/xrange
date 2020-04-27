@@ -9,7 +9,7 @@ import xrangeNumeric from "./xrange-numeric.impl";
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;
 export default function xrange(bound1: number, bound2: number, step: number): XRange;
-export default function xrange(start: number, predicate: Predicate, next: NextFactory): XRange;
+export default function xrange(start: number, predicate: Predicate, next: NextFactory): never;
 
 export default function xrange(first: number, second?: number | Predicate, third?: number | NextFactory): XRange {
 	if (arguments.length === 0)
