@@ -14,4 +14,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
 
-      - run: npm run ci:assert:json-version-match
+      - run: node -pe \"process.exit(require('./package.json').version !== require('./package-lock.json').version);\"
