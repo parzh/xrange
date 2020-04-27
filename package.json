@@ -1,6 +1,6 @@
 {
   "name": "xrange",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Python-esque iterator for number ranges",
   "author": "Dima Parzhitsky <parzhitsky@gmail.com>",
   "repository": "github:parzh/xrange",
@@ -44,8 +44,7 @@
     "prebuild": "npm run clean",
     "build": "npm run build:node && npm run build:web",
     "postbuild": "npm run clean:spare",
-    "dev": "tsc --project tsconfig-node.dev.json",
-    "prepublishOnly": "npm test && npm run build && git push --follow-tags"
+    "dev": "tsc --project tsconfig-node.dev.json"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",

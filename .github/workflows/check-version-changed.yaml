@@ -1,0 +1,41 @@
+name: Check version changed
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+
+env:
+  DIST_TAG_MASTER: latest
+  DIST_TAG_DEVELOP: next
+
+jobs:
+  check-version-changed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Ensure package version has been changed
+        run: |2
+          set -ex
+
+          if [ "$GITHUB_BASE_REF" = "master" ]; then
+            dist_tag=$DIST_TAG_MASTER
+          elif [ "$GITHUB_BASE_REF" = "develop" ]; then
+            dist_tag=$DIST_TAG_DEVELOP
+          else
+            echo "Unknown release branch ('$GITHUB_REF'), expected 'master' or 'develop'"
+            exit 1
+          fi
+
+          published_version=$(npm view xrange@$dist_tag version)
+          incoming_version=$(node -pe "require('./package.json').version;")
+
+          if [ $published_version = $incoming_version ];then
+            echo "Package version is not changed ($published_version); please, update version by running 'npm version <version>'"
+            exit 1
+          fi
