@@ -165,7 +165,7 @@ describe("xrange(start, predicate, next)", () => {
 		expect(() => xrange(0, () => false, () => NaN)).toThrowError(errors["XRANGE:NOIMPL"]);
 	});
 
-	// TODO: add cases from test/xrange-start-predicate-next.spec.ts
+	// TODO: add cases from test/xrange-start-predicate-next.spec.ts (last seen in 07065630aabde6fc2ddfa53117a6cd2893978c8b)
 });
 
 it("should fail without arguments", () => {
