@@ -1,0 +1,27 @@
+name: Check npm version
+
+on:
+  push:
+    paths:
+      - package.json
+      - package-lock.json
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+
+      - name: Assert same versions in package.json and package-lock.json
+        shell: node
+        run: |2
+          const packageVersion = require("./package.json").version;
+          const packageLockVersion = require("./package-lock.json").version;
+          const same = packageVersion !== packageLockVersion;
+
+          if (!same)
+            console.error(`Package version in package.json (${ packageVersion }) and package-lock.json (${ packageLockVersion }) must be equal`);
+
+          process.exit(same ? 0 : 1);
