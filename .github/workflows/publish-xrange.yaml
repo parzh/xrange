@@ -28,12 +28,6 @@ jobs:
       - run: npm run build
       - run: npm run test:ci -- --coverage
 
-      - name: Save unit test fail log (never skipped)
-        uses: actions/upload-artifact@v1
-        with:
-          name: xrange-unit-test-fail-log-on-${{ matrix.os }}-at-${{ github.sha }}
-          path: unit-test-fail.log
-
       - name: Save coverage report (only for Ubuntu)
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v1
