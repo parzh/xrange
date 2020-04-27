@@ -2,8 +2,8 @@ name: Test changes
 
 on:
   push:
-    branches:
-      - '*'
+    branches-ignore:
+      - 'skip-ci-tests/*'
   pull_request:
     branches:
       - master
