@@ -32,7 +32,7 @@ jobs:
           fi
 
           published_version=$(npm view xrange@$dist_tag version)
-          incoming_version$(node -pe "require('./package.json').version;")
+          incoming_version=$(node -pe "require('./package.json').version;")
 
           if [ $published_version = $incoming_version ]; then
             echo "Cannot publish $published_version again; please, update version by running 'npm version <version>'"
