@@ -6,7 +6,6 @@
 		"test",
 	],
 	"compilerOptions": {
-		"stripInternal": false, // TODO: prefer `true`
 		"watch": true,
 	},
 }
