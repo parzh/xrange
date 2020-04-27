@@ -11,7 +11,7 @@ env:
   DIST_TAG_DEVELOP: next
 
 jobs:
-  publish-latest:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -41,4 +41,10 @@ jobs:
           fi
 
       # finally
-      - run: npm publish
+      - name: Authorize and publish package
+        run: |2
+          set -ex
+
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_CI_TOKEN }}" > .npmrc
+
+          npm publish

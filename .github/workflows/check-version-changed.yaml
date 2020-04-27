@@ -12,6 +12,7 @@ env:
 
 jobs:
   check-version-changed:
+    name: Check package.json version is updated
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

@@ -11,7 +11,8 @@ on:
       - develop
 
 jobs:
-  check-version:
+  check-version-match:
+    name: Check versions in package*.json files match
     runs-on: ubuntu-latest
 
     steps:
