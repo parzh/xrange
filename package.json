@@ -38,7 +38,7 @@
   "scripts": {
     "test": "jest --no-cache",
     "test:cov": "npm run test -- --coverage",
-    "test:ci": "npm run test:cov -- --no-colors 2> unit-test-fail.log",
+    "test:ci": "npm run test -- --no-colors",
     "start": "node --require ts-node/register src",
     "clean": "rimraf dist/*",
     "clean:spare": "rimraf dist/**/*.impl.d.ts dist/typings/*.js",
