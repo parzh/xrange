@@ -45,7 +45,7 @@
     "build": "npm run build:node && npm run build:web",
     "postbuild": "npm run clean:spare",
     "dev": "tsc --project tsconfig-node.dev.json",
-    "ci:assert:json-version-match": "node -pe \"if (require('./package.json').version !== require('./package-lock.json').version) process.exit(1);\""
+    "ci:assert:json-version-match": "node -pe \"process.exit(require('./package.json').version !== require('./package-lock.json').version);\""
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
