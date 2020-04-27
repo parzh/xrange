@@ -1,0 +1,32 @@
+name: Publish xrange
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  publish-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - run: |2
+          set -ex
+
+          if [ "$GITHUB_REF" = "refs/heads/master" ]
+          then
+            dist_tag=$DIST_TAG_MASTER
+          elif [ "$GITHUB_REF" = "refs/heads/develop" ]
+          then
+            dist_tag=$DIST_TAG_DEVELOP
+          else
+            echo "Unknown release branch ('$GITHUB_REF'), expected 'refs/heads/master' or 'refs/heads/develop'"
+            exit 1
+          fi
+
+          npm view xrange@$dist_tag version # TODO: actually publish
