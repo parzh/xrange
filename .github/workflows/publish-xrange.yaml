@@ -47,7 +47,7 @@ jobs:
 
       - name: Publish dist-tag by branch name
         run: |2
-          set -ex
+          set -e
 
           incoming_version=$(node -pe "require('./package.json').version;")
 

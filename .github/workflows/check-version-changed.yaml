@@ -22,7 +22,7 @@ jobs:
 
       - name: Ensure package version updated
         run: |2
-          set -ex
+          set -e
 
           incoming_version=$(node -pe "require('./package.json').version;")
 
