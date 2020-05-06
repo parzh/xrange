@@ -42,7 +42,7 @@ jobs:
       # 'true' or 'false'
       can_publish: ${{ steps.main.outputs.can_publish }}
 
-      # 'latest' or 'next'
+      # 'latest' or 'next' or 'unknown'
       dist_tag: ${{ steps.main.outputs.dist_tag }}
 
     steps:
@@ -58,6 +58,7 @@ jobs:
 
           # by default, to prevent accidental publish
           echo "::set-output name=can_publish::false"
+          echo "::set-output name=dist_tag::unknown"
 
           incoming_version=$(node -pe "require('./package.json').version;")
           already_published=$([ -z "$(npm view xrange@$incoming_version version)" ] && echo false || echo true)
@@ -98,12 +99,9 @@ jobs:
       - test
       - verify
 
-    # Note, that 'can_publish' output in principle can be
-    # either 'true' or 'false' (string, of course, there is
-    # no boolean type in bash), but in case of errors/typos
-    # this condition strictly requires 'true'; otherwise
-    # all the steps in this job are skipped entirely
-    if: needs.verify.outputs.can_publish == 'true'
+    if: |2
+      needs.verify.outputs.can_publish == 'true' &&
+      needs.verify.outputs.dist_tag != 'unknown'
 
     env:
       dist_tag: ${{ needs.verify.outputs.dist_tag }}
