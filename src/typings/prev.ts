@@ -1,3 +1,6 @@
-export default interface Prev extends Partial<number[]> {
-	0: number; // FIXME: looks weird, I know, but type [ number, ...number[] ] didn't work
-}
+import type Memo from "./memo";
+
+/** @deprecated Use `Memo` from _dist/typings/memo.d.ts_ instead */
+type Prev = Memo;
+
+export default Prev;

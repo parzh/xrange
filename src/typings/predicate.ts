@@ -1,3 +1,3 @@
 export default interface Predicate {
-	(next: number, prev: number[]): boolean;
+	(next: number, memo: number[]): boolean;
 }
