@@ -10,6 +10,10 @@
     "xrange",
     "iterator"
   ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "browser": "dist/xrange.bundle.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -48,7 +52,8 @@
     "prebuild": "npm run clean",
     "build": "npm run build:node && npm run build:web",
     "postbuild": "npm run clean:spare",
-    "dev": "tsc --project tsconfig-node.dev.json"
+    "dev": "tsc --project tsconfig-node.dev.json",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
@@ -64,5 +69,8 @@
     "webpack": "4.42.1",
     "webpack-cli": "3.3.11",
     "webpack-merge": "4.2.2"
+  },
+  "dependencies": {
+    "@xrange/core": "1.0.0"
   }
 }

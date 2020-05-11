@@ -1,4 +1,4 @@
 /** @public */
-type XRange = Generator<number, void>;
+type XRange = Generator<number, number>;
 
 export default XRange;
