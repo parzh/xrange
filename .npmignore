@@ -1,12 +1,5 @@
-node_modules
-src
-tsconfig*.json
-docs
-test
-.cache
-coverage
-*.tsbuildinfo
-*.log
-.github
-.vscode
-webpack.*
+# omit definitions for implementation-only files
+dist/**/*.impl.d.ts
+
+# omit implementation for definitions-only files
+dist/typings/*.js
