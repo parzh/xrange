@@ -1,14 +1,12 @@
+import numeric from "@xrange/core";
+
 import xrange from "../src";
 import errors from "../src/errors";
-import numeric from "../src/xrange-numeric.impl";
 import { nans, nanofs } from "./entities";
 
-jest.mock("../src/xrange-numeric.impl.ts", () => ({
-	__esModule: true,
-	default: jest.fn(),
-}));
-
 describe("xrange(stop)", () => {
+	jest.mock("@xrange/core", () => jest.fn());
+
 	it("should fail when providing `null`, `NaN`, or a non-numeric value", () => {
 		for (const nan of nans)
 			expect(() => xrange(
@@ -44,9 +42,14 @@ describe("xrange(stop)", () => {
 		xrange(-Infinity);
 		expect(numeric).toHaveBeenCalledWith(0, -Infinity, -1);
 	});
+
+	// TODO: #16
+	it.todo("should work with decimals");
 });
 
 describe("xrange(start, stop)", () => {
+	jest.mock("@xrange/core", () => jest.fn());
+
 	it("should fail if `start` is infinite", () => {
 		for (const inf of [ Infinity, -Infinity ])
 			expect(() => xrange(inf, 5)).toThrowError(errors["XRANGE:STRINF"]);
@@ -94,9 +97,14 @@ describe("xrange(start, stop)", () => {
 		xrange(3, -Infinity);
 		expect(numeric).toHaveBeenCalledWith(3, -Infinity, -1);
 	});
+
+	// TODO: #16
+	it.todo("should work with decimals");
 });
 
 describe("xrange(bound1, bound2, step)", () => {
+	jest.mock("@xrange/core", () => jest.fn());
+
 	it("should fail if `bound1` is `null`, `NaN`, or a non-numeric value", () => {
 		for (const nan of nans)
 			expect(() => xrange(
@@ -158,6 +166,9 @@ describe("xrange(bound1, bound2, step)", () => {
 		xrange(7, 2, -1);
 		expect(numeric).toHaveBeenNthCalledWith(/* call: */ 4, /* args: */ 7, 2, -1);
 	});
+
+	// TODO: #16
+	it.todo("should work with decimals");
 });
 
 describe("xrange(start, predicate, next)", () => {
