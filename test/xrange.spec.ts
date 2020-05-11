@@ -4,9 +4,9 @@ import xrange from "../src";
 import errors from "../src/errors";
 import { nans, nanofs } from "./entities";
 
-describe("xrange(stop)", () => {
-	jest.mock("@xrange/core", () => jest.fn());
+jest.mock("@xrange/core", jest.fn);
 
+describe("xrange(stop)", () => {
 	it("should fail when providing `null`, `NaN`, or a non-numeric value", () => {
 		for (const nan of nans)
 			expect(() => xrange(
@@ -48,8 +48,6 @@ describe("xrange(stop)", () => {
 });
 
 describe("xrange(start, stop)", () => {
-	jest.mock("@xrange/core", () => jest.fn());
-
 	it("should fail if `start` is infinite", () => {
 		for (const inf of [ Infinity, -Infinity ])
 			expect(() => xrange(inf, 5)).toThrowError(errors["XRANGE:STRINF"]);
@@ -103,8 +101,6 @@ describe("xrange(start, stop)", () => {
 });
 
 describe("xrange(bound1, bound2, step)", () => {
-	jest.mock("@xrange/core", () => jest.fn());
-
 	it("should fail if `bound1` is `null`, `NaN`, or a non-numeric value", () => {
 		for (const nan of nans)
 			expect(() => xrange(
