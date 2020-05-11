@@ -1,5 +1,5 @@
-import type Prev from "./prev";
+import type Memo from "./memo";
 
 export default interface NextFactory {
-	(prev: Prev): number;
+	(memo: Memo): number;
 }

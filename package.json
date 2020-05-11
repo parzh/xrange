@@ -1,6 +1,6 @@
 {
   "name": "xrange",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Python-esque iterator for number ranges",
   "author": "Dima Parzhitsky <parzhitsky@gmail.com>",
   "repository": "github:parzh/xrange",
@@ -9,6 +9,10 @@
     "range",
     "xrange",
     "iterator"
+  ],
+  "files": [
+    "dist",
+    "README.md"
   ],
   "browser": "dist/xrange.bundle.js",
   "main": "dist/index.js",
@@ -64,5 +68,8 @@
     "webpack": "4.42.1",
     "webpack-cli": "3.3.11",
     "webpack-merge": "4.2.2"
+  },
+  "dependencies": {
+    "@xrange/core": "1.0.0"
   }
 }

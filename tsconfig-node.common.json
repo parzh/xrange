@@ -2,9 +2,7 @@
 	// (abstract) extended by tsconfig-node.*.json files
 	"extends": "./tsconfig.common",
 	"compilerOptions": {
-		"module": "commonjs",
 		"moduleResolution": "node",
 		"declaration": true,
-		"esModuleInterop": true,
 	},
 }
