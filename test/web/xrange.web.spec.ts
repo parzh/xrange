@@ -35,5 +35,5 @@ describe("with DOM manipulation", () => {
 	});
 
 	it.todo("should work with `start`, `predicate`, and `next` arguments");
-	it.todo("should work with `start`, `predicate`, `next` and `maxLengthPrev` arguments");
+	it.todo("should work with `start`, `predicate`, `next` and `maxMemo` arguments");
 });

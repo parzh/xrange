@@ -11,7 +11,7 @@ import xrangeFunctional from "./xrange-functional.impl";
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;
 export default function xrange(bound1: number, bound2: number, step: number): XRange;
-export default function xrange(start: number, predicate: Predicate, next: NextFactory, maxPrevLength?: number): XRange;
+export default function xrange(start: number, predicate: Predicate, next: NextFactory, maxMemo?: number): XRange;
 
 export default function xrange(first: number, second?: number | Predicate, third?: number | NextFactory, fourth?: number): XRange {
 	if (arguments.length === 0)
