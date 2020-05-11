@@ -87,8 +87,8 @@ xrange(17, 42, 5).forEach(number => {
 
 ## `range` vs `xrange`
 
-> Looking for less functionality in a smaller bundle? See [#24](https://github.com/parzh/xrange/issues/24)
+> Looking for less functionality in a smaller bundle? Check out [`@xrange/core`](https://npmjs.org/package/@xrange/core)
 
 The main difference of `xrange` from [`range`](https://npmjs.org/package/range) is that `xrange` is an iterator, not an array constructor, &mdash; it yields numbers on demand, leaving array creation decision to user, which can always be done using the [`...` spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) or [`Array.from`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
 
-While also having a larger bundle, `xrange` delegates the actual iteration to [`@xrange/core`](https://npmjs.org/package/@xrange/core), which is vastly smaller, and can be used on its own (although, in some cases the usage is different).
+While also having a larger bundle, `xrange` delegates the actual iteration to [`@xrange/core`](https://npmjs.org/package/@xrange/core), which is vastly smaller, and can be used on its own (in some cases the usage is different though).
