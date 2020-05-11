@@ -110,7 +110,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - run: npm ci
-      - run: npm run build
 
       - name: Publish
         run: |2
