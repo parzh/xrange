@@ -1,4 +1,4 @@
-import xrangeNumeric from "@xrange/core";
+import xrangeNumeric = require("@xrange/core");
 
 import type XRange from "./typings/xrange";
 import type Predicate from "./typings/predicate";

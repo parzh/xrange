@@ -4,6 +4,5 @@
 	"compilerOptions": {
 		"moduleResolution": "node",
 		"declaration": true,
-		"esModuleInterop": true,
 	},
 }
