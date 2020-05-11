@@ -23,4 +23,6 @@ export default function* xrangeFunctional(start: number, predicate: Predicate, n
 
 		curr = +next(memo as Memo);
 	}
+
+	return NaN;
 }
