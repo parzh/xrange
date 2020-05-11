@@ -1,26 +1,26 @@
 import type XRange from "./typings/xrange";
 import type Predicate from "./typings/predicate";
 import type NextFactory from "./typings/next-factory";
-import type { Prev } from "./typings/next-factory";
+import type { Memo } from "./typings/next-factory";
 
 /** @internal */
-export default function* xrangeFunctional(start: number, predicate: Predicate, next: NextFactory, maxPrevLength = Infinity): XRange {
-	const prevNeeded = maxPrevLength > 0 && (predicate.length >= 2 || next.length >= 1);
+export default function* xrangeFunctional(start: number, predicate: Predicate, next: NextFactory, maxMemo = Infinity): XRange {
+	const memoNeeded = maxMemo > 0 && (predicate.length >= 2 || next.length >= 1);
 
-	const prev: number[] = [];
+	const memo: number[] = [];
 
 	let curr = +start;
 
-	while (predicate(curr, prev)) {
+	while (predicate(curr, memo)) {
 		yield curr;
 
-		if (prevNeeded) {
-			prev.unshift(curr);
+		if (memoNeeded) {
+			memo.unshift(curr);
 
-			if (prev.length > maxPrevLength)
-				prev.pop();
+			if (memo.length > maxMemo)
+				memo.pop();
 		}
 
-		curr = +next(prev as Prev);
+		curr = +next(memo as Memo);
 	}
 }
