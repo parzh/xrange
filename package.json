@@ -52,7 +52,8 @@
     "prebuild": "npm run clean",
     "build": "npm run build:node && npm run build:web",
     "postbuild": "npm run clean:spare",
-    "dev": "tsc --project tsconfig-node.dev.json"
+    "dev": "tsc --project tsconfig-node.dev.json",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
