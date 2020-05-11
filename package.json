@@ -1,6 +1,6 @@
 {
   "name": "xrange",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "Python-esque iterator for number ranges",
   "author": "Dima Parzhitsky <parzhitsky@gmail.com>",
   "repository": "github:parzh/xrange",
