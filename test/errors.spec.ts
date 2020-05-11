@@ -65,7 +65,7 @@ describe("createError(code, preserveStack?)", () => {
 		expect(createError("XRANGE:STENAN").message).toMatch(/\] argument `step` is not a number$/);
 		expect(createError("XRANGE:STEZER").message).toMatch(/\] argument `step` cannot be zero$/);
 		expect(createError("XRANGE:NXTNAF").message).toMatch(/\] argument `next` is not a function$/);
-		expect(createError("XRANGE:MPLINV").message).toMatch(/\] argument `maxPrevLength` is not a valid length$/);
+		expect(createError("XRANGE:MPLINV").message).toMatch(/\] argument `maxMemo` is not a valid length$/);
 	});
 
 	it("should remove last stack entry by default", () => {

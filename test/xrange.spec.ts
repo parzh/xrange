@@ -160,7 +160,7 @@ describe("xrange(bound1, bound2, step)", () => {
 	});
 });
 
-describe("xrange(start, predicate, next, maxPrevLength?)", () => {
+describe("xrange(start, predicate, next, maxMemo?)", () => {
 	it("should fail if `next` is not a function", () => {
 		expect(() => {
 			// @ts-ignore
@@ -168,11 +168,11 @@ describe("xrange(start, predicate, next, maxPrevLength?)", () => {
 		}).toThrowError(errors["XRANGE:NXTNAF"]);
 	});
 
-	it("should not fail if `maxPrevLength` is not present", () => {
+	it("should not fail if `maxMemo` is not present", () => {
 		expect(() => xrange(0, () => true, () => 1)).not.toThrow();
 	});
 
-	it("should fail if `maxPrevLength` (if present) is not a valid length", () => {
+	it("should fail if `maxMemo` (if present) is not a valid length", () => {
 		for (const nan of nans)
 			expect(() => xrange(
 				0,

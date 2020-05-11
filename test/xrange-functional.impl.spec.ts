@@ -55,7 +55,7 @@ it("should not iterate if `predicate` always returns `false`", () => {
 	expect(value).toBe(0);
 });
 
-describe("working with the `prev` list", () => {
+describe("working with the `memo` list", () => {
 	const START = 6;
 	const STOP = 9;
 
@@ -69,8 +69,8 @@ describe("working with the `prev` list", () => {
 		expect(list).toEqual([ 6, 7, 8 ]);
 	});
 
-	it("should fill `prev` if it is used in the `predicate`", () => {
-		const expectedPrevs = [
+	it("should fill `memo` if it is used in the `predicate`", () => {
+		const expectedMemos = [
 			[],
 			[6],
 			[7, 6],
@@ -79,8 +79,8 @@ describe("working with the `prev` list", () => {
 
 		let callCount = 0;
 
-		const shouldGo: Predicate = (next, prev) => {
-			expect(prev).toEqual(expectedPrevs[callCount++]);
+		const shouldGo: Predicate = (next, memo) => {
+			expect(memo).toEqual(expectedMemos[callCount++]);
 
 			return next < STOP;
 		};
@@ -88,8 +88,8 @@ describe("working with the `prev` list", () => {
 		list.push(...xrange(START, shouldGo, ([ last ]) => last + 1));
 	});
 
-	it("should fill `prev` if it is used in the `next` function", () => {
-		const expectedPrevs = [
+	it("should fill `memo` if it is used in the `next` function", () => {
+		const expectedMemos = [
 			[6],
 			[7, 6],
 			[8, 7, 6],
@@ -97,17 +97,17 @@ describe("working with the `prev` list", () => {
 
 		let callCount = 0;
 
-		const getNext: NextFactory = (prev) => {
-			expect(prev).toEqual(expectedPrevs[callCount++]);
+		const getNext: NextFactory = (memo) => {
+			expect(memo).toEqual(expectedMemos[callCount++]);
 
-			return prev[0] + 1;
+			return memo[0] + 1;
 		};
 
 		list.push(...xrange(START, (next) => next < STOP, getNext));
 	});
 
-	it("should allow optimizing length of `prev`", () => {
-		const maxPrevLength = 2;
+	it("should allow optimizing length of `memo`", () => {
+		const maxMemo = 2;
 
 		const expectedCalls = {
 			shouldGo: [
@@ -125,29 +125,29 @@ describe("working with the `prev` list", () => {
 
 		let callCount = 0;
 
-		const shouldGo: Predicate = (next, prev) => {
-			const [ nextExpected, prevExpected ] = expectedCalls.shouldGo[callCount];
+		const shouldGo: Predicate = (next, memo) => {
+			const [ nextExpected, memoExpected ] = expectedCalls.shouldGo[callCount];
 
 			expect(next).toEqual(nextExpected);
-			expect(prev).toEqual(prevExpected);
+			expect(memo).toEqual(memoExpected);
 
 			return next < STOP;
 		};
 
-		const getNext: NextFactory = (prev) => {
-			const [ prevExpected ] = expectedCalls.getNext[callCount];
+		const getNext: NextFactory = (memo) => {
+			const [ memoExpected ] = expectedCalls.getNext[callCount];
 
-			expect(prev).toEqual(prevExpected);
+			expect(memo).toEqual(memoExpected);
 
 			callCount++;
 
-			return prev[0] + 1;
+			return memo[0] + 1;
 		};
 
-		list.push(...xrange(START, shouldGo, getNext, maxPrevLength));
+		list.push(...xrange(START, shouldGo, getNext, maxMemo));
 	});
 
-	it("should not fill `prev` if it is unused", () => {
+	it("should not fill `memo` if it is unused", () => {
 		let curr = START;
 
 		const shouldGo: Predicate = (...args) => {
@@ -172,8 +172,8 @@ describe("producing number sequences", () => {
 	test.each(<const> [
 		[ "Fibonacci", 2, [ 1, 1, 2, 3, 5, 8 ] ],
 		[ '"pentanacci"', 5, [ 1, 1, 2, 4, 8, 16, 31, 61, 120, 236 ] ],
-	])("should produce %s sequence", (name, maxPrevLength, sequenceExcerpt) => {
-		const probe = takeProbe(sequenceExcerpt.length, xrange(1, () => true, sum, maxPrevLength));
+	])("should produce %s sequence", (name, maxMemo, sequenceExcerpt) => {
+		const probe = takeProbe(sequenceExcerpt.length, xrange(1, () => true, sum, maxMemo));
 		const last = probe[probe.length - 1];
 		const numbers = probe.map((item) => item.value);
 

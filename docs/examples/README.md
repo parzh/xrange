@@ -263,7 +263,7 @@ xrange(0, (next) => next > 5, () => Infinity);
 ```
 
 ```ts
-xrange(0, () => true, (prev) => prev);
+xrange(0, () => true, (memo) => memo);
 // 0, 0, NaN, NaN, NaN, …
 ```
 
