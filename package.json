@@ -47,7 +47,6 @@
     "clean": "rimraf dist/*",
     "clean:spare": "rimraf dist/**/*.impl.d.ts dist/typings/*.js",
     "build:web": "webpack --config webpack.config.prod.ts",
-    "build:web:test": "webpack --config webpack.config.test.ts",
     "build:node": "tsc --project tsconfig-node.prod.json",
     "postbuild:node": "npm run clean:spare",
     "prebuild": "npm run clean",
