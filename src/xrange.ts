@@ -1,8 +1,6 @@
 import xrangeNumeric = require("@xrange/core");
 
 import type XRange from "./typings/xrange";
-import type Predicate from "./typings/predicate";
-import type NextFactory from "./typings/next-factory";
 
 import { createError } from "./errors";
 import isNumeric from "./is-numeric.impl";
@@ -10,9 +8,8 @@ import isNumeric from "./is-numeric.impl";
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;
 export default function xrange(bound1: number, bound2: number, step: number): XRange;
-export default function xrange(start: number, predicate: Predicate, next: NextFactory): never;
 
-export default function xrange(first: number, second?: number | Predicate, third?: number | NextFactory): XRange {
+export default function xrange(first: number, second?: number, third?: number): XRange {
 	if (arguments.length === 0)
 		throw createError("XRANGE:ARGREQ");
 
