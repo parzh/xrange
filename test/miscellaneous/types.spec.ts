@@ -4,6 +4,8 @@ import type XRange from "../../dist/typings/xrange";
 // import type Memo from "../../dist/typings/memo"; // TODO:
 // import type Prev from "../../dist/typings/prev"; // TODO:
 
+import { assert } from "./helpers";
+
 // If there's an error somewhere in types,
 // this file shouldn't compile at all, and
 // even break compilation of all the test
@@ -19,9 +21,9 @@ afterEach(() => {
 
 describe("XRange type", () => {
 	it("[ts] should be a number generator", () => (range: XRange) => {
-		((arg: Generator<number>) => {})(range[Symbol.iterator]());
-		((arg: IteratorResult<number, number>) => {})(range.next());
-		((arg: IteratorResult<number, number>) => {})(range.return(NaN));
-		((arg: IteratorResult<number, number>) => {})(range.throw(null));
+		assert.type<Generator<number>>(range[Symbol.iterator]());
+		assert.type<IteratorResult<number, number>>(range.next());
+		assert.type<IteratorResult<number, number>>(range.return(NaN));
+		assert.type<IteratorResult<number, number>>(range.throw(null));
 	});
 });
