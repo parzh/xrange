@@ -9,7 +9,9 @@ import type Memo from "../../dist/typings/memo";
 // @ts-ignore
 import type Prev from "../../dist/typings/prev";
 
-import { assert, t } from "./helpers";
+import { assert, t, build } from "./helpers";
+
+beforeAll(build, 20000);
 
 afterEach(() => {
 	// Since this file is a TypeScript-only test,

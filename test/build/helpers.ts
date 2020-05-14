@@ -1,3 +1,17 @@
+import { resolve } from "path";
+import { existsSync } from "fs";
+import { execSync } from "child_process";
+
+/** @private */
+const entryPath = resolve(__dirname, "../../dist/index.js");
+
+export function build(done: jest.DoneCallback): void {
+	if (!existsSync(entryPath))
+		execSync("npm run build", { timeout: 20000, stdio: "ignore" });
+
+	done();
+}
+
 export namespace assert {
 	export const ee: unknown = null;
 
