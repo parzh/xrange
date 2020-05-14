@@ -1,6 +1,6 @@
 import type XRange from "../../dist/typings/xrange";
 import type * as NextFactory from "../../dist/typings/next-factory";
-// import type Predicate from "../../dist/typings/predicate"; // TODO:
+import type * as Predicate from "../../dist/typings/predicate";
 // import type Memo from "../../dist/typings/memo"; // TODO:
 // import type Prev from "../../dist/typings/prev"; // TODO:
 
@@ -35,5 +35,15 @@ describe("[ts] NextFactory type", () => {
 
 	it("should produce number", () => (next: NextFactory.default) => {
 		assert.returns<number>(next);
+	});
+});
+
+describe("[ts] Predicate type", () => {
+	it("should take `next` and `memo` as parameters", () => (predicate: Predicate.default) => {
+		assert.params<[number, Predicate.Memo]>(predicate);
+	});
+
+	it("should produce boolean", () => (predicate: Predicate.default) => {
+		assert.returns<boolean>(predicate);
 	});
 });
