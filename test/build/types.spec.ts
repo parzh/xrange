@@ -1,6 +1,5 @@
 import type XRange from "../../dist/typings/xrange";
-import type NextFactory from "../../dist/typings/next-factory";
-import type { Memo as NextFactoryMemo } from "../../dist/typings/next-factory";
+import type * as NextFactory from "../../dist/typings/next-factory";
 // import type Predicate from "../../dist/typings/predicate"; // TODO:
 // import type Memo from "../../dist/typings/memo"; // TODO:
 // import type Prev from "../../dist/typings/prev"; // TODO:
@@ -30,11 +29,11 @@ describe("[ts] XRange type", () => {
 });
 
 describe("[ts] NextFactory type", () => {
-	it("should take `memo` as parameter", () => (next: NextFactory) => {
-		assert.params<[NextFactoryMemo]>(next);
+	it("should take `memo` as parameter", () => (next: NextFactory.default) => {
+		assert.params<[NextFactory.Memo]>(next);
 	});
 
-	it("should produce number", () => (next: NextFactory) => {
+	it("should produce number", () => (next: NextFactory.default) => {
 		assert.returns<number>(next);
 	});
 });
