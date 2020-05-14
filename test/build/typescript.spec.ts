@@ -9,14 +9,23 @@ import type Memo from "../../dist/typings/memo";
 // @ts-ignore
 import type Prev from "../../dist/typings/prev";
 
-import { assert, t, build } from "./helpers";
+import { resolve } from "path";
+import { assert, t, build, readGlob } from "./helpers";
+import { distPath as dist } from "./entities";
 
 beforeAll(build, 20000);
 
-afterEach(() => {
-	// Since this file is a TypeScript-only test,
-	// implementation assertions are not expected
-	expect.assertions(0);
+it("should create all the necessary files", () => {
+	expect(readGlob(dist, "**/*.d.ts")).toEqual(expect.arrayContaining([
+		resolve(dist, "typings/memo.d.ts"),
+		resolve(dist, "typings/next-factory.d.ts"),
+		resolve(dist, "typings/predicate.d.ts"),
+		resolve(dist, "typings/prev.d.ts"),
+		resolve(dist, "typings/xrange.d.ts"),
+		resolve(dist, "errors.d.ts"),
+		resolve(dist, "index.d.ts"),
+		resolve(dist, "xrange.d.ts"),
+	]));
 });
 
 describe("XRange type", () => {

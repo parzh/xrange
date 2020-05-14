@@ -1,13 +1,14 @@
-import { existsSync } from "fs";
 import { resolve } from "path";
-import { build } from "./helpers";
+import { build, readGlob } from "./helpers";
+import { distPath as dist } from "./entities";
 
 beforeAll(build);
 
-it("should create the entry file: dist/index.js", () => {
-	const entryPath = resolve(__dirname, "../../dist/index.js");
-
-	expect(existsSync(entryPath)).toBe(true);
+it("should create all the necessary files", () => {
+	expect(readGlob(dist, "**/*.js")).toEqual(expect.arrayContaining([
+		resolve(dist, "index.js"),
+		resolve(dist, "xrange.js"),
+	]));
 });
 
 it("should export fully functional entity", () => {

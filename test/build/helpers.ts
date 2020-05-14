@@ -1,15 +1,18 @@
-import { resolve } from "path";
+import { resolve, join } from "path";
 import { existsSync } from "fs";
 import { execSync } from "child_process";
-
-/** @private */
-const entryPath = resolve(__dirname, "../../dist/index.js");
+import { sync } from "glob";
+import { entryPath } from "./entities";
 
 export function build(done: jest.DoneCallback): void {
 	if (!existsSync(entryPath))
 		execSync("npm run build", { timeout: 20000, stdio: "ignore" });
 
 	done();
+}
+
+export function readGlob(...pathSegments: string[]): string[] {
+	return sync(join(...pathSegments)).map((path) => resolve(path));
 }
 
 export namespace assert {
