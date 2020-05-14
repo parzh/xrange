@@ -8,4 +8,4 @@ export namespace assert {
 
 // Provides a fix for Jest runtime, which requires
 // callback to return either Promise, or undefined
-export const t = <Assertees extends any[]>(test: (...assertees: Assertees) => void): jest.ProvidesCallback => () => {};
+export const t = <Assertee, Rest extends any[]>(test: (assertee: Assertee, ...rest: Rest) => void): jest.ProvidesCallback => () => {};
