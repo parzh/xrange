@@ -1,4 +1,4 @@
-import Memo from "./memo";
+import type Memo from "./memo";
 
 /** @deprecated */
 export default Memo;
