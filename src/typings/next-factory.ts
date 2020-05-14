@@ -1,4 +1,3 @@
-/** @internal */
 export type Memo = [ number, ...(number | undefined)[] ];
 
 export default interface NextFactory {
