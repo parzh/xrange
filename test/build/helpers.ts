@@ -1,7 +1,9 @@
-export declare namespace assert {
-	function type<Value = never>(arg: Value): void;
-	function returns<Value = never>(arg: (...args: any[]) => Value): void;
-	function params<Values extends any[] = []>(arg: (...args: Values) => void): void;
+export namespace assert {
+	export const ee: unknown = null;
+
+	export declare function type<Value = never>(arg: Value): void;
+	export declare function returns<Value = never>(arg: (...args: any[]) => Value): void;
+	export declare function params<Values extends any[] = []>(arg: (...args: Values) => void): void;
 }
 
 // Provides a fix for Jest runtime, which requires

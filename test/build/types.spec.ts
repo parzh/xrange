@@ -1,8 +1,8 @@
 import type XRange from "../../dist/typings/xrange";
 import type * as NextFactory from "../../dist/typings/next-factory";
 import type * as Predicate from "../../dist/typings/predicate";
-// import type Memo from "../../dist/typings/memo"; // TODO:
-// import type Prev from "../../dist/typings/prev"; // TODO:
+import type Memo from "../../dist/typings/memo";
+import type Prev from "../../dist/typings/prev";
 
 import { assert, t } from "./helpers";
 
@@ -46,4 +46,19 @@ describe("[ts] Predicate type", () => {
 	it("should produce boolean", t((predicate: Predicate.default) => {
 		assert.returns<boolean>(predicate);
 	}));
+});
+
+describe.each([
+	[ "Memo", assert.ee as Memo ],
+	[ "Prev", assert.ee as Prev ],
+])("[ts] %s type (deprecated)", (name, memo) => {
+	it("should be an array of numbers", t(() => {
+		assert.type<number[]>(memo);
+	}));
+
+	it("should have the first element strictly a number", t(() => {
+		assert.type<number>(memo[0]);
+	}));
+
+	it.todo("is deprecated");
 });
