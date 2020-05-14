@@ -3,7 +3,7 @@ import { resolve } from "path";
 import { execSync } from "child_process";
 
 /** @private */
-const testBundlePath = resolve(__dirname, "web/xrange.bundle.js");
+const webBundlePath = resolve(__dirname, "../dist/xrange.bundle.js");
 
 /** @private */
 const BUNDLE_SCRIPT_ID = "xrange-bundle";
@@ -13,10 +13,10 @@ function loadBundle(): void {
 	if (document.getElementById(BUNDLE_SCRIPT_ID))
 		return;
 
-	if (!existsSync(testBundlePath))
-		execSync("npm run build:web:test", { timeout: 10000, stdio: "ignore" });
+	if (!existsSync(webBundlePath))
+		execSync("npm run build:web", { timeout: 10000, stdio: "ignore" });
 
-	require(testBundlePath);
+	require(webBundlePath);
 }
 
 main: {
