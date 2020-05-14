@@ -20,8 +20,8 @@ afterEach(() => {
 	expect.assertions(0);
 });
 
-describe("XRange type", () => {
-	it("[ts] should be a number generator", () => (range: XRange) => {
+describe("[ts] XRange type", () => {
+	it("should be a number generator", () => (range: XRange) => {
 		assert.type<Generator<number>>(range[Symbol.iterator]());
 		assert.type<IteratorResult<number, number>>(range.next());
 		assert.type<IteratorResult<number, number>>(range.return(NaN));
@@ -29,12 +29,12 @@ describe("XRange type", () => {
 	});
 });
 
-describe("NextFactory type", () => {
-	it("[ts] should take `memo` as parameter", () => (next: NextFactory) => {
+describe("[ts] NextFactory type", () => {
+	it("should take `memo` as parameter", () => (next: NextFactory) => {
 		assert.params<[NextFactoryMemo]>(next);
 	});
 
-	it("[ts] should produce number", () => (next: NextFactory) => {
+	it("should produce number", () => (next: NextFactory) => {
 		assert.returns<number>(next);
 	});
 });
