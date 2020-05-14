@@ -19,8 +19,8 @@ afterEach(() => {
 	expect.assertions(0);
 });
 
-describe("[ts] XRange type", () => {
-	it("should be a number generator", t((range: XRange) => {
+describe("XRange type", () => {
+	it("[ts] should be a number generator", t((range: XRange) => {
 		assert.type<Generator<number>>(range[Symbol.iterator]());
 		assert.type<IteratorResult<number, number>>(range.next());
 		assert.type<IteratorResult<number, number>>(range.return(NaN));
@@ -28,22 +28,22 @@ describe("[ts] XRange type", () => {
 	}));
 });
 
-describe("[ts] NextFactory type", () => {
-	it("should take `memo` as parameter", t((next: NextFactory.default) => {
+describe("NextFactory type", () => {
+	it("[ts] should take `memo` as parameter", t((next: NextFactory.default) => {
 		assert.params<[NextFactory.Memo]>(next);
 	}));
 
-	it("should produce number", t((next: NextFactory.default) => {
+	it("[ts] should produce number", t((next: NextFactory.default) => {
 		assert.returns<number>(next);
 	}));
 });
 
-describe("[ts] Predicate type", () => {
-	it("should take `next` and `memo` as parameters", t((predicate: Predicate.default) => {
+describe("Predicate type", () => {
+	it("[ts] should take `next` and `memo` as parameters", t((predicate: Predicate.default) => {
 		assert.params<[number, Predicate.Memo]>(predicate);
 	}));
 
-	it("should produce boolean", t((predicate: Predicate.default) => {
+	it("[ts] should produce boolean", t((predicate: Predicate.default) => {
 		assert.returns<boolean>(predicate);
 	}));
 });
@@ -51,12 +51,12 @@ describe("[ts] Predicate type", () => {
 describe.each([
 	[ "Memo", assert.ee as Memo ],
 	[ "Prev", assert.ee as Prev ],
-])("[ts] %s type (deprecated)", (name, memo) => {
-	it("should be an array of numbers", t(() => {
+])("%s type (deprecated)", (name, memo) => {
+	it("[ts] should be an array of numbers", t(() => {
 		assert.type<number[]>(memo);
 	}));
 
-	it("should have the first element strictly a number", t(() => {
+	it("[ts] should have the first element strictly a number", t(() => {
 		assert.type<number>(memo[0]);
 	}));
 
