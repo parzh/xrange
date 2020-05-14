@@ -1,7 +1,12 @@
+// @ts-ignore
 import type XRange from "../../dist/typings/xrange";
+// @ts-ignore
 import type * as NextFactory from "../../dist/typings/next-factory";
+// @ts-ignore
 import type * as Predicate from "../../dist/typings/predicate";
+// @ts-ignore
 import type Memo from "../../dist/typings/memo";
+// @ts-ignore
 import type Prev from "../../dist/typings/prev";
 
 import { assert, t } from "./helpers";
