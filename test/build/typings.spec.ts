@@ -6,13 +6,6 @@ import type Prev from "../../dist/typings/prev";
 
 import { assert, t } from "./helpers";
 
-// If there's an error somewhere in types,
-// this file shouldn't compile at all, and
-// even break compilation of all the test
-// scripts, which is fine and intended 👍
-
-// Also, note double functions in test cases
-
 afterEach(() => {
 	// Since this file is a TypeScript-only test,
 	// implementation assertions are not expected
