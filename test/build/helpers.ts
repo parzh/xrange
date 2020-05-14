@@ -16,6 +16,8 @@ export function readGlob(...pathSegments: string[]): string[] {
 }
 
 export function expectToBeMyBoi(xrange: typeof import("../../src")): void {
+	expect(typeof xrange).toBe("function");
+
 	expect([ ...xrange(5) ]).toStrictEqual([ 0, 1, 2, 3, 4 ]);
 	expect([ ...xrange(-5) ]).toStrictEqual([ 0, -1, -2, -3, -4 ]);
 
