@@ -9,23 +9,21 @@ import type Memo from "../../dist/typings/memo";
 // @ts-ignore
 import type Prev from "../../dist/typings/prev";
 
-import { resolve } from "path";
-import { assert, t, build, readGlob } from "./helpers";
-import { distPath as dist } from "./entities";
+import { assert, t, build, expectFilesInDist } from "./helpers";
 
 beforeAll(build, 20000);
 
 it("should create all the necessary files", () => {
-	expect(readGlob(dist, "**/*.d.ts")).toEqual(expect.arrayContaining([
-		resolve(dist, "typings/memo.d.ts"),
-		resolve(dist, "typings/next-factory.d.ts"),
-		resolve(dist, "typings/predicate.d.ts"),
-		resolve(dist, "typings/prev.d.ts"),
-		resolve(dist, "typings/xrange.d.ts"),
-		resolve(dist, "errors.d.ts"),
-		resolve(dist, "index.d.ts"),
-		resolve(dist, "xrange.d.ts"),
-	]));
+	expectFilesInDist("**/*.d.ts", [
+		"typings/memo.d.ts",
+		"typings/next-factory.d.ts",
+		"typings/predicate.d.ts",
+		"typings/prev.d.ts",
+		"typings/xrange.d.ts",
+		"errors.d.ts",
+		"index.d.ts",
+		"xrange.d.ts",
+	]);
 });
 
 describe("XRange type", () => {

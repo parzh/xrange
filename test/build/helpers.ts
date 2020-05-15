@@ -2,7 +2,7 @@ import { resolve, join } from "path";
 import { existsSync } from "fs";
 import { execSync } from "child_process";
 import { sync } from "glob";
-import { entryPath } from "./entities";
+import { distPath, entryPath } from "./entities";
 
 export function build(done: jest.DoneCallback): void {
 	if (!existsSync(entryPath))
@@ -11,11 +11,16 @@ export function build(done: jest.DoneCallback): void {
 	done();
 }
 
-export function readGlob(...pathSegments: string[]): string[] {
-	return sync(join(...pathSegments)).map((path) => resolve(path));
+export function expectFilesInDist(glob: string, paths: string[]): void {
+	const actual = sync(join(distPath, glob)).map((path) => resolve(path));
+	const expected = paths.map((path) => resolve(distPath, path));
+
+	expect(actual).toEqual(expect.arrayContaining(expected));
 }
 
 export function expectToBeMyBoi(xrange: typeof import("../../src")): void {
+	expect(typeof xrange).toBe("function");
+
 	expect([ ...xrange(5) ]).toStrictEqual([ 0, 1, 2, 3, 4 ]);
 	expect([ ...xrange(-5) ]).toStrictEqual([ 0, -1, -2, -3, -4 ]);
 

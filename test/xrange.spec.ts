@@ -187,7 +187,7 @@ describe("xrange(start, predicate, next, maxMemo?)", () => {
 				() => 1,
 				// @ts-ignore
 				nan,
-			)).toThrowError(errors["XRANGE:MPLINV"]);
+			)).toThrowError(errors["XRANGE:MMMINV"]);
 	});
 });
 

@@ -1,18 +1,17 @@
-import { resolve } from "path";
-import { build, readGlob, expectToBeMyBoi } from "./helpers";
-import { distPath as dist } from "./entities";
+// @ts-ignore
+import xrange from "../../dist";
+
+import { build, expectFilesInDist, expectToBeMyBoi } from "./helpers";
 
 beforeAll(build, 20000);
 
 it("should create all the necessary files", () => {
-	expect(readGlob(dist, "**/*.js")).toEqual(expect.arrayContaining([
-		resolve(dist, "index.js"),
-		resolve(dist, "xrange.js"),
-	]));
+	expectFilesInDist("**/*.js", [
+		"index.js",
+		"xrange.js",
+	]);
 });
 
 it("should export fully functional entity", () => {
-	const xrange: typeof import("../../src") = require("../../dist");
-
 	expectToBeMyBoi(xrange);
 });

@@ -55,7 +55,7 @@ export default function xrange(first: number, second?: number | Predicate, third
 			throw createError("XRANGE:NXTNAF");
 
 		else if (arguments.length >= 4 && !isLength(fourth))
-			throw createError("XRANGE:MPLINV");
+			throw createError("XRANGE:MMMINV");
 
 		else
 			return xrangeFunctional(first, second, third, fourth);
