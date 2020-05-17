@@ -1,4 +1,4 @@
-import isNumeric from "./is-numeric.impl";
+import isNumeric from "./is-numeric.impl.ts";
 
 /** @private */
 const MAX_VALID_LENGTH = 2 ** 32 - 1;

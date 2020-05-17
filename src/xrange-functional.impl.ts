@@ -1,7 +1,7 @@
-import type XRange from "./typings/xrange";
-import type Predicate from "./typings/predicate";
-import type NextFactory from "./typings/next-factory";
-import type { Memo } from "./typings/next-factory";
+import type XRange from "./typings/xrange.ts";
+import type Predicate from "./typings/predicate.ts";
+import type NextFactory from "./typings/next-factory.ts";
+import type { Memo } from "./typings/next-factory.ts";
 
 /** @internal */
 export default function* xrangeFunctional(start: number, predicate: Predicate, next: NextFactory, maxMemo = Infinity): XRange {

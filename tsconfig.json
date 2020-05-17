@@ -10,5 +10,17 @@
 		"strict": true,
 		"noUnusedLocals": true,
 		"downlevelIteration": true,
+
+		"baseUrl": ".",
+		"paths": {
+			"package/*": [ "package/*" ],
+		},
+
+		"plugins": [
+			{
+				"name": "typescript-deno-plugin",
+				"importmap": "import_map.json",
+			},
+		],
 	},
 }

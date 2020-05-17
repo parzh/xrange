@@ -1,3 +1,3 @@
-import xrange from "./xrange";
+import xrange from "./xrange.ts";
 
-export = xrange;
+export default xrange; // this was supposed to be 'export ='

@@ -1,13 +1,13 @@
-import xrangeNumeric = require("@xrange/core");
+import xrangeNumeric from "../package/core/src/xrange.ts";
 
-import type XRange from "./typings/xrange";
-import type Predicate from "./typings/predicate";
-import type NextFactory from "./typings/next-factory";
+import type XRange from "./typings/xrange.ts";
+import type Predicate from "./typings/predicate.ts";
+import type NextFactory from "./typings/next-factory.ts";
 
-import { createError } from "./errors";
-import isLength from "./is-length.impl";
-import isNumeric from "./is-numeric.impl";
-import xrangeFunctional from "./xrange-functional.impl";
+import { createError } from "./errors.ts"
+import isLength from "./is-length.impl.ts";
+import isNumeric from "./is-numeric.impl.ts";
+import xrangeFunctional from "./xrange-functional.impl.ts";
 
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;
