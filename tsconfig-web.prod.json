@@ -1,4 +1,0 @@
-{
-	// used in "build:web" npm script
-	"extends": "./tsconfig.common",
-}
