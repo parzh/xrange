@@ -1,4 +1,4 @@
-import xrangeNumeric from "../package/core/src/xrange.ts";
+import xrangeNumeric from "https://raw.githubusercontent.com/parzh/xrange__core/master/src/xrange.ts";
 
 import type XRange from "./typings/xrange.ts";
 import type Predicate from "./typings/predicate.ts";
