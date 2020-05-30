@@ -1,4 +1,3 @@
-// @ts-ignore
 import xrange from "../../dist";
 
 import { build, expectFilesInDist, expectToBeMyBoi } from "./helpers";
