@@ -1,4 +1,5 @@
 import xrangeNumeric = require("@xrange/core");
+import xrangeFunctional = require("@xrange/func");
 
 import type XRange from "./typings/xrange";
 import type Predicate from "./typings/predicate";
@@ -7,7 +8,6 @@ import type NextFactory from "./typings/next-factory";
 import { createError } from "./errors";
 import isLength from "./is-length.impl";
 import isNumeric from "./is-numeric.impl";
-import xrangeFunctional from "./xrange-functional.impl";
 
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;
