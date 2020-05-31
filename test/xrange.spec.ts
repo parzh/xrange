@@ -1,10 +1,12 @@
 import numeric from "@xrange/core";
+import functional from "@xrange/func";
 
 import xrange from "../src";
 import errors from "../src/errors";
 import { nans, nanofs } from "./entities";
 
 jest.mock("@xrange/core", jest.fn);
+jest.mock("@xrange/func", jest.fn);
 
 describe("xrange(stop)", () => {
 	it("should fail when providing `null`, `NaN`, or a non-numeric value", () => {
@@ -188,6 +190,13 @@ describe("xrange(start, predicate, next, maxMemo?)", () => {
 				// @ts-ignore
 				nan,
 			)).toThrowError(errors["XRANGE:MMMINV"]);
+	});
+
+	it("should delegate implementation to @xrange/func", () => {
+		const args: Parameters<typeof xrange> = [ 0, () => false, () => 0, 0 ];
+
+		xrange(...args);
+		expect(functional).toHaveBeenLastCalledWith(...args);
 	});
 });
 
