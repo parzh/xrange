@@ -1,5 +1,5 @@
 /**
- * @deprecated Use `XRange` type from `dist/xrange`:
+ * @deprecated Use `XRange` type from indexfile:
  * ```
  * import type { XRange } from "xrange";
  * ```
