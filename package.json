@@ -70,6 +70,6 @@
   },
   "dependencies": {
     "@xrange/core": "1.0.1",
-    "@xrange/func": "1.0.1"
+    "@xrange/func": "1.0.2"
   }
 }
