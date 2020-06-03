@@ -39,6 +39,7 @@
     "errorOnDeprecated": true
   },
   "scripts": {
+    "pretest": "node --require ./dist -pe \"process.exit(0)\" || npm run build",
     "test": "jest --no-cache",
     "test:cov": "npm run test -- --coverage",
     "test:ci": "npm run test -- --no-colors",

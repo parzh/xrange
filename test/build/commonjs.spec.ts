@@ -1,8 +1,6 @@
 import xrange from "../../dist";
 
-import { build, expectFilesInDist, expectToBeMyBoi } from "./helpers";
-
-beforeAll(build, 20000);
+import { expectFilesInDist, expectToBeMyBoi } from "./helpers";
 
 it("should create all the necessary files", () => {
 	expectFilesInDist("**/*.js", [

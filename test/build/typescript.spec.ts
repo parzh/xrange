@@ -4,9 +4,7 @@ import type * as Predicate from "../../dist/typings/predicate";
 import type Memo from "../../dist/typings/memo";
 import type Prev from "../../dist/typings/prev";
 
-import { assert, t, build, expectFilesInDist } from "./helpers";
-
-beforeAll(build, 20000);
+import { assert, t, expectFilesInDist } from "./helpers";
 
 it("should create all the necessary files", () => {
 	expectFilesInDist("**/*.d.ts", [
