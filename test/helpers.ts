@@ -8,3 +8,12 @@ export function expectToBeCloseTo(range: XRange, expected: readonly number[]): v
 
 	expect(count).toEqual(expected.length);
 }
+
+export function takeProbe(probeLength: number, range: XRange): readonly IteratorResult<number, number>[] {
+	const probe: IteratorResult<number, number>[] = [];
+
+	for (let i = 0; i < probeLength; i++)
+		probe.push(range.next());
+
+	return probe;
+}

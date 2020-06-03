@@ -1,15 +1,19 @@
 import xrangeNumeric = require("@xrange/core");
-
-import type XRange from "./typings/xrange";
+import xrangeFunctional = require("@xrange/func");
+import type { Predicate, NextFactory } from "@xrange/func";
 
 import { createError } from "./errors";
+import isLength from "./is-length.impl";
 import isNumeric from "./is-numeric.impl";
+
+export type XRange = Generator<number, number>;
 
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;
 export default function xrange(bound1: number, bound2: number, step: number): XRange;
+export default function xrange(start: number, predicate: Predicate, next: NextFactory, maxMemo?: number): XRange;
 
-export default function xrange(first: number, second?: number, third?: number): XRange {
+export default function xrange(first: number, second?: number | Predicate, third?: number | NextFactory, fourth?: number): XRange {
 	if (arguments.length === 0)
 		throw createError("XRANGE:ARGREQ");
 
@@ -46,8 +50,14 @@ export default function xrange(first: number, second?: number, third?: number): 
 		if (typeof second !== "function")
 			throw createError("XRANGE:BD2NNF");
 
+		else if (typeof third !== "function")
+			throw createError("XRANGE:NXTNAF");
+
+		else if (arguments.length >= 4 && !isLength(fourth))
+			throw createError("XRANGE:MMMINV");
+
 		else
-			throw createError("XRANGE:NOIMPL"); // TODO: looplike implementation
+			return xrangeFunctional(first, second, third, fourth);
 
 	else if (!isNumeric(third))
 		throw createError("XRANGE:STENAN");

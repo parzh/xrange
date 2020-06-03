@@ -14,6 +14,7 @@ const _errors = {
 	"XRANGE:STENAN": new Error("argument `step` is not a number"),
 	"XRANGE:STEZER": new RangeError("argument `step` cannot be zero"),
 	"XRANGE:NXTNAF": new Error("argument `next` is not a function"),
+	"XRANGE:MMMINV": new Error("argument `maxMemo` is not a valid length"),
 } as const;
 
 export type Errors = typeof _errors;

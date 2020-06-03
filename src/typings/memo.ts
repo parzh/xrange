@@ -1,3 +1,4 @@
-export default interface Memo extends Partial<number[]> {
-	0: number; // FIXME: looks weird, I know, but type [ number, ...number[] ] didn't work
-}
+/** @deprecated Unused anywhere, left for backwards compatibility */
+type Memo = [ number, ...number[] ];
+
+export default Memo;

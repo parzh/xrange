@@ -1,5 +1,1 @@
-# omit definitions for implementation-only files
-dist/**/*.impl.d.ts
-
-# omit implementation for definitions-only files
-dist/typings/*.js
+# see exclusive entries in "files" array in package.json

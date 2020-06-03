@@ -7,10 +7,6 @@ const codes = Object.keys(errors) as ErrorCode[];
 /** @private */
 const codePattern = /^XRANGE:[A-Z_0-9]{6}$/;
 
-it("should export collection of errors", () => {
-	expect(codes).toHaveLength(14);
-});
-
 it("should have error codes with the correct syntax", () => {
 	for (const code of codes)
 		expect(code).toMatch(codePattern);
@@ -69,6 +65,7 @@ describe("createError(code, preserveStack?)", () => {
 		expect(createError("XRANGE:STENAN").message).toMatch(/\] argument `step` is not a number$/);
 		expect(createError("XRANGE:STEZER").message).toMatch(/\] argument `step` cannot be zero$/);
 		expect(createError("XRANGE:NXTNAF").message).toMatch(/\] argument `next` is not a function$/);
+		expect(createError("XRANGE:MMMINV").message).toMatch(/\] argument `maxMemo` is not a valid length$/);
 	});
 
 	it("should remove last stack entry by default", () => {

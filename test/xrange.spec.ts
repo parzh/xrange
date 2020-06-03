@@ -1,10 +1,12 @@
 import numeric from "@xrange/core";
+import functional from "@xrange/func";
 
 import xrange from "../src";
 import errors from "../src/errors";
 import { nans, nanofs } from "./entities";
 
 jest.mock("@xrange/core", jest.fn);
+jest.mock("@xrange/func", jest.fn);
 
 describe("xrange(stop)", () => {
 	it("should fail when providing `null`, `NaN`, or a non-numeric value", () => {
@@ -167,17 +169,35 @@ describe("xrange(bound1, bound2, step)", () => {
 	it.todo("should work with decimals");
 });
 
-describe("xrange(start, predicate, next)", () => {
-	it("is not yet implemented", () => {
-		expect(() => xrange(
-			0,
+describe("xrange(start, predicate, next, maxMemo?)", () => {
+	it("should fail if `next` is not a function", () => {
+		expect(() => {
 			// @ts-ignore
-			() => false,
-			() => NaN,
-		)).toThrowError(errors["XRANGE:NOIMPL"]);
+			xrange(0, () => true, 1);
+		}).toThrowError(errors["XRANGE:NXTNAF"]);
 	});
 
-	// TODO: add cases from test/xrange-start-predicate-next.spec.ts (last seen in 07065630aabde6fc2ddfa53117a6cd2893978c8b)
+	it("should not fail if `maxMemo` is not present", () => {
+		expect(() => xrange(0, () => true, () => 1)).not.toThrow();
+	});
+
+	it("should fail if `maxMemo` (if present) is not a valid length", () => {
+		for (const nan of nans)
+			expect(() => xrange(
+				0,
+				() => true,
+				() => 1,
+				// @ts-ignore
+				nan,
+			)).toThrowError(errors["XRANGE:MMMINV"]);
+	});
+
+	it("should delegate implementation to @xrange/func", () => {
+		const args: Parameters<typeof xrange> = [ 0, () => false, () => 0, 0 ];
+
+		xrange(...args);
+		expect(functional).toHaveBeenLastCalledWith(...args);
+	});
 });
 
 it("should fail without arguments", () => {
