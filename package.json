@@ -11,8 +11,10 @@
     "iterator"
   ],
   "files": [
-    "dist",
-    "README.md"
+    "/dist",
+    "!/dist/**/*.impl.d.ts",
+    "!/dist/typings/*.js",
+    "/README.md"
   ],
   "browser": "dist/xrange.bundle.js",
   "main": "dist/index.js",
