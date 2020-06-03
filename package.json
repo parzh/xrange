@@ -11,8 +11,10 @@
     "iterator"
   ],
   "files": [
-    "dist",
-    "README.md"
+    "/dist",
+    "!/dist/**/*.impl.d.ts",
+    "!/dist/typings/*.js",
+    "/README.md"
   ],
   "browser": "dist/xrange.bundle.js",
   "main": "dist/index.js",
@@ -70,6 +72,6 @@
   },
   "dependencies": {
     "@xrange/core": "1.0.1",
-    "@xrange/func": "1.0.1"
+    "@xrange/func": "1.0.3"
   }
 }

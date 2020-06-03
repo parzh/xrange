@@ -1,13 +1,12 @@
 import xrangeNumeric = require("@xrange/core");
 import xrangeFunctional = require("@xrange/func");
-
-import type XRange from "./typings/xrange";
-import type Predicate from "./typings/predicate";
-import type NextFactory from "./typings/next-factory";
+import type { Predicate, NextFactory } from "@xrange/func";
 
 import { createError } from "./errors";
 import isLength from "./is-length.impl";
 import isNumeric from "./is-numeric.impl";
+
+export type XRange = Generator<number, number>;
 
 export default function xrange(stop: number): XRange;
 export default function xrange(start: number, stop: number): XRange;

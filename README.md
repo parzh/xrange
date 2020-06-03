@@ -63,7 +63,7 @@ xrange(10, 0, -1);
 // 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
 ```
 
-#### Complex number sequences (see [#15](https://github.com/parzh/xrange/issues/15)):
+#### Complex number sequences:
 
 ```ts
 xrange(1, (next) => next < 100, ([ last, prelast = 0 ]) => last + prelast);
@@ -87,8 +87,10 @@ xrange(17, 42, 5).forEach(number => {
 
 ## `range` vs `xrange`
 
-> Looking for less functionality in a smaller bundle? Check out [`@xrange/core`](https://npmjs.org/package/@xrange/core)
+> Looking for less functionality in a smaller bundle? Check out [`@xrange/core`](https://npmjs.org/package/@xrange/core) and [`@xrange/func`](https://npmjs.org/package/@xrange/func)
 
 The main difference of `xrange` from [`range`](https://npmjs.org/package/range) is that `xrange` is an iterator, not an array constructor, &mdash; it yields numbers on demand, leaving array creation decision to user, which can always be done using the [`...` spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) or [`Array.from`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
 
 While also having a larger bundle, `xrange` delegates the actual iteration to [`@xrange/core`](https://npmjs.org/package/@xrange/core), which is vastly smaller, and can be used on its own (in some cases the usage is different though).
+
+While `@xrange/core` provides numeric iterator, [`@xrange/func`](https://npmjs.org/package/@xrange/func) implements predicated iteration, provided as a separate smaller package. It also has less error correction, but the functionality is quite similar to `xrange`, since it uses `@xrange/func` under the hood.
