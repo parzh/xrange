@@ -1,15 +1,6 @@
 import { resolve, join } from "path";
-import { existsSync } from "fs";
-import { execSync } from "child_process";
 import { sync } from "glob";
-import { distPath, entryPath } from "./entities";
-
-export function build(done: jest.DoneCallback): void {
-	if (!existsSync(entryPath))
-		execSync("npm run build", { timeout: 20000, stdio: "ignore" });
-
-	done();
-}
+import { distPath } from "./entities";
 
 export function expectFilesInDist(glob: string, paths: string[]): void {
 	const actual = sync(join(distPath, glob)).map((path) => resolve(path));

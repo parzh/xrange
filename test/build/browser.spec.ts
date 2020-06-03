@@ -2,14 +2,12 @@
  * @jest-environment jsdom
  */
 
-import { build, expectFilesInDist, expectToBeMyBoi } from "./helpers";
+import { expectFilesInDist, expectToBeMyBoi } from "./helpers";
 import { bundlePath } from "./entities";
 
 declare global {
 	const xrange: typeof import("../../src");
 }
-
-beforeAll(build, 20000);
 
 it("should create all the necessary files", () => {
 	expectFilesInDist("xrange.bundle.js", [
