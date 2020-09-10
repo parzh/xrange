@@ -93,4 +93,4 @@ The main difference of `xrange` from [`range`](https://npmjs.org/package/range) 
 
 While also having a larger bundle, `xrange` delegates the actual iteration to [`@xrange/core`](https://npmjs.org/package/@xrange/core), which is vastly smaller, and can be used on its own (in some cases the usage is different though).
 
-While `@xrange/core` provides numeric iterator, [`@xrange/func`](https://npmjs.org/package/@xrange/func) implements predicated iteration, provided as a separate smaller package. It also has less error correction, but the functionality is quite similar to `xrange`, since it uses `@xrange/func` under the hood.
+While `@xrange/core` provides numeric iterator, [`@xrange/func`](https://npmjs.org/package/@xrange/func) implements predicated iteration, provided as a separate smaller package. It also has less error correction, but the functionality is quite similar to `xrange`, since `xrange` uses `@xrange/func` under the hood.
