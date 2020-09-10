@@ -4,11 +4,6 @@ on:
   pull_request:
     branches:
       - master
-      - develop
-
-env:
-  DIST_TAG_MASTER: latest
-  DIST_TAG_DEVELOP: next
 
 jobs:
   check-version-changed:
