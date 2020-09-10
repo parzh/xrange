@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2.1.1
 
       - name: Ensure versions in package.json and package-lock.json match
         run: node -pe "process.exit(require('./package.json').version !== require('./package-lock.json').version);"
