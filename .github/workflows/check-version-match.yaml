@@ -1,10 +1,6 @@
 name: Check version match
 
 on:
-  push:
-    paths:
-      - package.json
-      - package-lock.json
   pull_request:
     branches:
       - master
