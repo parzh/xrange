@@ -4,11 +4,6 @@ on:
   pull_request:
     branches:
       - master
-      - develop
-
-env:
-  DIST_TAG_MASTER: latest
-  DIST_TAG_DEVELOP: next
 
 jobs:
   check-version-changed:
@@ -19,6 +14,10 @@ jobs:
       - uses: actions/setup-node@v2.1.1
         with:
           node-version: '12.x'
+
+      - name: Ensure versions in package.json and package-lock.json match
+        run: |2
+          node -pe "process.exit(require('./package.json').version !== require('./package-lock.json').version);"
 
       - name: Ensure package version updated
         run: |2
