@@ -1,0 +1,22 @@
+name: Check PR head
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  check-develop-branch:
+    name: Check PR head is 'parzh:develop'
+    runs-on: ubuntu-latest
+    env:
+      PR_HEAD_LABEL: ${{ github.event.pull_request.head.label }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: |2
+          if ! [ $PR_HEAD_LABEL == 'parzh:develop' ]; then
+            echo Expected PR head to be 'parzh:develop', got '$PR_HEAD_LABEL'
+            exit 1
+          fi
