@@ -15,6 +15,10 @@ jobs:
         with:
           node-version: '12.x'
 
+      - name: Ensure versions in package.json and package-lock.json match
+        run: |2
+          node -pe "process.exit(require('./package.json').version !== require('./package-lock.json').version);"
+
       - name: Ensure package version updated
         run: |2
           set -e
