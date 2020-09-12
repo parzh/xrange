@@ -1,5 +1,3 @@
-export const REASONABLY_LARGE_NUMBER = 5184;
-
 /** `NaN`, `null`, and non-numeric values (except for functions) */
 export const nanofs: unknown[] = [ null, NaN, "text", "42", true, false, Symbol("non-numeric"), {} ];
 
