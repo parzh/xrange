@@ -1,5 +1,4 @@
-import type { ErrorCode } from "../src/errors";
-import errors, { createError, removeLastStackEntry } from "../src/errors";
+import errors, { ErrorCode, createError, removeLastStackEntry } from "../src/errors";
 
 /** @private */
 const codes = Object.keys(errors) as ErrorCode[];
