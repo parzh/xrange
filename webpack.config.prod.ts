@@ -24,7 +24,6 @@ const config: Configuration = {
 	output: {
 		libraryTarget: "window",
 		library: "xrange",
-		libraryExport: "",
 		path: resolve(__dirname, "dist"),
 		filename: "xrange.bundle.js",
 	},
