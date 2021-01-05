@@ -35,7 +35,7 @@
   </sub>
 </p>
 
-## [Examples](https://github.com/parzh/xrange/tree/master/docs/examples)
+## [Examples](https://github.com/parzh/xrange/tree/main/docs/examples)
 
 Simple iteration:
 
@@ -83,7 +83,7 @@ xrange(17, 42, 5).forEach(number => {
 });
 ```
 
-> See more in [/docs/examples](https://github.com/parzh/xrange/tree/master/docs/examples)
+> See more in [/docs/examples](https://github.com/parzh/xrange/tree/main/docs/examples)
 
 ## `range` vs `xrange`
 
