@@ -3,7 +3,7 @@ name: Test changes
 on:
   push:
     branches-ignore:
-      - master
+      - main
       - 'skip-ci-tests/*'
 
 jobs:
