@@ -24,7 +24,7 @@ jobs:
 
       - name: Save coverage report (only for Ubuntu)
         if: matrix.os == 'ubuntu-latest'
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: xrange-coverage-at-${{ github.sha }}
           path: coverage
