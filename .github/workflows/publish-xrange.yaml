@@ -3,7 +3,7 @@ name: Publish xrange
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   test:
@@ -14,16 +14,17 @@ jobs:
         os:
           - ubuntu-latest
           - windows-latest
+          - macos-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
 
       - run: npm ci
       - run: npm run test:ci -- --coverage
 
       - name: Save coverage report (only for Ubuntu)
         if: matrix.os == 'ubuntu-latest'
-        uses: actions/upload-artifact@v2.2.1
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: xrange-coverage-at-${{ github.sha }}
           path: coverage
@@ -35,7 +36,7 @@ jobs:
       - test
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
 
       - run: npm ci
 
