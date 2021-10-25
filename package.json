@@ -1,6 +1,6 @@
 {
   "name": "xrange",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Python-esque iterator for number ranges",
   "author": "Dima Parzhitsky <parzhitsky@gmail.com>",
   "repository": "github:parzh/xrange",
@@ -55,24 +55,24 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@types/glob": "7.1.3",
-    "@types/jest": "26.0.23",
-    "@types/node": "15.6.1",
+    "@types/glob": "7.2.0",
+    "@types/jest": "27.0.2",
+    "@types/node": "16.11.4",
     "@types/webpack": "5.28.0",
     "@types/webpack-merge": "5.0.0",
-    "glob": "7.1.7",
-    "jest": "26.6.3",
+    "glob": "7.2.0",
+    "jest": "27.3.1",
     "rimraf": "3.0.2",
-    "ts-jest": "26.5.6",
-    "ts-loader": "9.2.2",
-    "ts-node": "10.0.0",
-    "typescript": "4.3.2",
-    "webpack": "5.38.1",
-    "webpack-cli": "4.7.0",
-    "webpack-merge": "5.7.3"
+    "ts-jest": "27.0.7",
+    "ts-loader": "9.2.6",
+    "ts-node": "10.4.0",
+    "typescript": "4.4.4",
+    "webpack": "5.59.1",
+    "webpack-cli": "4.9.1",
+    "webpack-merge": "5.8.0"
   },
   "dependencies": {
     "@xrange/core": "1.0.2",
-    "@xrange/func": "1.0.4"
+    "@xrange/func": "1.0.5"
   }
 }
