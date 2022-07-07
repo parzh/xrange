@@ -1,9 +1,9 @@
 import numeric from "@xrange/core";
 import functional from "@xrange/func";
-
 import xrange from "../src";
 import errors from "../src/errors";
-import { nans, nanofs } from "./entities";
+import nanofs from "./nanofs";
+import nans from "./nans";
 
 jest.mock("@xrange/core", jest.fn);
 jest.mock("@xrange/func", jest.fn);

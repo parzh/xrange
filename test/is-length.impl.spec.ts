@@ -1,5 +1,5 @@
 import isLength from "../src/is-length.impl";
-import { nans } from "./entities";
+import nans from "./nans";
 
 /** @private */
 const valid: number[] = [ 17, 42, 0, 5, 2 ** 32 - 1 ];

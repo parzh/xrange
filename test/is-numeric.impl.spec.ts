@@ -1,5 +1,6 @@
 import isNumeric from "../src/is-numeric.impl";
-import { nans, nanofs } from "./entities";
+import nanofs from "./nanofs";
+import nans from "./nans";
 
 it("should return `true` if the value is number and not a `NaN`", () => {
 	const values = [ 2, 5, 7, -3, 0, -0, Infinity, -Infinity ] as const;

@@ -2,12 +2,16 @@
  * @jest-environment jsdom
  */
 
-import { expectFilesInDist, expectToBeMyBoi } from "./helpers";
-import { bundlePath } from "./entities";
+import { resolve } from "path";
+import expectFilesInDist, { distPath } from "./expect-files-in-dist";
+import expectToBeMyBoi from "./expect-to-be-my-boi";
 
 declare global {
 	const xrange: typeof import("../../src");
 }
+
+/** @private */
+const bundlePath = resolve(distPath, "xrange.bundle.js");
 
 it("should create all the necessary files", () => {
 	expectFilesInDist("xrange.bundle.js", [
