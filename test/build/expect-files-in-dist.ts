@@ -1,11 +1,13 @@
 import { resolve, join } from "path";
-import { sync } from "glob";
+import { sync as find } from "glob";
 
 export const distPath = resolve(__dirname, "../../dist");
 
 export default function expectFilesInDist(glob: string, paths: string[]): void {
-	const actual = sync(join(distPath, glob)).map((path) => resolve(path));
-	const expected = paths.map((path) => resolve(distPath, path));
+	const pathsResolved = paths.map((path) => resolve(distPath, path));
+	const pathsExpected = expect.arrayContaining(pathsResolved);
+	const pattern = join(distPath, glob);
+	const pathsFound = find(pattern).map((path) => resolve(path));
 
-	expect(actual).toEqual(expect.arrayContaining(expected));
+	expect(pathsFound).toEqual(pathsExpected);
 }
