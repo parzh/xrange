@@ -1,4 +1,4 @@
-import { resolve, join } from "path";
+import { resolve, join } from "path/posix";
 import { sync as find } from "glob";
 
 export const distPath = resolve(__dirname, "../../dist");
