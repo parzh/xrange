@@ -60,7 +60,7 @@
     "@types/node": "18.15.3",
     "@types/webpack": "5.28.1",
     "@types/webpack-merge": "5.0.0",
-    "glob": "7.2.3",
+    "glob": "10.3.9",
     "jest": "27.5.1",
     "rimraf": "3.0.2",
     "ts-jest": "27.0.7",
