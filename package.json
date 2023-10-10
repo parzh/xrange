@@ -57,7 +57,7 @@
   "devDependencies": {
     "@types/glob": "7.2.0",
     "@types/jest": "27.5.0",
-    "@types/node": "18.15.3",
+    "@types/node": "20.8.4",
     "@types/webpack": "5.28.1",
     "@types/webpack-merge": "5.0.0",
     "glob": "7.2.3",
